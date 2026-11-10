@@ -21,16 +21,30 @@ Stable versions use npm's `latest` dist-tag. Prerelease versions, or releases ma
 
 ## npm authentication
 
-Preferred: configure a GitHub Actions trusted publisher in the npm package's settings:
+Publication uses **npm trusted publishing through GitHub Actions OIDC**, with no npm publish token secret. Configure a GitHub Actions trusted publisher in the npm package's settings:
 
 - Organization: `node-projects`
 - Repository: `luma-elements`
 - Workflow filename: `release.yml`
-- No environment name is required by this workflow.
+- Environment name: leave empty (this workflow does not use a GitHub environment).
+- Allowed actions: enable direct publication with `npm publish`.
 
-The workflow has `id-token: write` and installs npm 11 for OIDC support. npm prefers OIDC and generates provenance for supported public packages/repositories. See [npm's trusted publishing documentation](https://docs.npmjs.com/trusted-publishers/).
+The workflow has `id-token: write` and installs npm 11 for OIDC support. npm obtains short-lived publication credentials from the configured trust relationship and generates provenance for supported public packages/repositories. See [npm's trusted publishing documentation](https://docs.npmjs.com/trusted-publishers/).
 
-For a first publish before a package/trusted publisher exists, an optional repository secret named `NPM_TOKEN` can provide a granular npm token with permission to publish `@node-projects/luma-elements`. The workflow passes it only to the publish step as `NODE_AUTH_TOKEN`. No credentials are stored in this repository. After a trusted publisher is configured, this secret is unnecessary.
+There is no `NPM_TOKEN`/`NODE_AUTH_TOKEN` secret mapping or token fallback in the publish step. The trust relationship must be configured on npm; repository code cannot grant itself permission to publish. Match the owner, repository and workflow filename exactly. A dry run verifies the archive and command, not registry authorization. An `E404` or authentication failure during actual publication requires checking npm package access and the trusted-publisher configuration.
+
+### First publication
+
+npm requires the package to exist before a trusted publisher can be registered ([npm CLI prerequisites](https://github.com/npm/cli/blob/latest/docs/lib/content/commands/npm-trust.md)). A brand-new package therefore needs one interactive publication by an authorized npm organization member. This does not require creating a repository token secret.
+
+For the already-built 1.1.0 release, download the `.tgz` and `SHA256SUMS` from [its release assets](https://github.com/node-projects/luma-elements/releases/tag/1.1.0), verify the checksum, then run in the download directory:
+
+```sh
+npm login
+npm publish ./node-projects-luma-elements-1.1.0.tgz --access public --ignore-scripts
+```
+
+The login and publication may request interactive account/2FA approval. After publication, configure the trusted publisher using the fields above. All later releases use OIDC automatically. Do not rerun publication of an already-published version.
 
 GitHub's own token attaches release assets; no separate GitHub token is needed. The release workflow must be present in the tagged commit. It does not push generated files or version changes back to the default branch.
 

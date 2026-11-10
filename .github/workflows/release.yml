@@ -44,10 +44,8 @@ jobs:
           PACKAGE_TARBALL: ${{ steps.package.outputs.tarball }}
           PACKAGE_CHECKSUM: ${{ steps.package.outputs.checksum }}
         run: gh release upload "$RELEASE_TAG" "$PACKAGE_TARBALL" "$PACKAGE_CHECKSUM" --repo "$GITHUB_REPOSITORY" --clobber
-      - name: Publish that same tarball to npm
+      - name: Publish that same tarball to npm with OIDC
         env:
-          # OIDC is preferred; an optional granular token can bootstrap a first release.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           PACKAGE_TARBALL: ${{ steps.package.outputs.tarball }}
           NPM_DIST_TAG: ${{ steps.version.outputs.dist_tag }}
         run: npm publish "$PACKAGE_TARBALL" --access public --tag "$NPM_DIST_TAG" --ignore-scripts

@@ -238,7 +238,7 @@ Browser checks import every definition's actual module, compare its exported con
 
 ## Builds and npm releases
 
-See [docs/RELEASING.md](docs/RELEASING.md). Push/PR builds test and pack the library. Publishing a GitHub release runs `release.yml`, derives the npm version from its semantic release tag, builds/tests that version, attaches the exact `.tgz` and checksum to the release, and publishes that tarball to npm. Stable versions use `latest`; prereleases use `next`. Configure npm trusted publishing for `node-projects/luma-elements`, workflow `release.yml`, or supply `NPM_TOKEN` for an initial bootstrap publish.
+See [docs/RELEASING.md](docs/RELEASING.md). Push/PR builds test and pack the library. Publishing a GitHub release runs `release.yml`, derives the npm version from its semantic release tag, builds/tests that version, attaches the exact `.tgz` and checksum to the release, and publishes that tarball to npm. Stable versions use `latest`; prereleases use `next`. Configure npm trusted publishing (GitHub Actions OIDC) for `node-projects/luma-elements`, workflow `release.yml`. Publication does not use an npm token secret.
 
 ## Project structure
 
