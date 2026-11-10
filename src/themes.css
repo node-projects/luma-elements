@@ -1,0 +1,25 @@
+/* Add data-theme="light" or "dark" to any ancestor. Omit for OS preference. */
+:root,[data-theme="light"] {
+  color-scheme:light;
+  --luma-color-scheme:light;
+  --luma-background:#fafafa;
+  --luma-card-background:#fff;
+  --luma-text:#212121;
+  --luma-secondary-text:#727272;
+  --luma-primary:#03a9f4;
+  --luma-on-primary:#fff;
+  --luma-border:#e0e0e0;
+  --luma-control-background:#f0f0f0;
+  --luma-switch-track:#bdbdbd;
+  --luma-radius:12px;
+  --luma-shadow:0 1px 2px #00000008;
+  --luma-font:Roboto,Arial,sans-serif;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;--luma-color-scheme:dark;--luma-background:#111;--luma-card-background:#1c1c1c;--luma-text:#e1e1e1;--luma-secondary-text:#a0a0a0;--luma-border:#333;--luma-control-background:#303030;--luma-switch-track:#616161;--luma-shadow:none;
+  }
+}
+[data-theme="dark"]{
+  color-scheme:dark;--luma-color-scheme:dark;--luma-background:#111;--luma-card-background:#1c1c1c;--luma-text:#e1e1e1;--luma-secondary-text:#a0a0a0;--luma-border:#333;--luma-control-background:#303030;--luma-switch-track:#616161;--luma-shadow:none;
+}

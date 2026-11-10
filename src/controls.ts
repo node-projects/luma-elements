@@ -1,0 +1,169 @@
+import {LumaElement, register, escape, clamp, accent} from './base.js';
+import {common, prop, type Schema} from './metadata.js';
+import {rangeSchema, LumaSlider, type SelectOption} from './primitives.js';
+import {icon} from './icons.js';
+
+export const snap=(value:number,min:number,max:number,step:number):number=>Number(clamp(min+Math.round((value-min)/Math.max(.000001,step))*Math.max(.000001,step),min,max).toFixed(6));
+export class LumaArc extends LumaElement {
+  static schema={...rangeSchema,color:prop('string','orange','Arc and handle accent, a theme color name or CSS color.'),highValue:prop('number',24,'Upper set point when range is enabled.'),range:prop('boolean',false,'Draw the active segment between value and high-value.'),showThumb:prop('boolean',false,'Show draggable-handle markers; interaction is supplied by luma-dial.'),secondary:prop('string','','Caption under the central reading.')};
+  declare value:number;declare min:number;declare max:number;declare step:number;declare unit:string;declare color:string;declare range:boolean;declare highValue:number;declare showThumb:boolean;declare secondary:string;
+  protected render():void {
+    const f=(v:number)=>clamp((v-this.min)/(this.max-this.min||1),0,1);const a=f(this.value);const b=this.range?f(this.highValue):a;
+    const point=(v:number)=>{const r=(135+v*270)*Math.PI/180;return [150+112*Math.cos(r),140+112*Math.sin(r)];};
+    const thumb=(v:number)=>{const [x,y]=point(v);return `<circle part="thumb" cx="${x}" cy="${y}" r="10" fill="var(--luma-card-background,#fff)" stroke="${accent(this.color)}" stroke-width="3"/>`;};
+    this.root.innerHTML=`<svg part="arc" class="chart" viewBox="0 0 300 280" role="img" aria-label="${escape(`${this.label || 'Value'}: ${this.value}${this.range?' – '+this.highValue:''}${this.unit}`)}"><path part="track" d="M70.8 219.2 A112 112 0 1 1 229.2 219.2" fill="none" stroke="var(--luma-control-background,#eee)" stroke-width="16" stroke-linecap="round"/><path part="fill" d="M70.8 219.2 A112 112 0 1 1 229.2 219.2" fill="none" stroke="${accent(this.color)}" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="${Math.abs(b-(this.range?a:0))*100} 100" stroke-dashoffset="${this.range?-Math.min(a,b)*100:0}"/>${this.showThumb?thumb(a)+(this.range?thumb(b):''):''}<text x="150" y="138" text-anchor="middle" style="font-size:36px;fill:var(--luma-text,#212121)">${escape(this.value)}${this.range?' – '+escape(this.highValue):''}<tspan style="font-size:16px">${escape(this.unit)}</tspan></text><text x="150" y="165" text-anchor="middle">${escape(this.secondary)}</text><text x="48" y="251">${escape(this.min)}</text><text x="252" y="251" text-anchor="end">${escape(this.max)}</text></svg>`;
+  }
+}
+register('luma-arc',LumaArc,'Standalone 270° value/range arc. Use it as an indicator anywhere, or compose it with luma-dial for interaction.');
+
+/** Pointer/touch and keyboard controller composed around the standalone arc. */
+export class LumaDial extends LumaArc {
+  static schema={...LumaArc.schema,showThumb:prop('boolean',true,'Show the currently controlled set point handles.')};
+  protected render():void {
+    this.root.innerHTML=`<div part="dial" class="dial" style="position:relative;max-width:320px;margin:auto;touch-action:none;user-select:none;${this.disabled?'opacity:.45;':''}"><luma-arc exportparts="arc,track,fill,thumb" aria-hidden="true"></luma-arc>${['value',...(this.range?['highValue']:[])].map((name,i)=>`<div role="slider" tabindex="${this.disabled?-1:0}" data-handle="${name}" aria-label="${escape((this.label || 'Temperature')+(this.range?(i?' upper':' lower'):''))}" aria-disabled="${this.disabled}" aria-valuemin="${i?this.value:this.min}" aria-valuemax="${!i&&this.range?this.highValue:this.max}" aria-valuenow="${i?this.highValue:this.value}" aria-valuetext="${i?this.highValue:this.value}${escape(this.unit)}" style="position:absolute;inset:${i?'65% 12% 14% 65%':'0'};border-radius:50%;cursor:${this.disabled?'default':'pointer'}"></div>`).join('')}</div>`;
+    const properties=Object.fromEntries(Object.keys(LumaArc.schema).map(key=>[key,this.getValue(key)]));this.configure('luma-arc',properties);
+    const surface=this.root.querySelector<HTMLElement>('.dial')!;
+    let dragging=false;let handle='value';let initial=0;
+    const read=(e:PointerEvent)=>{const r=surface.getBoundingClientRect();let a=(Math.atan2((e.clientY-r.top)/r.height*280-140,(e.clientX-r.left)/r.width*300-150)*180/Math.PI-135+360)%360;if(a>270)a=a>315?0:270;return snap(this.min+a/270*(this.max-this.min),this.min,this.max,this.step);};
+    const update=(value:number)=>{
+      value=clamp(value,handle==='highValue'?this.value:this.min,handle==='value'&&this.range?this.highValue:this.max);
+      this.preview(handle,value);
+      const child=this.root.querySelector('luma-arc')! as LumaArc;Object.assign(child,{[handle]:value});
+      const slider=this.root.querySelector(`[data-handle="${handle}"]`)!;slider.setAttribute('aria-valuenow',String(value));slider.setAttribute('aria-valuetext',`${value}${this.unit}`);
+    };
+    surface.addEventListener('pointerdown',e=>{if(this.disabled||e.button!==0)return;e.preventDefault();handle=this.range&&Math.abs(read(e)-this.highValue)<Math.abs(read(e)-this.value)?'highValue':'value';initial=this.getValue<number>(handle);dragging=true;surface.setPointerCapture(e.pointerId);this.root.querySelector<HTMLElement>(`[data-handle="${handle}"]`)?.focus();update(read(e));});
+    surface.addEventListener('pointermove',e=>{if(dragging&&!this.disabled)update(read(e));});
+    surface.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;if(surface.hasPointerCapture(e.pointerId))surface.releasePointerCapture(e.pointerId);this.change(handle,this.getValue(handle));});
+    surface.addEventListener('pointercancel',()=>{if(dragging){dragging=false;this.setValue(handle,initial);this.requestUpdate();}});
+    for(const slider of this.root.querySelectorAll<HTMLElement>('[role=slider]'))slider.addEventListener('keydown',e=>{if(this.disabled)return;const property=slider.dataset.handle!;const current=this.getValue<number>(property);const delta=['ArrowUp','ArrowRight'].includes(e.key)?this.step:['ArrowDown','ArrowLeft'].includes(e.key)?-this.step:e.key==='PageUp'?10*this.step:e.key==='PageDown'?-10*this.step:0;if(!delta&&!['Home','End'].includes(e.key))return;e.preventDefault();const min=property==='highValue'?this.value:this.min;const max=property==='value'&&this.range?this.highValue:this.max;this.change(property,snap(e.key==='Home'?min:e.key==='End'?max:current+delta,min,max,this.step));});
+  }
+}
+register('luma-dial',LumaDial,'Reusable mouse/touch draggable dial with snapping, dual temperature set points, pointer capture/cancellation, and keyboard slider semantics.');
+
+export class LumaVerticalSlider extends LumaSlider {
+  static schema={...LumaSlider.schema,orientation:prop('string','vertical','Range orientation: vertical or horizontal.')};
+  declare orientation:string;
+  protected render():void {
+    super.render();if(this.orientation!=='vertical')return;
+    const input=this.root.querySelector<HTMLInputElement>('input')!;input.setAttribute('aria-orientation','vertical');input.style.cssText+=`;writing-mode:vertical-lr;direction:rtl;width:100px;height:280px;max-height:45vh;background:var(--luma-range-background,linear-gradient(to top,var(--accent,var(--luma-primary,#03a9f4)) var(--range-progress),var(--luma-control-background,#eee) var(--range-progress)));border-radius:26px`;
+    const label=this.root.querySelector<HTMLElement>('label')!;label.style.cssText='flex-direction:column;align-items:center';
+    const style=document.createElement('style');style.textContent='input[type=range]::-webkit-slider-thumb{width:64px;height:6px}input[type=range]::-moz-range-thumb{width:64px;height:6px}';this.root.append(style);
+  }
+}
+register('luma-vertical-slider',LumaVerticalSlider,'Standalone vertical brightness/volume slider with the tall control shape used in entity details.');
+
+export class LumaIconButton extends LumaElement {
+  static schema={...common,icon:prop('string','power','Built-in icon name.'),pressed:prop('boolean',false,'Whether this is a selected toggle button.'),toggle:prop('boolean',false,'Toggle pressed on activation; otherwise emit a press action.')};
+  declare icon:string;declare pressed:boolean;declare toggle:boolean;
+  protected render():void {this.root.innerHTML=`<button class="flat ${this.pressed?'active':''}" part="button" aria-label="${escape(this.label || this.icon)}" ${this.toggle?`aria-pressed="${this.pressed}"`:''} ${this.disabled?'disabled':''}>${icon(this.icon)}</button>`;this.on('button','click',()=>this.toggle?this.change('pressed',!this.pressed):this.action('press'));}
+}
+register('luma-icon-button',LumaIconButton,'Reusable accessible icon action/toggle button for popup headers and toolbars.');
+
+export class LumaCheckbox extends LumaElement {
+  static schema={...common,checked:prop('boolean',false,'Checked state; change events carry checked.')};declare checked:boolean;
+  protected render():void {this.root.innerHTML=`<label class="row" part="control"><input type="checkbox" ${this.checked?'checked':''} ${this.disabled?'disabled':''} aria-label="${escape(this.label || 'Checkbox')}" style="width:20px;height:20px;accent-color:var(--luma-primary,#03a9f4)">${escape(this.label)}</label>`;this.on('input','change',e=>this.change('checked',(e.target as HTMLInputElement).checked));}
+}
+register('luma-checkbox',LumaCheckbox,'A native labeled checkbox used by lists and filter controls.');
+
+export class LumaTextField extends LumaElement {
+  static schema:Schema={...common,value:prop('string','','Current field value, committed on change.'),type:prop('string','text','Native input type: text, password, number, date, time, datetime-local, or color.'),placeholder:prop('string','','Placeholder text.'),min:prop('string','','Native lower bound for date/time/numeric fields.'),max:prop('string','','Native upper bound.'),step:prop('string','any','Native input step, such as 60 for minute-resolution time.'),required:prop('boolean',false,'Whether the input is required.'),multiline:prop('boolean',false,'Use a textarea instead of a single-line field.')};
+  declare value:string;declare type:string;declare placeholder:string;declare min:string;declare max:string;declare step:string;declare required:boolean;declare multiline:boolean;
+  protected render():void {
+    const type=['text','password','number','date','time','datetime-local','color'].includes(this.type)?this.type:'text';
+    const attrs=`aria-label="${escape(this.label || 'Value')}" placeholder="${escape(this.placeholder)}" ${this.disabled?'disabled':''} ${this.required?'required':''} style="width:100%;padding:12px;border:1px solid var(--luma-border,#ddd);border-radius:8px;background:var(--luma-control-background,#eee);color:inherit;font:inherit"`;
+    this.root.innerHTML=`<label class="stack" part="control">${escape(this.label)}${this.multiline?`<textarea ${attrs}>${escape(this.value)}</textarea>`:`<input type="${type}" value="${escape(this.value)}" min="${escape(this.min)}" max="${escape(this.max)}" step="${escape(this.step)}" ${attrs}>`}</label>`;
+    this.on('input,textarea','input',e=>this.emit('luma-input',{property:'value',value:(e.target as HTMLInputElement).value}));
+    this.on('input,textarea','change',e=>{const input=e.target as HTMLInputElement;if(input.checkValidity())this.change('value',input.value);});
+  }
+}
+register('luma-text-field',LumaTextField,'Reusable validated native text/password/number/date/time field.');
+export class LumaDatePicker extends LumaTextField {static schema={...LumaTextField.schema,type:prop('string','date','Native date type. Values are YYYY-MM-DD strings.')};}
+register('luma-date-picker',LumaDatePicker,'Standalone calendar date input with native popup, min/max, and required validation.');
+export class LumaTimePicker extends LumaTextField {static schema={...LumaTextField.schema,type:prop('string','time','Native time type. Values use HH:MM[:SS].')};}
+register('luma-time-picker',LumaTimePicker,'Standalone native time picker with keyboard editing and min/max validation.');
+export class LumaDateTimePicker extends LumaTextField {static schema={...LumaTextField.schema,type:prop('string','datetime-local','Local date and time without an implicit timezone.')};}
+register('luma-datetime-picker',LumaDateTimePicker,'Standalone local date-time picker.');
+
+export class LumaSegmented extends LumaElement {
+  static schema={...common,value:prop('string','','Selected option value.'),options:prop('array',[],'Strings or {value,label,icon?} items. Each option is an independently keyboard-accessible button.')};
+  declare value:string;declare options:Array<string | SelectOption & {icon?:string}>;
+  protected render():void {
+    this.root.innerHTML=`<div part="control" class="controls" role="group" aria-label="${escape(this.label || 'Options')}" style="flex-wrap:wrap;justify-content:center">${this.options.map(o=>{const item=typeof o==='string'?{label:o,value:o}:o;return `<button class="flat ${this.value===item.value?'active':''}" style="border-radius:14px;flex:1;gap:6px" aria-label="${escape(item.label)}" aria-pressed="${this.value===item.value}" data-value="${escape(item.value)}" ${this.disabled?'disabled':''}>${item.icon?icon(item.icon):''}${escape(item.label)}</button>`;}).join('')}</div>`;
+    for(const b of this.root.querySelectorAll<HTMLButtonElement>('button'))b.onclick=()=>this.change('value',b.dataset.value);
+  }
+}
+register('luma-segmented',LumaSegmented,'Reusable segmented selector for HVAC modes, light panels, presets, and popup tabs.');
+export class LumaTabs extends LumaSegmented {
+  protected render():void {super.render();const group=this.root.querySelector('[role=group]')!;group.setAttribute('role','tablist');const tabs=[...this.root.querySelectorAll<HTMLButtonElement>('button')];tabs.forEach((tab,i)=>{tab.setAttribute('role','tab');tab.removeAttribute('aria-pressed');tab.setAttribute('aria-selected',String(tab.dataset.value===this.value));tab.tabIndex=tab.dataset.value===this.value||!tabs.some(t=>t.dataset.value===this.value)&&i===0?0:-1;tab.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;this.change('value',tabs[next].dataset.value);requestAnimationFrame(()=>this.root.querySelectorAll<HTMLButtonElement>('button')[next]?.focus());};});}
+}
+register('luma-tabs',LumaTabs,'Reusable ARIA tabs with roving focus and arrow/Home/End navigation.');
+
+export const hsvToHex=(h:number,s:number,v=100):string=>{s/=100;v/=100;const c=v*s;const x=c*(1-Math.abs((h/60)%2-1));const m=v-c;const rgb=h<60?[c,x,0]:h<120?[x,c,0]:h<180?[0,c,x]:h<240?[0,x,c]:h<300?[x,0,c]:[c,0,x];return '#'+rgb.map(n=>Math.round((n+m)*255).toString(16).padStart(2,'0')).join('');};
+export const hexToHsv=(hex:string):[number,number,number]=>{if(!/^#[0-9a-f]{6}$/i.test(hex))return [0,0,100];const [r,g,b]=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255);const max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;return [d?((max===r?(g-b)/d+(g<b?6:0):max===g?(b-r)/d+2:(r-g)/d+4)*60):0,max?d/max*100:0,max*100];};
+export class LumaColorWheel extends LumaElement {
+  static schema={...common,value:prop('string','#ffa24d','Selected RGB color as a six-digit #rrggbb string. Pointer input controls hue and saturation.'),brightness:prop('number',100,'HSV value percentage used when deriving the RGB selection.')};
+  declare value:string;declare brightness:number;
+  protected render():void {
+    const [h,s]=hexToHsv(this.value);const a=h*Math.PI/180;const x=50+Math.cos(a)*s/2;const y=50+Math.sin(a)*s/2;
+    this.root.innerHTML=`<div part="wheel" role="slider" tabindex="${this.disabled?-1:0}" aria-label="${escape(this.label || 'Color')}" aria-valuemin="0" aria-valuemax="360" aria-valuenow="${Math.round(h)}" aria-valuetext="${escape(this.value)}" aria-disabled="${this.disabled}" style="position:relative;width:min(100%,320px);aspect-ratio:1;margin:auto;border-radius:50%;background:radial-gradient(circle,#fff,transparent 70%),conic-gradient(from 90deg,red,#ff0,#0f0,#0ff,#00f,#f0f,red);touch-action:none;cursor:${this.disabled?'default':'crosshair'};${this.disabled?'opacity:.45;':''}"><span part="thumb" style="position:absolute;pointer-events:none;left:${x}%;top:${y}%;width:28px;height:28px;border:2px solid #fff;border-radius:50%;box-shadow:0 0 3px #0008;background:${/^#[0-9a-f]{6}$/i.test(this.value)?this.value:'#fff'};transform:translate(-50%,-50%)"></span></div>`;
+    const wheel=this.root.querySelector<HTMLElement>('[role=slider]')!;let dragging=false;let previous=this.value;
+    const update=(e:PointerEvent)=>{const r=wheel.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*2-1;const y=(e.clientY-r.top)/r.height*2-1;const sat=clamp(Math.hypot(x,y)*100,0,100);const hue=(Math.atan2(y,x)*180/Math.PI+360)%360;const value=hsvToHex(hue,sat,clamp(this.brightness,0,100));this.preview('value',value);wheel.setAttribute('aria-valuenow',String(Math.round(hue)));wheel.setAttribute('aria-valuetext',value);const thumb=wheel.querySelector<HTMLElement>('span')!;thumb.style.left=50+Math.cos(hue*Math.PI/180)*sat/2+'%';thumb.style.top=50+Math.sin(hue*Math.PI/180)*sat/2+'%';thumb.style.background=value;};
+    wheel.onpointerdown=e=>{if(this.disabled||e.button!==0)return;e.preventDefault();wheel.focus();previous=this.value;dragging=true;wheel.setPointerCapture(e.pointerId);update(e);};wheel.onpointermove=e=>{if(dragging&&!this.disabled)update(e);};wheel.onpointerup=e=>{if(!dragging)return;dragging=false;wheel.releasePointerCapture(e.pointerId);this.change('value',this.value);};wheel.onpointercancel=()=>{dragging=false;this.setValue('value',previous);this.requestUpdate();};
+    wheel.onkeydown=e=>{if(this.disabled)return;const [h,s,v]=hexToHsv(this.value);if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(e.key))return;e.preventDefault();const hue=(h+(e.key==='ArrowRight'?5:e.key==='ArrowLeft'?-5:0)+360)%360;const sat=e.key==='Home'?0:e.key==='End'?100:clamp(s+(e.key==='ArrowUp'?5:e.key==='ArrowDown'?-5:0),0,100);this.change('value',hsvToHex(hue,sat,v));};
+  }
+}
+register('luma-color-wheel',LumaColorWheel,'Standalone Home Assistant-style hue/saturation wheel with mouse/touch dragging and keyboard hue/saturation control.');
+export class LumaColorTemperature extends LumaElement {
+  static schema={...rangeSchema,value:prop('number',3000,'Color temperature in kelvin.'),min:prop('number',2000,'Warmest supported color temperature in kelvin.'),max:prop('number',6500,'Coolest supported color temperature in kelvin.'),step:prop('number',50,'Kelvin increment.'),vertical:prop('boolean',true,'Use the tall popup control; false uses a horizontal slider.'),hideLabel:prop('boolean',false,'Hide the visual label while retaining its accessible name.'),showValue:prop('boolean',true,'Display kelvin value.')};
+  declare value:number;declare min:number;declare max:number;declare step:number;declare vertical:boolean;declare hideLabel:boolean;declare showValue:boolean;
+  protected render():void {this.root.innerHTML=this.vertical?'<luma-vertical-slider></luma-vertical-slider>':'<luma-slider></luma-slider>';const tag=this.vertical?'luma-vertical-slider':'luma-slider';this.configure(tag,{label:this.label||'Color temperature',value:this.value,min:this.min,max:this.max,step:this.step,unit:' K',showValue:this.showValue,hideLabel:this.hideLabel,disabled:this.disabled});const child=this.root.querySelector<HTMLElement>(tag)!;child.style.setProperty('--luma-primary','#ffb55b');child.style.setProperty('--luma-range-background','linear-gradient(to top,#fffaf0,#ffe0bc,#ff9d42)');this.bindChange(tag,'value');}
+}
+register('luma-color-temperature',LumaColorTemperature,'Reusable kelvin control for light cards and detail popups.');
+export class LumaColorPicker extends LumaElement {
+  static schema={...common,value:prop('string','#ffa24d','RGB color as a six-digit hexadecimal string.'),showInput:prop('boolean',true,'Show the hex color field.'),hideFavorites:prop('boolean',false,'Hide built-in swatches when composing with a separate swatch control.'),favorites:prop('array',['#ff9e47','#ff4141','#48b6ff','#a56aff','#ffffff'],'Favorite RGB swatches as six-digit hex strings.')};
+  declare value:string;declare favorites:string[];declare showInput:boolean;declare hideFavorites:boolean;
+  protected render():void {this.root.innerHTML=`<div class="stack" part="picker"><luma-color-wheel></luma-color-wheel><label class="row" ${this.showInput?'':'hidden'}>RGB <input aria-label="Hex color" type="text" value="${escape(this.value)}" pattern="#[0-9A-Fa-f]{6}" maxlength="7" ${this.disabled?'disabled':''} style="width:100%;padding:10px;background:var(--luma-control-background,#eee);border:1px solid var(--luma-border,#ddd);border-radius:8px"></label><div class="row" style="justify-content:center;flex-wrap:wrap">${(this.hideFavorites?[]:this.favorites).filter(c=>/^#[0-9a-f]{6}$/i.test(c)).map(c=>`<button aria-label="Use ${c}" data-color="${c}" part="swatch" style="width:32px;height:32px;border-radius:50%;background:${c};border:2px solid var(--luma-border,#ddd)" ${this.disabled?'disabled':''}></button>`).join('')}</div></div>`;this.configure('luma-color-wheel',{label:this.label||'Color',value:this.value,disabled:this.disabled});this.bindChange('luma-color-wheel','value');this.on('input','change',e=>{const input=e.target as HTMLInputElement;if(input.checkValidity())this.change('value',input.value.toLowerCase());});for(const b of this.root.querySelectorAll<HTMLButtonElement>('[data-color]'))b.onclick=()=>this.change('value',b.dataset.color);}
+}
+register('luma-color-picker',LumaColorPicker,'Color picker composed from the standalone wheel, validated hex field, and favorite swatches.');
+
+export interface Command {action:string;label:string;icon?:string;disabled?:boolean;}
+export class LumaCommandBar extends LumaElement {
+  static schema={...common,commands:prop('array',[],'Array of {action,label,icon?,disabled?}; activating a button emits its action unchanged.'),entityId:prop('string','','Entity identifier included in command events.')};declare commands:Command[];declare entityId:string;
+  protected render():void {this.root.innerHTML=`<div part="controls" class="row" role="group" aria-label="${escape(this.label || 'Commands')}" style="justify-content:center;flex-wrap:wrap">${this.commands.map(c=>`<button class="flat" data-action="${escape(c.action)}" aria-label="${escape(c.label)}" ${this.disabled||c.disabled?'disabled':''}>${c.icon?icon(c.icon):''}<span>${escape(c.label)}</span></button>`).join('')}</div>`;for(const b of this.root.querySelectorAll<HTMLButtonElement>('button'))b.onclick=()=>this.action(b.dataset.action!);}
+}
+register('luma-command-bar',LumaCommandBar,'Reusable action toolbar; supports per-command disabled state and entity IDs.');
+export class LumaCoverControls extends LumaCommandBar {static schema={...LumaCommandBar.schema,commands:prop('array',[{action:'open',label:'Open',icon:'up'},{action:'stop',label:'Stop',icon:'stop'},{action:'close',label:'Close',icon:'down'}],'Cover motion commands.')};}
+register('luma-cover-controls',LumaCoverControls,'Standalone open/stop/close controls, reusable outside cover cards.');
+export class LumaMediaControls extends LumaCommandBar {static schema={...LumaCommandBar.schema,commands:prop('array',[{action:'previous',label:'Previous',icon:'previous'},{action:'play-pause',label:'Play/pause',icon:'play'},{action:'next',label:'Next',icon:'next'}],'Playback commands.')};}
+register('luma-media-controls',LumaMediaControls,'Standalone media transport controls.');
+export class LumaKeypad extends LumaElement {
+  static schema={...common,value:prop('string','','Entered code. Kept locally; never placed in HTML attributes or action details.'),maxLength:prop('number',12,'Maximum number of code digits.')};declare value:string;declare maxLength:number;
+  protected render():void {this.root.innerHTML=`<div class="stack" part="keypad"><output class="center" aria-label="Code length">${'●'.repeat(Math.min(this.value.length,32))}</output><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${['1','2','3','4','5','6','7','8','9','Clear','0','Delete'].map(key=>`<button class="flat" data-key="${key}" ${this.disabled?'disabled':''}>${key}</button>`).join('')}</div></div>`;for(const b of this.root.querySelectorAll<HTMLButtonElement>('button'))b.onclick=()=>{const key=b.dataset.key!;this.setValue('value',key==='Clear'?'':key==='Delete'?this.value.slice(0,-1):(this.value+key).slice(0,this.maxLength));this.emit('luma-code-input',{length:this.value.length});};}
+}
+register('luma-keypad',LumaKeypad,'Standalone masked numeric keypad for alarm/lock codes; use its value property explicitly when issuing an authorized command.');
+export class LumaProgress extends LumaElement {
+  static schema={...rangeSchema};declare value:number;declare min:number;declare max:number;declare unit:string;
+  protected render():void {this.root.innerHTML=`<label class="stack" part="progress">${escape(this.label)}<progress aria-label="${escape(this.label||'Progress')}" value="${clamp(this.value-this.min,0,this.max-this.min)}" max="${this.max-this.min||1}" style="width:100%;accent-color:var(--luma-primary,#03a9f4)"></progress><span class="small muted">${escape(this.value)}${escape(this.unit)}</span></label>`;}
+}
+register('luma-progress',LumaProgress,'Standalone accessible progress indicator for updates, playback, and device tasks.');
+export class LumaAttributes extends LumaElement {
+  static schema={data:prop('object',{},'Object mapping attribute names to JSON-compatible values. Values are rendered as escaped text.')};declare data:Record<string,unknown>;
+  protected render():void {this.root.innerHTML=`<dl part="attributes" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:0">${Object.entries(this.data).map(([k,v])=>`<dt class="muted" style="overflow-wrap:anywhere">${escape(k.replaceAll('_',' '))}</dt><dd style="margin:0;overflow-wrap:anywhere">${escape(typeof v==='object'?JSON.stringify(v):v)}</dd>`).join('')}</dl>`;}
+}
+register('luma-attributes',LumaAttributes,'Reusable entity-attribute table, accepting an object property or serialized JSON attribute.');
+
+export class LumaDropdown extends LumaElement {
+  static schema={...common,value:prop('string','','Selected option value.'),options:prop('array',[],'Strings or {value,label,icon?} options shown in the popover menu.'),icon:prop('string','','Optional trigger icon.')};
+  declare value:string;declare options:Array<string|SelectOption&{icon?:string}>;declare icon:string;
+  protected render():void {
+    const options=this.options.map(o=>typeof o==='string'?{value:o,label:o}:o);const selected=options.find(o=>o.value===this.value);
+    this.root.innerHTML=`<style>[popover]{position:fixed;margin:0;padding:6px;border:1px solid var(--luma-border,#ddd);border-radius:12px;box-shadow:0 8px 28px #0003;background:var(--luma-card-background,#fff);color:inherit;max-height:280px;overflow:auto;min-width:180px}[role=option]{width:100%;padding:12px;text-align:left;display:flex;gap:12px;align-items:center;background:none;color:inherit;border-radius:7px}[role=option][aria-selected=true]{background:color-mix(in srgb,var(--luma-primary,#03a9f4) 10%,transparent);color:var(--luma-primary,#03a9f4)}</style><button class="controls" part="trigger" role="combobox" aria-haspopup="listbox" aria-controls="options" aria-expanded="false" aria-label="${escape(this.label||'Options')}" ${this.disabled?'disabled':''} style="border:0;width:100%;padding:12px;text-align:left;cursor:pointer">${this.icon?icon(this.icon):''}<span><span class="small muted" style="display:block">${escape(this.label)}</span><span>${escape(selected?.label||this.value||'Select')}</span></span></button><div id="options" part="menu" popover role="listbox" aria-label="${escape(this.label||'Options')}">${options.map(o=>`<button role="option" tabindex="-1" aria-selected="${o.value===this.value}" data-value="${escape(o.value)}">${o.icon?icon(o.icon):''}${escape(o.label)}</button>`).join('')}</div>`;
+    const trigger=this.root.querySelector<HTMLButtonElement>('[role=combobox]')!;const menu=this.root.querySelector<HTMLElement>('[popover]')!;
+    const items=[...menu.querySelectorAll<HTMLButtonElement>('button')];
+    const open=()=>{if(this.disabled||!items.length)return;const r=trigger.getBoundingClientRect();menu.style.left=Math.max(8,Math.min(r.left,innerWidth-220))+'px';menu.style.top=Math.min(r.bottom+4,innerHeight-280)+'px';menu.showPopover();trigger.setAttribute('aria-expanded','true');(items.find(b=>b.dataset.value===this.value)||items[0]).focus();};
+    trigger.onclick=()=>menu.matches(':popover-open')?menu.hidePopover():open();trigger.onkeydown=e=>{if(['ArrowDown','ArrowUp'].includes(e.key)){e.preventDefault();open();}};
+    menu.addEventListener('toggle',()=>trigger.setAttribute('aria-expanded',String(menu.matches(':popover-open'))));
+    items.forEach((item,i)=>{item.onclick=()=>{menu.hidePopover();trigger.focus();this.change('value',item.dataset.value);};item.onkeydown=e=>{if(e.key==='Escape'){menu.hidePopover();trigger.focus();e.preventDefault();e.stopPropagation();return;}if(!['ArrowDown','ArrowUp','Home','End'].includes(e.key))return;e.preventDefault();items[e.key==='Home'?0:e.key==='End'?items.length-1:(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length].focus();};});
+  }
+}
+register('luma-dropdown',LumaDropdown,'Standalone two-line mode/preset selector with a top-layer popover, icon options, roving focus, keyboard navigation, and Escape dismissal.');

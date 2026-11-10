@@ -1,0 +1,23 @@
+import {LumaElement,register,escape,clamp} from './base.js';
+import {common,prop} from './metadata.js';
+export interface MapCenter {latitude:number;longitude:number;}
+export interface MapMarker extends MapCenter {label:string;entityId?:string;state?:string;icon?:string;}
+const project=(center:MapCenter,z:number):[number,number]=>{const n=256*2**z;const lat=clamp(center.latitude,-85.0511,85.0511)*Math.PI/180;return [(center.longitude+180)/360*n,(1-Math.log(Math.tan(lat)+1/Math.cos(lat))/Math.PI)/2*n];};
+const unproject=(x:number,y:number,z:number):MapCenter=>{const n=256*2**z;return {latitude:clamp(Math.atan(Math.sinh(Math.PI*(1-2*y/n)))*180/Math.PI,-85.0511,85.0511),longitude:((x/n*360+180)%360+360)%360-180};};
+export class LumaMap extends LumaElement {
+  static schema={...common,center:prop('object',{latitude:52.52,longitude:13.405},'Map center as {latitude,longitude}, in WGS84 degrees.'),zoom:prop('number',12,'Slippy-map zoom level, from 1 to 19.'),markers:prop('array',[],'Markers as {latitude,longitude,label,entityId?,state?,icon?}.'),tileUrl:prop('string','','Optional HTTP(S) tile template using {z}/{x}/{y}. No external tiles are requested unless you supply a URL.'),attribution:prop('string','','Required attribution text for your supplied tile provider.')};
+  declare center:MapCenter;declare zoom:number;declare markers:MapMarker[];declare tileUrl:string;declare attribution:string;
+  protected render():void {
+    const z=Math.round(clamp(this.zoom,1,19));const [cx,cy]=project(this.center,z);const tiles:string[]=[];
+    if(/^https?:\/\//.test(this.tileUrl)){const n=2**z;for(let x=Math.floor((cx-300)/256);x<=Math.floor((cx+300)/256);x++)for(let y=Math.floor((cy-175)/256);y<=Math.floor((cy+175)/256);y++){if(y<0||y>=n)continue;const url=this.tileUrl.replace('{z}',String(z)).replace('{x}',String((x%n+n)%n)).replace('{y}',String(y));tiles.push(`<image href="${escape(url)}" x="${x*256-cx+300}" y="${y*256-cy+175}" width="256" height="256"/>`);}}
+    this.root.innerHTML=`<section class="card" part="card"><div style="position:relative;overflow:hidden;background:var(--luma-control-background,#eee)"><svg viewBox="0 0 600 350" class="chart" role="img" aria-label="${escape(this.label||'Map')}" style="touch-action:none;cursor:${this.disabled?'default':'grab'}" part="map"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="var(--luma-border,#ddd)"/></pattern></defs><rect width="600" height="350" fill="url(#grid)"/><g id="world">${tiles.join('')}${this.markers.map((m,i)=>{const [x,y]=project(m,z);return `<foreignObject x="${x-cx+245}" y="${y-cy+155}" width="120" height="60"><luma-badge data-marker="${i}"></luma-badge></foreignObject>`;}).join('')}</g></svg><div class="stack" style="position:absolute;top:12px;right:12px;gap:4px"><button class="flat card" id="in" aria-label="Zoom in" ${this.disabled?'disabled':''}>+</button><button class="flat card" id="out" aria-label="Zoom out" ${this.disabled?'disabled':''}>−</button></div></div><div class="pad small muted">${escape(this.label||'Map')} · ${this.center.latitude.toFixed(3)}, ${this.center.longitude.toFixed(3)}${this.attribution?' · '+escape(this.attribution):!this.tileUrl?' · Supply tile-url for geographic tiles':''}</div></section>`;
+    this.markers.forEach((marker,i)=>this.configure(`[data-marker="${i}"]`,{label:marker.label,state:marker.state||'home',icon:marker.icon||'home',entityId:marker.entityId||'',domain:'person',disabled:this.disabled}));
+    for(const [id,delta] of [['in',1],['out',-1]] as const)this.on('#'+id,'click',()=>this.change('zoom',clamp(z+delta,1,19)));
+    const svg=this.root.querySelector<SVGSVGElement>('svg')!;let start:[number,number]|undefined;
+    svg.addEventListener('pointerdown',e=>{if(this.disabled||e.button!==0||(e.target as Element).closest('foreignObject'))return;start=[e.clientX,e.clientY];svg.setPointerCapture(e.pointerId);});
+    svg.addEventListener('pointermove',e=>{if(start)this.root.querySelector('#world')!.setAttribute('transform',`translate(${(e.clientX-start[0])*600/svg.getBoundingClientRect().width} ${(e.clientY-start[1])*350/svg.getBoundingClientRect().height})`);});
+    svg.addEventListener('pointerup',e=>{if(!start)return;const r=svg.getBoundingClientRect();this.change('center',unproject(cx-(e.clientX-start[0])*600/r.width,cy-(e.clientY-start[1])*350/r.height,z));start=undefined;svg.releasePointerCapture(e.pointerId);});
+    svg.addEventListener('pointercancel',()=>{start=undefined;this.requestUpdate();});
+  }
+}
+register('luma-map',LumaMap,'Library-free Mercator map with optional supplied slippy tiles, pointer panning, zoom buttons, and interactive entity markers.');

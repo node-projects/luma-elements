@@ -1,0 +1,51 @@
+{
+  "name": "@node-projects/luma-elements",
+  "version": "0.1.0",
+  "description": "Home automation web components inspired by Home Assistant, built on BaseCustomWebComponent.",
+  "type": "module",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./themes.css": "./dist/themes.css",
+    "./bundle": "./dist/luma-elements.js",
+    "./custom-elements.json": "./custom-elements.json"
+  },
+  "files": [
+    "dist",
+    "custom-elements.json",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "customElements": "custom-elements.json",
+  "sideEffects": [
+    "./dist/**/*.js",
+    "./src/**/*.ts",
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "node scripts/element-types.mjs && tsc && node scripts/build.mjs",
+    "dev": "npm run build && node scripts/serve.mjs",
+    "test": "npm run build && playwright test",
+    "check": "node scripts/element-types.mjs && tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/node-projects/luma-elements.git"
+  },
+  "dependencies": {
+    "@node-projects/base-custom-webcomponent": "^0.47.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.0"
+  }
+}

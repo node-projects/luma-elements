@@ -1,0 +1,25 @@
+import { build } from 'esbuild';
+import {writeManifest} from './manifest.mjs';
+import { cp, mkdir, writeFile, readFile } from 'node:fs/promises';
+await build({entryPoints:['src/index.ts'],outfile:'dist/luma-elements.js',bundle:true,format:'esm',target:'es2022',minify:true,sourcemap:true,banner:{js:'/*! Includes @node-projects/base-custom-webcomponent (BSD-3-Clause).\n'+await readFile('node_modules/@node-projects/base-custom-webcomponent/LICENSE','utf8')+' */'}});
+await cp('src/themes.css','dist/themes.css');
+// Metadata is extracted in a browser during tests; a tiny DOM shim permits loading it at build time.
+const fakeTemplate=()=>({content:{cloneNode(){return {};}}});
+globalThis.HTMLElement=class {};
+globalThis.document={createElement:fakeTemplate};
+globalThis.CSSStyleSheet=class {replaceSync(){}};
+globalThis.customElements={get(){return undefined;},define(){}};
+const {catalog}=await import('../dist/index.js');
+const {attributeName}=await import('../dist/metadata.js');
+await writeFile('docs/API.md', '# Component API\n\nGenerated from the property definitions in `src/`. Properties use camelCase; attributes use kebab-case. Arrays and objects accept JSON attributes.\n\n' + catalog.map(c => '## `' + c.tag + '`\n\n' + c.description + '\n\n| Property | Attribute | Type | Default | Description |\n| --- | --- | --- | --- | --- |\n' + Object.entries(c.schema).map(([name,p]) => '| `' + name + '` | `' + attributeName(name) + '` | ' + p.type + ' | `' + JSON.stringify(p.default).replaceAll('|','\\|') + '` | ' + p.description.replaceAll('|','\\|') + ' |').join('\n')).join('\n\n') + '\n');
+await writeManifest(catalog);
+await mkdir('site/assets',{recursive:true});
+for(const file of ['index.html','gallery.css','gallery.js'])await cp(`docs/${file}`,`site/${file}`);
+await cp('dist','site/dist',{recursive:true});
+await cp('node_modules/@node-projects/base-custom-webcomponent/dist','site/vendor/base-custom-webcomponent',{recursive:true});
+await cp('docs/room.svg','site/room.svg');
+await cp('dist/luma-elements.js','site/assets/luma-elements.js');
+await cp('dist/luma-elements.js.map','site/assets/luma-elements.js.map');
+await cp('src/themes.css','site/assets/themes.css');
+await cp('custom-elements.json','site/custom-elements.json');
+console.log(`Built ${catalog.length} components, ESM bundle, type declarations, manifest, and GitHub Pages site.`);

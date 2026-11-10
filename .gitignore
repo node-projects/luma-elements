@@ -426,3 +426,9 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# Luma build and test output
+dist/
+site/
+playwright-report/
+test-results/

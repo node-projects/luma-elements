@@ -1,0 +1,34 @@
+/** Small built-in SVG set. Custom icons can be supplied through an icon slot. */
+export const icons: Record<string, string> = {
+  battery:'M8 2h8v2h3v18H5V4h3V2m-1 4v14h10V6H7m2 3h6v2H9V9m0 4h6v2H9v-2m0 4h6v1H9v-1Z',
+  fire:'M13 1c1 7-5 6-3 12-3-1-3-4-3-4C0 19 9 25 16 21c7-4 3-12-3-20m-1 12c5 5 0 9-2 6-2-2 1-3 2-6Z',
+  light:'M9 21h6v-1H9v1m3-20a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3.26A7 7 0 0 0 12 1m2.85 11.1-.85.6V16h-4v-3.3l-.85-.6A5 5 0 1 1 14.85 12.1Z',
+  home:'M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3Z',
+  temperature:'M15 13.76V5a3 3 0 0 0-6 0v8.76a5 5 0 1 0 6 0M11 5a1 1 0 0 1 2 0v10l1 .58a3 3 0 1 1-4 0l1-.58V5Z',
+  humidity:'M12 2C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-13m-3 14a3 3 0 0 0 3 3v2a5 5 0 0 1-5-5h2Z',
+  power:'M11 2h2v10h-2V2m6.36 2.64A9 9 0 1 1 6.64 4.64l1.42 1.42a7 7 0 1 0 7.88 0l1.42-1.42Z',
+  sun:'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10M11 1h2v4h-2V1m0 18h2v4h-2v-4M1 11h4v2H1v-2m18 0h4v2h-4v-2M4.22 2.8l2.83 2.84-1.41 1.41L2.8 4.22l1.42-1.42m12.73 14.15 2.83 2.83 1.42-1.42-2.84-2.83-1.41 1.42M2.8 19.78l2.84-2.83 1.41 1.41-2.83 2.84-1.42-1.42M16.95 5.64l2.83-2.84 1.42 1.42-2.84 2.83-1.41-1.41Z',
+  cloud:'M19 10a7 7 0 0 0-13-3 5 5 0 0 0 0 10h13a3.5 3.5 0 0 0 0-7Z',
+  weather:'M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8m11 7a5 5 0 0 0-9-1 4 4 0 0 0 0 8h9a3.5 3.5 0 0 0 0-7M8 19h2v3H8v-3m5 0h2v3h-2v-3m5 0h2v3h-2v-3Z',
+  energy:'m13 2-9 12h7l-1 8 10-13h-7l1-7Z',
+  cover:'M3 3h18v3H3V3m1 5h16v12h-2v-4H6v4H4V8m2 2v1h12v-1H6m0 3v1h12v-1H6Z',
+  speaker:'M6 2h12v20H6V2m6 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8m0-7a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z',
+  play:'m8 5 11 7-11 7V5Z', pause:'M6 5h4v14H6V5m8 0h4v14h-4V5Z',
+  next:'m5 5 10 7-10 7V5m11 0h3v14h-3V5Z', previous:'m19 5-10 7 10 7V5M5 5h3v14H5V5Z',
+  up:'m7 15 5-5 5 5 1.4-1.4L12 7.2l-6.4 6.4L7 15Z', down:'m7 9 5 5 5-5 1.4 1.4-6.4 6.4-6.4-6.4L7 9Z',
+  stop:'M6 6h12v12H6V6Z', plus:'M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z', minus:'M5 11h14v2H5v-2Z',
+  check:'m9 16-4-4-1.4 1.4L9 18.8 21.4 6.4 20 5 9 16Z',
+  lock:'M6 9V6a6 6 0 0 1 12 0v3h2v13H4V9h2m2 0h8V6a4 4 0 0 0-8 0v3m3 5v4h2v-4h-2Z',
+  shield:'m12 2 9 4v6c0 5-5 9-9 11-4-2-9-6-9-11V6l9-4m0 3L6 8v4c0 3 3 6 6 8 3-2 6-5 6-8V8l-6-3Z',
+  fan:'M12 10c-4-10 7-10 7-4 0 3-4 4-7 4m2 2c10-4 10 7 4 7-3 0-4-4-4-7m-2 2c4 10-7 10-7 4 0-3 4-4 7-4m-2-2C0 16 0 5 6 5c3 0 4 4 4 7m2-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z',
+  sofa:'M5 4h14v7h-2V6H7v5H5V4m-3 8a2 2 0 0 1 4 0v3h12v-3a2 2 0 0 1 4 0v8h-3v-2H5v2H2v-8Z',
+  kitchen:'M5 2h14v20H5V2m2 2v5h10V4H7m0 7v9h10v-9H7m1 1h2v4H8v-4m0-7h2v3H8V5Z',
+  motion:'M14 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4M7 8l5-2 4 4h4v2h-5l-2-2-1 4 4 3v5h-2v-4l-4-3-2 4H4v-2h3l3-10-2 1-2 4H4l3-5Z',
+  settings:'M10 2h4l1 4 3-1 3 4-3 3 3 3-3 4-3-1-1 4h-4l-1-4-3 1-3-4 3-3-3-3 3-4 3 1 1-4m2 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z',
+  chart:'M3 3h2v16h16v2H3V3m4 10 4-4 4 3 5-7 2 1-6 9-5-3-3 3-1-2Z',
+  menu:'M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z',
+  code:'m8 5-7 7 7 7 1.4-1.4L3.8 12l5.6-5.6L8 5m8 0-1.4 1.4 5.6 5.6-5.6 5.6L16 19l7-7-7-7Z',
+};
+export function icon(name = 'light'): string {
+  return `<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="${icons[name] ?? icons.light}"/></svg>`;
+}
