@@ -2,7 +2,7 @@ import { build } from 'esbuild';
 import {writeManifest} from './manifest.mjs';
 import {writeCoverage} from './coverage.mjs';
 import { cp, mkdir, writeFile, readFile } from 'node:fs/promises';
-await build({entryPoints:['src/index.ts'],outfile:'dist/luma-elements.js',bundle:true,format:'esm',target:'es2022',minify:true,sourcemap:true,banner:{js:'/*! Includes @node-projects/base-custom-webcomponent (BSD-3-Clause).\n'+await readFile('node_modules/@node-projects/base-custom-webcomponent/LICENSE','utf8')+' */'}});
+await build({entryPoints:['src/index.ts'],outfile:'dist/luma-elements.js',bundle:true,format:'esm',target:'es2022',minify:true,sourcemap:true,banner:{js:'/*! Selected SVG paths: Pictogrammers Material Design Icons (Apache-2.0). See ../licenses/material-design-icons.txt. */\n/*! Includes @node-projects/base-custom-webcomponent (BSD-3-Clause).\n'+await readFile('node_modules/@node-projects/base-custom-webcomponent/LICENSE','utf8')+' */'}});
 await cp('src/themes.css','dist/themes.css');
 // Metadata is extracted in a browser during tests; a tiny DOM shim permits loading it at build time.
 const fakeTemplate=()=>({content:{cloneNode(){return {};}}});
@@ -24,4 +24,7 @@ await cp('dist/luma-elements.js','site/assets/luma-elements.js');
 await cp('dist/luma-elements.js.map','site/assets/luma-elements.js.map');
 await cp('src/themes.css','site/assets/themes.css');
 await cp('custom-elements.json','site/custom-elements.json');
+await cp('docs/INTERACTION_AUDIT.md','site/INTERACTION_AUDIT.md');
+await cp('licenses','site/licenses',{recursive:true});
+await cp('THIRD_PARTY_NOTICES.md','site/THIRD_PARTY_NOTICES.md');
 console.log(`Built ${catalog.length} components, ESM bundle, type declarations, manifest, and GitHub Pages site.`);

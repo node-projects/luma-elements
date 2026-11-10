@@ -7,6 +7,7 @@ export const extraExamples={
  'luma-button-card':{label:'Evening scene',icon:'light',state:'on',tapAction:'press'},
 
  'luma-glance-item':{label:'Outdoor',state:'10.2 °C',icon:'temperature',entityId:'sensor.outdoor'},
+ 'luma-chart-navigator':{label:'Visible time range',min:0,max:100,value:{start:15,end:45}},
  'luma-control-switch':{label:'Device power',checked:true},
  'luma-icon-button':{label:'Power',icon:'power',toggle:true,pressed:true},
  'luma-checkbox':{label:'Evening automation',checked:true},

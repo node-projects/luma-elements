@@ -17,6 +17,7 @@ declare global {
     'luma-calendar': import('./cards.js').LumaCalendar;
     'luma-camera': import('./cards.js').LumaCamera;
     'luma-card': import('./components.js').LumaCard;
+    'luma-chart-navigator': import('./chart-navigator.js').LumaChartNavigator;
     'luma-checkbox': import('./controls.js').LumaCheckbox;
     'luma-clock': import('./cards.js').LumaClock;
     'luma-color-picker': import('./controls.js').LumaColorPicker;

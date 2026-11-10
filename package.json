@@ -36,7 +36,8 @@
     "docs/API.md",
     "docs/COVERAGE.md",
     "docs/RELEASING.md",
-    "licenses"
+    "licenses",
+    "docs/INTERACTION_AUDIT.md"
   ],
   "customElements": "custom-elements.json",
   "sideEffects": [

@@ -1,6 +1,6 @@
 # Home Assistant UI coverage
 
-Reference audit: 2026-11-10. This inventory distinguishes UI coverage from backend integration. The library has 123 registered components; its complete property reference is [API.md](API.md).
+Reference audit: 2026-11-10. This inventory distinguishes UI coverage from backend integration. The library has 124 registered components; its complete property reference is [API.md](API.md).
 
 Sources: [Lovelace cards](https://www.home-assistant.io/dashboards/cards/), [public feature registry](https://github.com/home-assistant/frontend/blob/dev/src/panels/lovelace/card-features/registry.ts), and [entity detail control inventory](https://github.com/home-assistant/frontend/tree/dev/src/dialogs/more-info/controls). The reference is Home Assistant's moving dev branch; future upstream additions are not automatically included.
 
@@ -185,6 +185,8 @@ All domain-specific entries in the audited Home Assistant more-info/controls dir
 
 ## Interaction checks
 
+See [INTERACTION_AUDIT.md](INTERACTION_AUDIT.md) for the visual-state review, reference sources, and verification boundaries.
+
 The browser suite exercises pointer drag/cancel, touch input, keyboard limits, dual set points, fixed decimal typography, current/target display options, popover menus, color-wheel dragging, color swatches/hex validation, light capabilities and off-state changes, automatic details, cancellation, nested edit routing, modal focus/dismissal, step/filled history graphs, tooltips, legends, zoom, signed energy bars, to-do editing, forms, dates, keypad masking, and device commands. Every registered element is rendered, every feature kind is mounted, and every detail-domain route is checked for a registered implementation.
 
 Manifest tests import the actual compiled modules and compare their exported constructors with each custom-element registration. The npm export map is checked for every designer-facing module.
@@ -251,6 +253,7 @@ Manifest tests import the actual compiled modules and compare their exported con
 - `luma-media-player` — A media player card with track metadata, playback actions, and volume control.
 - `luma-weather` — A weather card with current conditions and up to seven daily forecast columns.
 - `luma-alarm` — An alarm panel with explicit arm/disarm command events; state is supplied by your application.
+- `luma-chart-navigator` — Reusable chart time-window bar with draggable selection, two resize handles, keyboard adjustments, pointer cancellation, focus outline and reset action.
 - `luma-sparkline` — Standalone smooth/linear compact sensor trace with optional area fill and mouse/keyboard value inspection.
 - `luma-line-chart` — Standalone stepped/linear history plot with area fills, timestamp axes, hover crosshair/tooltips, keyboard point inspection, interactive legends and drag-to-zoom.
 - `luma-history` — History card composed from the independently usable interactive line chart.

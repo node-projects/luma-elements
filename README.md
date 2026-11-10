@@ -227,3 +227,5 @@ See [docs/RELEASING.md](docs/RELEASING.md). Push/PR builds test and pack the lib
 - `site/`: generated GitHub Pages artifact.
 
 MIT. See `THIRD_PARTY_NOTICES.md` for the bundled base library's BSD-3-Clause license and design attribution.
+
+The [interaction audit](docs/INTERACTION_AUDIT.md) records hover, focus, drag and popup behavior against the Home Assistant references. `luma-chart-navigator` is independently usable; line/history charts include it by default (`show-navigator` / `showNavigator`). Its `value` is a `{start,end}` object, in the same units as `min` and `max`.

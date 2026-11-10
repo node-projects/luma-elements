@@ -305,11 +305,11 @@ test('composed light and feature controls retain their slider while values chang
 });
 
 test('specialized popup layouts compose the appropriate main device controls',async({page})=>{
- for(const [domain,properties,sliderLabel] of [['humidifier',{humidity:50,currentHumidity:42},'Target temperature'],['water_heater',{temperature:55,currentTemperature:48},'Target temperature'],['fan',{speed:40,speedCount:10},'Speed']] as const){
+ for(const [domain,properties,sliderLabel] of [['humidifier',{humidity:50,currentHumidity:42},'Target humidity'],['water_heater',{temperature:55,currentTemperature:48},'Target temperature'],['fan',{speed:40,speedCount:10},'Speed']] as const){
   const popup=await mount(page,'luma-more-info',{open:true,entity:{domain,label:domain,entityId:domain+'.test',state:'on',properties}});const input=popup.getByRole('slider',{name:sliderLabel,exact:true});await expect(input).toBeVisible();await input.press('ArrowUp');await expect(popup.locator('dialog')).toBeVisible();await page.keyboard.press('Escape');
  }
  const fan=await mount(page,'luma-fan',{showHeader:false,speedCount:3,state:'on',speed:100});await expect(fan.getByRole('button',{name:'Low',exact:true})).toBeVisible();await expect(fan.getByRole('slider')).toHaveCount(0);
- const player=await mount(page,'luma-media-player',{showHeader:false,state:'playing',mediaTitle:'Test track',artist:'Artist',sources:['Radio','TV'],capabilities:['play','pause','volume','mute','source']});await expect(player.locator('[part=artwork]')).toBeVisible();await expect(player.getByRole('button',{name:'Pause',exact:true})).toBeVisible();await expect(player.getByRole('button',{name:'Shuffle',exact:true})).toHaveCount(0);await player.getByRole('button',{name:'Pause',exact:true}).click();expect(await player.evaluate((el:any)=>el.state)).toBe('paused');
+ const player=await mount(page,'luma-media-player',{showHeader:false,state:'playing',mediaTitle:'Test track',artist:'Artist',sources:['Radio','TV'],capabilities:['play','pause','volume','mute','source']});await expect(player.locator('[part=artwork]')).toBeVisible();await expect(player.getByRole('button',{name:'Pause',exact:true})).toBeVisible();await expect(player.getByRole('button',{name:'Pause',exact:true})).toHaveCSS('width','64px');await expect(player.getByRole('button',{name:'Shuffle',exact:true})).toHaveCount(0);await player.getByRole('button',{name:'Pause',exact:true}).click();expect(await player.evaluate((el:any)=>el.state)).toBe('paused');
 });
 
 test('chart keyboard inspection matches hover feedback and clears on blur; map shows drag feedback',async({page})=>{
@@ -324,4 +324,17 @@ test('every details route opens in light/dark desktop and mobile shells with usa
   for(const domain of domains){const popup=await mount(page,'luma-more-info',{open:true,entity:{domain,label:domain,entityId:domain+'.test',state:'on'}});const dialog=popup.locator('dialog');await expect(dialog).toBeVisible();const box=await dialog.boundingBox();expect(box!.x).toBeGreaterThanOrEqual(-1);expect(box!.x+box!.width).toBeLessThanOrEqual(mode.width+1);await expect.poll(()=>dialog.evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(mode.height+1);await popup.getByRole('button',{name:'History',exact:true}).focus();await expect(popup.getByRole('button',{name:'History',exact:true})).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();}
  }
  expect(errors).toEqual([]);
+});
+
+test('chart navigator resizes and pans the selected interval with mouse, keyboard and reset',async({page})=>{
+ const navigator=await mount(page,'luma-chart-navigator',{min:0,max:100,value:{start:20,end:50},step:1,minSpan:5});const end=navigator.getByRole('slider',{name:'End of time range'});await end.press('ArrowRight');expect(await navigator.evaluate((el:any)=>el.value)).toEqual({start:20,end:51});
+ const selection=navigator.getByRole('group',{name:'Move selected time range'});const box=await selection.boundingBox();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);await page.mouse.down();await page.mouse.move(box!.x+box!.width/2+40,box!.y+box!.height/2);await page.mouse.up();const moved=await navigator.evaluate((el:any)=>el.value);expect(moved.start).toBeGreaterThan(20);expect(moved.end-moved.start).toBe(31);
+ await navigator.getByRole('button',{name:'Reset zoom'}).click();expect(await navigator.evaluate((el:any)=>el.value)).toEqual({start:0,end:100});
+ const chart=await mount(page,'luma-line-chart',{series:[{name:'Power',data:[1,3,9,4,6,3]}],timeRange:{start:1,end:3}});const handle=chart.getByRole('slider',{name:'End of time range'});await handle.press('ArrowRight');expect((await chart.evaluate((el:any)=>el.timeRange)).end).toBeGreaterThan(3);
+ const window=chart.locator('luma-chart-navigator [part=selection]');const rangeBox=await window.boundingBox();await page.mouse.move(rangeBox!.x+rangeBox!.width/2,rangeBox!.y+rangeBox!.height/2);await page.mouse.down();await page.mouse.move(rangeBox!.x+rangeBox!.width/2+50,rangeBox!.y+rangeBox!.height/2);await expect(chart.locator('luma-chart-navigator .dragging')).toHaveCount(1);expect((await chart.evaluate((el:any)=>el.timeRange)).start).toBeGreaterThan(1);await page.mouse.up();
+ await chart.getByRole('button',{name:'Reset zoom'}).click();expect(await chart.evaluate((el:any)=>el.timeRange)).toEqual({});
+});
+
+test('canceling a live navigator drag restores the previous chart interval',async({page})=>{
+ const chart=await mount(page,'luma-line-chart',{series:[{name:'Power',data:[1,3,9,4,6,3]}],timeRange:{start:1,end:3}});const selection=chart.locator('luma-chart-navigator [part=selection]');const box=await selection.boundingBox();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);await page.mouse.down();await page.mouse.move(box!.x+box!.width/2+40,box!.y+box!.height/2);expect((await chart.evaluate((el:any)=>el.timeRange)).start).toBeGreaterThan(1);await page.keyboard.press('Escape');await page.mouse.up();expect(await chart.evaluate((el:any)=>el.timeRange)).toEqual({start:1,end:3});
 });

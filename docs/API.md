@@ -697,6 +697,7 @@ A composed climate card with temperature dial, measured temperature, target cont
 | `precision` | `precision` | number | `1` | Fixed decimal places; keeps the readout stable at whole and fractional temperatures. |
 | `locale` | `locale` | string | `"en"` | Formatting locale, e.g. de uses a comma. |
 | `stateLabel` | `state-label` | string | `""` | Human-readable HVAC activity label; empty uses state. |
+| `targetLabel` | `target-label` | string | `"Target temperature"` | Accessible label of the target dial; use Target humidity when composing a humidifier. |
 | `currentTemperatureLabel` | `current-temperature-label` | string | `"Current temperature"` | Label above the measured-temperature reading. |
 | `modeLabel` | `mode-label` | string | `"HVAC mode"` | Accessible and visible mode-selector label. |
 | `presetLabel` | `preset-label` | string | `"Preset"` | Accessible and visible preset-selector label. |
@@ -846,6 +847,22 @@ An alarm panel with explicit arm/disarm command events; state is supplied by you
 | `modes` | `modes` | array | `["home","away","night"]` | Available arming modes. |
 | `requireCode` | `require-code` | boolean | `false` | Require a non-empty code before enabling arm/disarm commands. Read the code property explicitly in your command handler. |
 
+## `luma-chart-navigator`
+
+Reusable chart time-window bar with draggable selection, two resize handles, keyboard adjustments, pointer cancellation, focus outline and reset action.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `min` | `min` | number | `0` | Start of the complete data interval, e.g. epoch milliseconds. |
+| `max` | `max` | number | `100` | End of the complete data interval. |
+| `value` | `value` | object | `{"start":0,"end":100}` | Selected window as {start,end}, in the same units as min/max. Pass an object property or JSON attribute. |
+| `step` | `step` | number | `1` | Keyboard and pointer snapping increment. |
+| `minSpan` | `min-span` | number | `1` | Smallest permitted window width; handles cannot cross. |
+| `locale` | `locale` | string | `"en"` | Locale for accessible range values. |
+| `timeAxis` | `time-axis` | boolean | `false` | Format accessible range values as localized date/time rather than numbers. |
+
 ## `luma-sparkline`
 
 Standalone smooth/linear compact sensor trace with optional area fill and mouse/keyboard value inspection.
@@ -875,6 +892,7 @@ Standalone stepped/linear history plot with area fills, timestamp axes, hover cr
 | `timeRange` | `time-range` | object | `{}` | Optional visible x range as {start,end}, using epoch milliseconds for timestamp series. |
 | `locale` | `locale` | string | `"en"` | Locale used for dates and numeric labels. |
 | `hiddenSeries` | `hidden-series` | array | `[]` | Names of series hidden by clicking their legend buttons. |
+| `showNavigator` | `show-navigator` | boolean | `true` | Show the reusable time-window bar below the plot, with draggable window, resize handles, and reset. |
 | `zoomEnabled` | `zoom-enabled` | boolean | `true` | Allow pointer-drag selection to zoom the time range; Escape or Reset zoom restores it. |
 
 ## `luma-history`
@@ -892,6 +910,7 @@ History card composed from the independently usable interactive line chart.
 | `timeRange` | `time-range` | object | `{}` | Optional visible x range as {start,end}, using epoch milliseconds for timestamp series. |
 | `locale` | `locale` | string | `"en"` | Locale used for dates and numeric labels. |
 | `hiddenSeries` | `hidden-series` | array | `[]` | Names of series hidden by clicking their legend buttons. |
+| `showNavigator` | `show-navigator` | boolean | `true` | Show the reusable time-window bar below the plot, with draggable window, resize handles, and reset. |
 | `zoomEnabled` | `zoom-enabled` | boolean | `true` | Allow pointer-drag selection to zoom the time range; Escape or Reset zoom restores it. |
 
 ## `luma-sensor`
@@ -921,6 +940,7 @@ Sensor value card composed with an optional standalone interactive history plot.
 | `timeRange` | `time-range` | object | `{}` | Optional visible x range as {start,end}, using epoch milliseconds for timestamp series. |
 | `locale` | `locale` | string | `"en"` | Locale used for dates and numeric labels. |
 | `hiddenSeries` | `hidden-series` | array | `[]` | Names of series hidden by clicking their legend buttons. |
+| `showNavigator` | `show-navigator` | boolean | `true` | Show the reusable time-window bar below the plot, with draggable window, resize handles, and reset. |
 | `zoomEnabled` | `zoom-enabled` | boolean | `true` | Allow pointer-drag selection to zoom the time range; Escape or Reset zoom restores it. |
 | `value` | `value` | number | `0` | Current numeric sensor reading. |
 | `graphStyle` | `graph-style` | string | `"sparkline"` | Graph presentation: sparkline, history, or none. |

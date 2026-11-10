@@ -1,3 +1,4 @@
+/** Selected paths from Pictogrammers Material Design Icons (Apache-2.0); see ../licenses/material-design-icons.txt. */
 /** Small built-in SVG set. Custom icons can be supplied through an icon slot. */
 export const icons: Record<string, string> = {
   "repeat":"M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z",

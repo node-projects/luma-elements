@@ -7,6 +7,7 @@ export * from './features.js';
 export * from './temperature-value.js';
 export * from './light-controls.js';
 export * from './components.js';
+export * from './chart-navigator.js';
 export * from './charts.js';
 export * from './sparkline.js';
 export * from './bar-chart.js';
