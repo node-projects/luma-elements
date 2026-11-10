@@ -241,3 +241,22 @@ test('unknown buttons accept press commands and unavailable entities retain insp
  await page.keyboard.press('Escape');
  await unavailable.getByRole('button',{name:'More information about Offline fan'}).click();await expect(popup.locator('dialog')).toBeVisible();
 });
+
+test('dial focus stays on its handle and current-to-target segment has full accent opacity',async({page})=>{
+ const control=await mount(page,'luma-thermostat',{temperature:22.5,currentTemperature:20.8,showCurrentMarker:true});
+ const slider=control.getByRole('slider',{name:'Target temperature',exact:true});await slider.focus();
+ await expect(slider).toHaveCSS('outline-style','none');
+ const arc=control.locator('luma-dial luma-arc');const difference=arc.locator('#difference');
+ await expect(difference).toBeVisible();await expect(difference).toHaveCSS('opacity','1');await expect(arc.locator('#fill')).toHaveCSS('opacity','0.5');
+ expect(Number((await difference.getAttribute('stroke-dasharray'))!.split(' ')[0])).toBeCloseTo(1.7/28*100);
+ await expect(arc.locator('[part=thumb]')).toHaveCSS('stroke-width','5px');
+ const point=await dialPoint(page,24);await page.mouse.click(point.x,point.y);await expect(slider).toHaveCSS('outline-style','none');
+ await expect(arc.locator('[part=thumb]')).toBeVisible();
+});
+
+test('vertical slider marker remains visible and follows native pointer and keyboard values',async({page})=>{
+ const control=await mount(page,'luma-color-temperature',{value:3000,min:2000,max:6500});const slider=control.getByRole('slider',{name:'Color temperature'});
+ const marker=control.locator('luma-vertical-slider [part=thumb]');await expect(marker).toBeVisible();const start=await marker.boundingBox();
+ await slider.press('End');await expect(slider).toHaveValue('6500');const end=await marker.boundingBox();expect(end!.y).toBeGreaterThan(start!.y);
+ await expect(marker).toHaveCSS('height','4px');await expect(marker).toHaveCSS('opacity','1');
+});

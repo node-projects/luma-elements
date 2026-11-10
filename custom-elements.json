@@ -17495,6 +17495,10 @@
               "description": "Active arc/graph fill."
             },
             {
+              "name": "difference",
+              "description": "difference styling hook."
+            },
+            {
               "name": "reading",
               "description": "reading styling hook."
             }
@@ -18085,6 +18089,10 @@
               "description": "Active arc/graph fill."
             },
             {
+              "name": "difference",
+              "description": "difference styling hook."
+            },
+            {
               "name": "thumb",
               "description": "Interactive handle or thumb."
             }
@@ -18313,6 +18321,17 @@
               },
               "default": "\"vertical\"",
               "attribute": "orientation"
+            },
+            {
+              "kind": "field",
+              "name": "inverted",
+              "privacy": "public",
+              "description": "Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "inverted"
             }
           ],
           "attributes": [
@@ -18405,6 +18424,15 @@
                 "text": "string"
               },
               "default": "\"vertical\""
+            },
+            {
+              "name": "inverted",
+              "fieldName": "inverted",
+              "description": "Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
             }
           ],
           "events": [
@@ -41441,6 +41469,21 @@
                 "name": "LumaVerticalSlider",
                 "module": "dist/controls.js"
               }
+            },
+            {
+              "kind": "field",
+              "name": "inverted",
+              "privacy": "public",
+              "description": "Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "inverted",
+              "inheritedFrom": {
+                "name": "LumaVerticalSlider",
+                "module": "dist/controls.js"
+              }
             }
           ],
           "attributes": [
@@ -41533,6 +41576,15 @@
                 "text": "string"
               },
               "default": "\"vertical\""
+            },
+            {
+              "name": "inverted",
+              "fieldName": "inverted",
+              "description": "Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
             }
           ],
           "events": [
@@ -41787,6 +41839,21 @@
                 "name": "LumaVerticalSlider",
                 "module": "dist/controls.js"
               }
+            },
+            {
+              "kind": "field",
+              "name": "inverted",
+              "privacy": "public",
+              "description": "Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "inverted",
+              "inheritedFrom": {
+                "name": "LumaVerticalSlider",
+                "module": "dist/controls.js"
+              }
             }
           ],
           "attributes": [
@@ -41879,6 +41946,15 @@
                 "text": "string"
               },
               "default": "\"vertical\""
+            },
+            {
+              "name": "inverted",
+              "fieldName": "inverted",
+              "description": "Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
             }
           ],
           "events": [

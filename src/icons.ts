@@ -1,6 +1,6 @@
 /** Small built-in SVG set. Custom icons can be supplied through an icon slot. */
 export const icons: Record<string, string> = {
-  eyedropper:'m17 2 5 5-2 2-2-2-9 9v3H5v-4l9-9-2-2 5-2m-2 6-8 8v1h1l8-8-1-1Z',
+  eyedropper:'M16.3 2.7a3.54 3.54 0 0 1 5 5L19.5 9.5l1 1-2 2-1.2-1.2L8 20.6 2 22l1.4-6 9.3-9.3L11.5 5.5l2-2 1 1 1.8-1.8ZM5.2 17l-.6 2.4L7 18.8l8.9-8.9-1.8-1.8L5.2 17Z',
   battery:'M8 2h8v2h3v18H5V4h3V2m-1 4v14h10V6H7m2 3h6v2H9V9m0 4h6v2H9v-2m0 4h6v1H9v-1Z',
   fire:'M13 1c1 7-5 6-3 12-3-1-3-4-3-4C0 19 9 25 16 21c7-4 3-12-3-20m-1 12c5 5 0 9-2 6-2-2 1-3 2-6Z',
   light:'M9 21h6v-1H9v1m3-20a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3.26A7 7 0 0 0 12 1m2.85 11.1-.85.6V16h-4v-3.3l-.85-.6A5 5 0 1 1 14.85 12.1Z',

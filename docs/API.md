@@ -157,6 +157,7 @@ Standalone vertical brightness/volume slider with the tall control shape used in
 | `showValue` | `show-value` | boolean | `false` | Display the numeric value beside the slider. |
 | `hideLabel` | `hide-label` | boolean | `false` | Visually hide the label while retaining the accessible name. |
 | `orientation` | `orientation` | string | `"vertical"` | Range orientation: vertical or horizontal. |
+| `inverted` | `inverted` | boolean | `false` | Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls. |
 
 ## `luma-icon-button`
 
@@ -418,6 +419,7 @@ Standalone tall light-brightness control, usable in any layout or dialog.
 | `showValue` | `show-value` | boolean | `false` | Show a secondary numeric percentage. |
 | `hideLabel` | `hide-label` | boolean | `true` | Hide the visual label; the range retains its accessible name. |
 | `orientation` | `orientation` | string | `"vertical"` | Range orientation: vertical or horizontal. |
+| `inverted` | `inverted` | boolean | `false` | Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls. |
 
 ## `luma-volume`
 
@@ -435,6 +437,7 @@ Standalone tall media-volume control.
 | `showValue` | `show-value` | boolean | `true` | Show the numeric percentage. |
 | `hideLabel` | `hide-label` | boolean | `false` | Visually hide the label while retaining the accessible name. |
 | `orientation` | `orientation` | string | `"vertical"` | Range orientation: vertical or horizontal. |
+| `inverted` | `inverted` | boolean | `false` | Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls. |
 
 ## `luma-light-controls`
 
