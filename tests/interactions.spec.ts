@@ -245,12 +245,12 @@ test('unknown buttons accept press commands and unavailable entities retain insp
 test('dial focus stays on its handle and current-to-target segment has full accent opacity',async({page})=>{
  const control=await mount(page,'luma-thermostat',{temperature:22.5,currentTemperature:20.8,showCurrentMarker:true});
  const slider=control.getByRole('slider',{name:'Target temperature',exact:true});await slider.focus();
- await expect(slider).toHaveCSS('outline-style','none');
+ await expect(slider).toHaveCSS('outline-style','none');await expect(slider).toHaveCSS('box-shadow','none');
  const arc=control.locator('luma-dial luma-arc');const difference=arc.locator('#difference');
  await expect(difference).toBeVisible();await expect(difference).toHaveCSS('opacity','1');await expect(arc.locator('#fill')).toHaveCSS('opacity','0.5');
  expect(Number((await difference.getAttribute('stroke-dasharray'))!.split(' ')[0])).toBeCloseTo(1.7/28*100);
  await expect(arc.locator('[part=thumb]')).toHaveCSS('stroke-width','5px');
- const point=await dialPoint(page,24);await page.mouse.click(point.x,point.y);await expect(slider).toHaveCSS('outline-style','none');
+ const point=await dialPoint(page,24);await page.mouse.click(point.x,point.y);await expect(slider).toHaveCSS('outline-style','none');await expect(slider).toHaveCSS('box-shadow','none');
  await expect(arc.locator('[part=thumb]')).toBeVisible();
 });
 
@@ -356,4 +356,18 @@ test('heating and cooling arcs end at the target and emphasize only the active d
  }
  const thermostat=await mount(page,'luma-thermostat',{temperature:22.5,currentTemperature:20.8});const point=await dialPoint(page,15.5);await page.mouse.click(point.x,point.y);await expect.poll(()=>thermostat.evaluate((el:any)=>el.temperature)).toBe(15.5);
  await expect(thermostat.locator('luma-arc #difference')).toBeHidden();expect(Number((await thermostat.locator('luma-arc #fill').getAttribute('stroke-dasharray'))!.split(' ')[0])).toBeCloseTo(8.5/28*100);
+});
+
+
+test('standalone dial keeps focus feedback on the arc through keyboard updates in both themes and ranges',async({page})=>{
+ for(const theme of ['light','dark'])for(const range of [false,true]){
+  await page.locator('html').evaluate((el,theme)=>el.setAttribute('data-theme',theme),theme);
+  const dial=await mount(page,'luma-dial',{label:'Target',value:21,highValue:24,min:7,max:35,step:.5,range,showCurrent:true});
+  const handles=dial.getByRole('slider');
+  for(let index=0;index<await handles.count();index++){
+   const handle=handles.nth(index);await handle.focus();await handle.press('ArrowUp');
+   await expect(handle).toBeFocused();await expect(handle).toHaveCSS('outline-style','none');await expect(handle).toHaveCSS('box-shadow','none');
+   await expect(dial.locator('luma-arc [part=thumb]').nth(index)).toHaveCSS('stroke-width','5px');
+  }
+ }
 });
