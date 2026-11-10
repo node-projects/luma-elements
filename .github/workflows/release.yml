@@ -1,0 +1,48 @@
+name: Publish npm package and release assets
+on:
+  release:
+    types: [published]
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: Use npm with trusted-publishing support
+        run: npm install --global npm@11
+      - run: npm ci
+      - name: Set package version from the release tag
+        id: version
+        run: node scripts/release-version.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - name: Pack the tested package
+        id: package
+        run: node scripts/pack-release.mjs
+      - name: Attach the exact npm tarball and checksum to this release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          PACKAGE_TARBALL: ${{ steps.package.outputs.tarball }}
+          PACKAGE_CHECKSUM: ${{ steps.package.outputs.checksum }}
+        run: gh release upload "$RELEASE_TAG" "$PACKAGE_TARBALL" "$PACKAGE_CHECKSUM" --repo "$GITHUB_REPOSITORY" --clobber
+      - name: Publish that same tarball to npm
+        env:
+          # OIDC is preferred; an optional granular token can bootstrap a first release.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PACKAGE_TARBALL: ${{ steps.package.outputs.tarball }}
+          NPM_DIST_TAG: ${{ steps.version.outputs.dist_tag }}
+        run: npm publish "$PACKAGE_TARBALL" --access public --tag "$NPM_DIST_TAG" --ignore-scripts

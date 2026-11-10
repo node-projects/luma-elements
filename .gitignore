@@ -432,3 +432,6 @@ dist/
 site/
 playwright-report/
 test-results/
+
+artifacts/
+*.tgz

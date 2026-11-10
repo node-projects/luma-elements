@@ -1,0 +1,11 @@
+import {execFileSync} from 'node:child_process';
+import {mkdir,readFile,writeFile,appendFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+await mkdir('artifacts',{recursive:true});
+const [pack]=JSON.parse(execFileSync('npm',['pack','--json','--ignore-scripts','--pack-destination','artifacts'],{encoding:'utf8'}));
+if(!/^[a-zA-Z0-9._-]+\.tgz$/.test(pack.filename))throw new Error('Unexpected package filename.');
+const tarball='artifacts/'+pack.filename;
+const checksum='artifacts/SHA256SUMS';
+await writeFile(checksum,createHash('sha256').update(await readFile(tarball)).digest('hex')+'  '+pack.filename+'\n');
+if(process.env.GITHUB_OUTPUT)await appendFile(process.env.GITHUB_OUTPUT,`tarball=${tarball}\nchecksum=${checksum}\n`);
+console.log(`Packed ${tarball} (${pack.version}) and ${checksum}`);
