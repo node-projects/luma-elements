@@ -22,6 +22,11 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm test
       - run: node scripts/pack-release.mjs
+        id: package
+      - name: Verify npm accepts the packed local tarball
+        env:
+          PACKAGE_TARBALL: ${{ steps.package.outputs.tarball }}
+        run: npm publish "$PACKAGE_TARBALL" --dry-run --access public --ignore-scripts
       - uses: actions/upload-artifact@v4
         with:
           name: npm-package

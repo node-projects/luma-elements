@@ -5,7 +5,8 @@ import {createHash} from 'node:crypto';
 await mkdir('artifacts',{recursive:true});
 const [pack]=JSON.parse(execFileSync('npm',['pack','--json','--ignore-scripts','--pack-destination','artifacts'],{encoding:'utf8'}));
 if(!/^[a-zA-Z0-9._-]+\.tgz$/.test(pack.filename))throw new Error('Unexpected package filename.');
-const tarball='artifacts/'+pack.filename;
+// npm treats an unprefixed owner/name path as a GitHub package spec.
+const tarball='./artifacts/'+pack.filename;
 verifyPackage(tarball);
 const checksum='artifacts/SHA256SUMS';
 await writeFile(checksum,createHash('sha256').update(await readFile(tarball)).digest('hex')+'  '+pack.filename+'\n');

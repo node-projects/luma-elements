@@ -13,8 +13,9 @@ The workflow:
 3. Updates `package.json` and `package-lock.json` in the runner, without creating a Git commit or another tag.
 4. Builds and tests that version, including the JavaScript-linked Custom Elements Manifest.
 5. Creates one npm `.tgz`, verifies its actual manifest/module/type/theme contents and compiled version, and writes `SHA256SUMS`.
-6. Attaches those files to the same GitHub release.
-7. Publishes that exact `.tgz` to the public npm registry.
+6. Runs `npm publish --dry-run` against the tarball to verify npm resolves it as a local package.
+7. Attaches those files to the same GitHub release.
+8. Publishes that exact `.tgz` to the public npm registry.
 
 Stable versions use npm's `latest` dist-tag. Prerelease versions, or releases marked as prerelease on GitHub, use `next`. An existing npm version cannot be overwritten; publish a new release version if it has already been published.
 
@@ -41,3 +42,9 @@ node scripts/pack-release.mjs
 ```
 
 This produces an ignored `artifacts/` directory containing the installable tarball and checksum. These commands do not publish anything.
+
+## Local tarball paths and failed releases
+
+The pack script emits an explicit `./artifacts/…tgz` path. npm requires the `./` prefix for relative tarball paths containing a directory; an unprefixed `artifacts/name.tgz` can be interpreted as a GitHub repository reference. Both CI and release builds exercise the emitted path with a publish dry run before actual publication.
+
+A release workflow checks out its release tag. Re-running an old failed run uses that tagged implementation, not fixes subsequently pushed to `main`. For a release containing workflow fixes, create a new version tag from the corrected commit. Existing published versions cannot be overwritten; existing tags should not be silently moved. If publication failed after asset upload, the tarball and checksum remain attached to that release.

@@ -32,6 +32,11 @@ jobs:
       - name: Pack the tested package
         id: package
         run: node scripts/pack-release.mjs
+      - name: Verify npm accepts the packed local tarball
+        env:
+          PACKAGE_TARBALL: ${{ steps.package.outputs.tarball }}
+          NPM_DIST_TAG: ${{ steps.version.outputs.dist_tag }}
+        run: npm publish "$PACKAGE_TARBALL" --dry-run --access public --tag "$NPM_DIST_TAG" --ignore-scripts
       - name: Attach the exact npm tarball and checksum to this release
         env:
           GH_TOKEN: ${{ github.token }}
