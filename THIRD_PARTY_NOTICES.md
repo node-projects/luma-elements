@@ -4,7 +4,7 @@ Luma Elements is an independent implementation inspired by Home Assistant's Love
 https://demo.home-assistant.io/#/lovelace/home
 https://github.com/home-assistant/frontend
 
-Home Assistant and its branding belong to their respective owners. This project is not affiliated with or endorsed by Home Assistant or the Open Home Foundation. The UI code, built-in SVG artwork, and room illustration in this repository were authored for this project; no Home Assistant source assets are bundled.
+Home Assistant and its branding belong to their respective owners. This project is not affiliated with or endorsed by Home Assistant or the Open Home Foundation. The UI code, room illustration, and most SVG artwork were authored for this project; no Home Assistant source assets are bundled. The eyedropper, brightness-6, chart-box-outline, arrow-up-down, close, arrow-left, music-note, volume-high, volume-off, shuffle-variant, and repeat SVG paths come from Pictogrammers Material Design Icons (https://github.com/Templarian/MaterialDesign). They are licensed under Apache-2.0; see licenses/material-design-icons.txt. These are embedded paths, not an additional runtime library.
 
 The browser bundle includes @node-projects/base-custom-webcomponent, licensed under BSD-3-Clause. Its original license follows.
 

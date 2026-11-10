@@ -103,6 +103,8 @@ Standalone 270° value/range arc. Use it as an indicator anywhere, or compose it
 | `max` | `max` | number | `100` | Inclusive upper bound. Must be greater than min. |
 | `step` | `step` | number | `1` | Positive increment for pointer and keyboard adjustments. |
 | `unit` | `unit` | string | `""` | Unit shown after the value, such as %, °C, or W. |
+| `mode` | `mode` | string | `"start"` | Arc fill: start for heating/humidifying, end for cooling/drying, or full. |
+| `inactive` | `inactive` | boolean | `false` | Hide active arc colors while a device is off; retain the target readout and a neutral handle. |
 | `color` | `color` | string | `"orange"` | Arc and handle accent, a theme color name or CSS color. |
 | `highValue` | `high-value` | number | `24` | Upper set point when range is enabled. |
 | `range` | `range` | boolean | `false` | Draw the active segment between value and high-value. |
@@ -129,6 +131,8 @@ Reusable mouse/touch draggable dial with snapping, dual temperature set points, 
 | `max` | `max` | number | `100` | Inclusive upper bound. Must be greater than min. |
 | `step` | `step` | number | `1` | Positive increment for pointer and keyboard adjustments. |
 | `unit` | `unit` | string | `""` | Unit shown after the value, such as %, °C, or W. |
+| `mode` | `mode` | string | `"start"` | Arc fill: start for heating/humidifying, end for cooling/drying, or full. |
+| `inactive` | `inactive` | boolean | `false` | Hide active arc colors while a device is off; retain the target readout and a neutral handle. |
 | `color` | `color` | string | `"orange"` | Arc and handle accent, a theme color name or CSS color. |
 | `highValue` | `high-value` | number | `24` | Upper set point when range is enabled. |
 | `range` | `range` | boolean | `false` | Draw the active segment between value and high-value. |
@@ -271,6 +275,7 @@ Reusable segmented selector for HVAC modes, light panels, presets, and popup tab
 | --- | --- | --- | --- | --- |
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `hideLabels` | `hide-labels` | boolean | `false` | Show option icons alone while retaining accessible option labels. |
 | `value` | `value` | string | `""` | Selected option value. |
 | `options` | `options` | array | `[]` | Strings or {value,label,icon?} items. Each option is an independently keyboard-accessible button. |
 
@@ -282,6 +287,7 @@ Reusable ARIA tabs with roving focus and arrow/Home/End navigation.
 | --- | --- | --- | --- | --- |
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `hideLabels` | `hide-labels` | boolean | `false` | Show option icons alone while retaining accessible option labels. |
 | `value` | `value` | string | `""` | Selected option value. |
 | `options` | `options` | array | `[]` | Strings or {value,label,icon?} items. Each option is an independently keyboard-accessible button. |
 
@@ -363,7 +369,7 @@ Standalone media transport controls.
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
 | `commands` | `commands` | array | `[{"action":"previous","label":"Previous","icon":"previous"},{"action":"play-pause","label":"Play/pause","icon":"play"},{"action":"next","label":"Next","icon":"next"}]` | Playback commands. |
 | `vertical` | `vertical` | boolean | `false` | Stack action buttons vertically, as in cover details. |
-| `hideLabels` | `hide-labels` | boolean | `false` | Show icons without visible text; accessible labels remain. |
+| `hideLabels` | `hide-labels` | boolean | `true` | Keep playback action names accessible while showing only transport icons. |
 | `entityId` | `entity-id` | string | `""` | Entity identifier included in command events. |
 
 ## `luma-keypad`
@@ -783,6 +789,8 @@ A media player card with track metadata, playback actions, and volume control.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `mediaImage` | `media-image` | string | `""` | Optional album-art URL. Only http(s), blob, and relative URLs are accepted. |
+| `capabilities` | `capabilities` | array | `["play","pause","previous","next","seek","volume","mute","shuffle","repeat","power","source","sound_mode"]` | Supported popup controls; unsupported actions are omitted. |
 | `mediaTitle` | `media-title` | string | `""` | Current track or program title. |
 | `artist` | `artist` | string | `""` | Artist, station, or source name. |
 | `volume` | `volume` | number | `30` | Volume in percent from 0 to 100. |
@@ -1028,6 +1036,8 @@ Composable device card driven by control definitions; each control is also a sta
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
@@ -1052,6 +1062,8 @@ Switch/input-boolean card composed from an entity row and power switch.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
@@ -1076,9 +1088,13 @@ Fan power, speed, oscillation, direction and preset controls.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `speed` | `speed` | number | `50` | Fan speed percentage. |
+| `supportsSpeed` | `supports-speed` | boolean | `true` | Show a speed control; otherwise show the large power switch. |
+| `speedCount` | `speed-count` | number | `100` | Number of supported speeds; at most five uses vertical buttons, more uses the percentage slider. |
 | `oscillating` | `oscillating` | boolean | `false` | Whether the fan oscillates. |
 | `direction` | `direction` | string | `"forward"` | Airflow direction. |
 | `directions` | `directions` | array | `["forward","reverse"]` | Supported airflow directions. |
@@ -1106,6 +1122,8 @@ Humidifier/dehumidifier card with independently reusable power, target humidity,
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `humidity` | `humidity` | number | `50` | Target relative humidity percentage. |
@@ -1134,6 +1152,8 @@ Vacuum start/pause/stop/dock/locate/spot-clean actions and fan-speed selection.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `battery` | `battery` | number | `85` | Battery charge percentage. |
@@ -1161,6 +1181,8 @@ Lock/unlock/unlatch command card. The supplied state remains authoritative.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `supportsOpen` | `supports-open` | boolean | `true` | Show the unlatch/open-door command. |
@@ -1186,6 +1208,8 @@ Valve open/stop/close actions and position control.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `position` | `position` | number | `50` | Valve position from closed (0) to open (100). |
@@ -1211,6 +1235,8 @@ Water heater target temperature, operation mode, and away mode.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `temperature` | `temperature` | number | `55` | Target water temperature. |
@@ -1240,6 +1266,8 @@ Siren power, tone, volume, and duration controls.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `tone` | `tone` | string | `"alarm"` | Selected tone. |
@@ -1268,6 +1296,8 @@ Remote-control navigation, selection, home/back, and volume commands.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
@@ -1292,6 +1322,8 @@ Lawn mower start, pause, and return-to-dock commands.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
@@ -1316,6 +1348,8 @@ Counter increment/decrement and reset controls.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | number | `0` | Current counter value. |
@@ -1344,6 +1378,8 @@ Timer duration and start/pause/cancel/finish commands, with an optional timestam
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `duration` | `duration` | number | `300` | Configured timer duration in seconds. |
@@ -1371,6 +1407,8 @@ Update versions, release notes, installation progress and install/skip commands.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `installedVersion` | `installed-version` | string | `"1.0.0"` | Installed version. |
@@ -1399,6 +1437,8 @@ Automation enable/disable and manual trigger controls.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
@@ -1423,6 +1463,8 @@ Script run/stop commands.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
@@ -1447,6 +1489,8 @@ Input-text entity card using the standalone text-field control.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `""` | Current text value. |
@@ -1472,6 +1516,8 @@ Numeric helper entity card with synchronized slider and numeric stepper.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | number | `0` | Current counter value. |
@@ -1500,6 +1546,8 @@ Select/helper entity card using the standalone select control.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"home"` | Selected option. |
@@ -1526,6 +1574,8 @@ Date entity detail control.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"2026-11-10"` | Local date string, YYYY-MM-DD. |
@@ -1551,6 +1601,8 @@ Time entity detail control.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"18:30"` | Local time string, HH:MM[:SS]. |
@@ -1576,6 +1628,8 @@ Date/time helper entity detail control.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"2026-11-10T18:30"` | Local date/time without an implicit timezone. |
@@ -1601,6 +1655,8 @@ Scene activation control, also used by scene-like entity details.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 | `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized main state label for the entity popup. |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text shown below the popup state. |
 | `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 

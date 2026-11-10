@@ -42,10 +42,10 @@ export class LumaFeature extends LumaElement {
   protected render():void {
     const spec=featureControls[this.type];
     if(!spec||!customElements.get(spec.tag)){this.root.innerHTML=`<div class="empty">Unsupported feature: ${escape(this.type)}</div>`;return;}
-    this.root.innerHTML=`<${spec.tag}></${spec.tag}>`;
+    const fresh=!this.root.querySelector(spec.tag);if(fresh)this.root.innerHTML=`<${spec.tag}></${spec.tag}>`;
     this.configure(spec.tag,{...spec.defaults,...this.config,label:this.label||String(this.config.label||this.type.replaceAll('-',' ')),entityId:this.entityId,disabled:this.interactionDisabled});
-    this.on(spec.tag,'luma-change',event=>{event.stopPropagation();const {property,value}=(event as CustomEvent).detail;this.change('config',{...this.config,[property]:value});});
-    for(const type of ['luma-input','luma-action'])this.on(spec.tag,type,event=>{event.stopPropagation();this.emit(type,{...(event as CustomEvent).detail,feature:this.type,entityId:this.entityId});});
+    if(fresh)this.on(spec.tag,'luma-change',event=>{event.stopPropagation();const {property,value}=(event as CustomEvent).detail;this.change('config',{...this.config,[property]:value});});
+    if(fresh)for(const type of ['luma-input','luma-action'])this.on(spec.tag,type,event=>{event.stopPropagation();this.emit(type,{...(event as CustomEvent).detail,feature:this.type,entityId:this.entityId});});
   }
 }
 register('luma-feature',LumaFeature,'Standalone adapter for every public Lovelace feature kind, composed from the same reusable controls used in cards and popups.');

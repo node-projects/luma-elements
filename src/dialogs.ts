@@ -116,7 +116,7 @@ export class LumaMoreInfo extends LumaElement {
     if(key!==this.panelKey||!panel.firstElementChild){panel.replaceChildren(document.createElement(customElements.get(tag)?tag:'luma-state-panel'));this.panelKey=key;}
     const child=panel.firstElementChild!;
     Object.assign(child,this.view==='history'?{...entity.properties,label:entity.label,series:entity.series||entity.properties?.series||[]}:this.view==='attributes'?{data:entity.entityAttributes||{}}:{...entity.properties,showHeader:false,label:entity.label,state:entity.state,domain,entityId:entity.entityId,entityAttributes:entity.entityAttributes||{},series:entity.series||entity.properties?.series||[],disabled:this.interactionDisabled});
-    this.configure('#history',{label:'History',icon:'chart'});this.configure('#attributes',{label:'Attributes',icon:'settings'});
+    this.configure('#history',{label:'History',icon:'history'});this.configure('#attributes',{label:'Attributes',icon:'settings'});
     this.configure('luma-dialog',{label:entity.label||'Entity details',open:this.open,adaptive:true,back:this.view!=='info'});
   }
 }

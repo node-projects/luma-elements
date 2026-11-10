@@ -31,9 +31,9 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
     .flat{background:none;color:inherit;padding:8px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px}
     .pill{border-radius:22px;background:var(--luma-primary,#03a9f4);color:var(--luma-on-primary,#fff);padding:10px 20px;min-height:40px}
     .controls{background:var(--luma-control-background,#f0f0f0);border-radius:12px;padding:4px 8px;display:flex;align-items:center;gap:8px}
-    input[type=range]{accent-color:var(--accent,var(--luma-primary,#03a9f4));width:100%;height:40px;cursor:pointer;min-width:0;margin:0;appearance:none;border-radius:10px;background:linear-gradient(to right,var(--accent,var(--luma-primary,#03a9f4)) var(--range-progress,0%),color-mix(in srgb,var(--accent,var(--luma-primary,#03a9f4)) 15%,var(--luma-control-background,#f0f0f0)) var(--range-progress,0%))}
-    input[type=range]::-webkit-slider-thumb{appearance:none;width:5px;height:22px;background:#fff;border-radius:3px;box-shadow:0 0 2px #0002}
-    input[type=range]::-moz-range-thumb{border:0;width:5px;height:22px;background:#fff;border-radius:3px}
+    input[type=range]{accent-color:var(--accent,var(--luma-primary,#03a9f4));width:100%;height:var(--luma-slider-height,40px);cursor:pointer;min-width:0;margin:0;appearance:none;border-radius:10px;background:linear-gradient(to right,var(--accent,var(--luma-primary,#03a9f4)) var(--range-progress,0%),color-mix(in srgb,var(--accent,var(--luma-primary,#03a9f4)) 15%,var(--luma-control-background,#f0f0f0)) var(--range-progress,0%))}
+    input[type=range]::-webkit-slider-thumb{appearance:none;width:var(--luma-slider-thumb-width,5px);height:var(--luma-slider-thumb-height,22px);background:#fff;border-radius:var(--luma-slider-thumb-radius,3px);box-shadow:0 0 2px #0002}
+    input[type=range]::-moz-range-thumb{border:0;width:var(--luma-slider-thumb-width,5px);height:var(--luma-slider-thumb-height,22px);background:#fff;border-radius:var(--luma-slider-thumb-radius,3px)}
     input[type=number],select,input[type=password]{width:100%;padding:12px;border:1px solid var(--luma-border,#e0e0e0);border-radius:8px;background:var(--luma-control-background,#f0f0f0)}
     .tile{padding:10px;min-height:56px}.entity-button{width:100%;text-align:left;background:none;padding:0;display:flex;align-items:center;gap:10px;color:inherit}
     .tile .controls{margin-top:10px}.entity-row{min-height:56px}.entity-row + .entity-row{border-top:1px solid var(--luma-border,#e0e0e0)}

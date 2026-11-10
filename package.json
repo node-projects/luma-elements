@@ -35,7 +35,8 @@
     "THIRD_PARTY_NOTICES.md",
     "docs/API.md",
     "docs/COVERAGE.md",
-    "docs/RELEASING.md"
+    "docs/RELEASING.md",
+    "licenses"
   ],
   "customElements": "custom-elements.json",
   "sideEffects": [

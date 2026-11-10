@@ -303,6 +303,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -831,6 +847,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -1000,6 +1032,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -1176,6 +1224,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -1326,6 +1390,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -1569,6 +1649,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -1831,6 +1927,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -2106,6 +2218,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -2418,6 +2546,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -2644,6 +2788,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -2853,6 +3013,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -3099,6 +3275,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -3370,6 +3562,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -3575,6 +3783,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -3782,6 +4006,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -3967,6 +4207,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -4213,6 +4469,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -4468,6 +4740,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -4674,6 +4962,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -4863,6 +5167,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -5309,6 +5629,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -5845,6 +6181,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -6055,6 +6407,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -6542,6 +6910,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -6755,6 +7139,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -6960,6 +7360,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -7366,6 +7782,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -8140,6 +8572,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -8512,6 +8960,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -9210,6 +9674,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -9475,6 +9955,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -9809,6 +10305,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -10410,6 +10922,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -10579,6 +11107,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -10794,6 +11338,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -11298,6 +11858,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -11733,6 +12309,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -11943,6 +12535,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -12355,6 +12963,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -12549,6 +13173,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -12735,6 +13375,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -12905,6 +13561,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -13865,6 +14537,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -14511,6 +15199,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -14979,7 +15683,19 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
             {
@@ -14988,10 +15704,6 @@
             },
             {
               "name": "--luma-color-scheme",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-primary",
               "description": "Inherited theme variable."
             },
             {
@@ -15008,10 +15720,6 @@
             },
             {
               "name": "--luma-hover-opacity",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
             {
@@ -15043,7 +15751,19 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-on-primary",
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -15224,6 +15944,28 @@
               },
               "default": "true",
               "attribute": "show-header"
+            },
+            {
+              "kind": "field",
+              "name": "mediaImage",
+              "privacy": "public",
+              "description": "Optional album-art URL. Only http(s), blob, and relative URLs are accepted.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "media-image"
+            },
+            {
+              "kind": "field",
+              "name": "capabilities",
+              "privacy": "public",
+              "description": "Supported popup controls; unsupported actions are omitted.",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "[\"play\",\"pause\",\"previous\",\"next\",\"seek\",\"volume\",\"mute\",\"shuffle\",\"repeat\",\"power\",\"source\",\"sound_mode\"]",
+              "attribute": "capabilities"
             },
             {
               "kind": "field",
@@ -15495,6 +16237,24 @@
               "default": "true"
             },
             {
+              "name": "media-image",
+              "fieldName": "mediaImage",
+              "description": "Optional album-art URL. Only http(s), blob, and relative URLs are accepted.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "capabilities",
+              "fieldName": "capabilities",
+              "description": "Supported popup controls; unsupported actions are omitted.",
+              "type": {
+                "text": "string"
+              },
+              "default": "[\"play\",\"pause\",\"previous\",\"next\",\"seek\",\"volume\",\"mute\",\"shuffle\",\"repeat\",\"power\",\"source\",\"sound_mode\"]"
+            },
+            {
               "name": "media-title",
               "fieldName": "mediaTitle",
               "description": "Current track or program title.",
@@ -15641,9 +16401,41 @@
             {
               "name": "card",
               "description": "Outer card surface."
+            },
+            {
+              "name": "media-panel",
+              "description": "media-panel styling hook."
+            },
+            {
+              "name": "artwork",
+              "description": "artwork styling hook."
             }
           ],
           "cssProperties": [
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            },
             {
               "name": "--luma-text",
               "description": "Inherited theme variable."
@@ -15666,10 +16458,6 @@
             },
             {
               "name": "--luma-focus-color",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -15702,10 +16490,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-control-background",
               "description": "Inherited theme variable."
             },
             {
@@ -16056,6 +16840,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -16531,6 +17331,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -17210,6 +18026,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -17445,6 +18277,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -17640,6 +18488,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -17792,6 +18656,28 @@
               },
               "default": "\"\"",
               "attribute": "unit"
+            },
+            {
+              "kind": "field",
+              "name": "mode",
+              "privacy": "public",
+              "description": "Arc fill: start for heating/humidifying, end for cooling/drying, or full.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\"",
+              "attribute": "mode"
+            },
+            {
+              "kind": "field",
+              "name": "inactive",
+              "privacy": "public",
+              "description": "Hide active arc colors while a device is off; retain the target readout and a neutral handle.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "inactive"
             },
             {
               "kind": "field",
@@ -17989,6 +18875,24 @@
                 "text": "string"
               },
               "default": "\"\""
+            },
+            {
+              "name": "mode",
+              "fieldName": "mode",
+              "description": "Arc fill: start for heating/humidifying, end for cooling/drying, or full.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\""
+            },
+            {
+              "name": "inactive",
+              "fieldName": "inactive",
+              "description": "Hide active arc colors while a device is off; retain the target readout and a neutral handle.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
             },
             {
               "name": "color",
@@ -18239,6 +19143,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -18354,6 +19274,36 @@
               },
               "default": "\"\"",
               "attribute": "unit",
+              "inheritedFrom": {
+                "name": "LumaArc",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mode",
+              "privacy": "public",
+              "description": "Arc fill: start for heating/humidifying, end for cooling/drying, or full.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\"",
+              "attribute": "mode",
+              "inheritedFrom": {
+                "name": "LumaArc",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inactive",
+              "privacy": "public",
+              "description": "Hide active arc colors while a device is off; retain the target readout and a neutral handle.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "inactive",
               "inheritedFrom": {
                 "name": "LumaArc",
                 "module": "dist/controls.js"
@@ -18601,6 +19551,24 @@
               "default": "\"\""
             },
             {
+              "name": "mode",
+              "fieldName": "mode",
+              "description": "Arc fill: start for heating/humidifying, end for cooling/drying, or full.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\""
+            },
+            {
+              "name": "inactive",
+              "fieldName": "inactive",
+              "description": "Hide active arc colors while a device is off; retain the target readout and a neutral handle.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
               "name": "color",
               "fieldName": "color",
               "description": "Arc and handle accent, a theme color name or CSS color.",
@@ -18844,6 +19812,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -19275,6 +20259,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -19521,6 +20521,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -19747,6 +20763,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -19932,6 +20964,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -20201,6 +21249,14 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-error-color",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -20210,10 +21266,6 @@
             },
             {
               "name": "--luma-color-scheme",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-primary",
               "description": "Inherited theme variable."
             },
             {
@@ -20258,6 +21310,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -20563,6 +21631,14 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-error-color",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -20572,10 +21648,6 @@
             },
             {
               "name": "--luma-color-scheme",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-primary",
               "description": "Inherited theme variable."
             },
             {
@@ -20620,6 +21692,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -20925,6 +22013,14 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-error-color",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -20934,10 +22030,6 @@
             },
             {
               "name": "--luma-color-scheme",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-primary",
               "description": "Inherited theme variable."
             },
             {
@@ -20982,6 +22074,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -21287,6 +22395,14 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-error-color",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -21296,10 +22412,6 @@
             },
             {
               "name": "--luma-color-scheme",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-primary",
               "description": "Inherited theme variable."
             },
             {
@@ -21345,6 +22457,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -21384,6 +22512,17 @@
             },
             {
               "kind": "field",
+              "name": "hideLabels",
+              "privacy": "public",
+              "description": "Show option icons alone while retaining accessible option labels.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "hide-labels"
+            },
+            {
+              "kind": "field",
               "name": "value",
               "privacy": "public",
               "description": "Selected option value.",
@@ -21419,6 +22558,15 @@
               "name": "disabled",
               "fieldName": "disabled",
               "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "hide-labels",
+              "fieldName": "hideLabels",
+              "description": "Show option icons alone while retaining accessible option labels.",
               "type": {
                 "text": "boolean"
               },
@@ -21497,6 +22645,10 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-segment-direction",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -21551,6 +22703,22 @@
             {
               "name": "--luma-control-background",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -21591,6 +22759,21 @@
               },
               "default": "false",
               "attribute": "disabled",
+              "inheritedFrom": {
+                "name": "LumaSegmented",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hideLabels",
+              "privacy": "public",
+              "description": "Show option icons alone while retaining accessible option labels.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "hide-labels",
               "inheritedFrom": {
                 "name": "LumaSegmented",
                 "module": "dist/controls.js"
@@ -21647,6 +22830,15 @@
               "default": "false"
             },
             {
+              "name": "hide-labels",
+              "fieldName": "hideLabels",
+              "description": "Show option icons alone while retaining accessible option labels.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
               "name": "value",
               "fieldName": "value",
               "description": "Selected option value.",
@@ -21719,6 +22911,10 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-segment-direction",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -21772,6 +22968,22 @@
             },
             {
               "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -21982,6 +23194,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -22309,6 +23537,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -22591,6 +23835,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -22836,6 +24096,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -23103,6 +24379,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -23178,16 +24470,12 @@
               "kind": "field",
               "name": "hideLabels",
               "privacy": "public",
-              "description": "Show icons without visible text; accessible labels remain.",
+              "description": "Keep playback action names accessible while showing only transport icons.",
               "type": {
                 "text": "boolean"
               },
-              "default": "false",
-              "attribute": "hide-labels",
-              "inheritedFrom": {
-                "name": "LumaCommandBar",
-                "module": "dist/controls.js"
-              }
+              "default": "true",
+              "attribute": "hide-labels"
             },
             {
               "kind": "field",
@@ -23245,11 +24533,11 @@
             {
               "name": "hide-labels",
               "fieldName": "hideLabels",
-              "description": "Show icons without visible text; accessible labels remain.",
+              "description": "Keep playback action names accessible while showing only transport icons.",
               "type": {
                 "text": "boolean"
               },
-              "default": "false"
+              "default": "true"
             },
             {
               "name": "entity-id",
@@ -23303,6 +24591,14 @@
           ],
           "cssProperties": [
             {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -23312,10 +24608,6 @@
             },
             {
               "name": "--luma-color-scheme",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-primary",
               "description": "Inherited theme variable."
             },
             {
@@ -23367,7 +24659,19 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-on-primary",
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -23581,6 +24885,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -23848,6 +25168,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -23993,6 +25329,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -24223,6 +25575,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -24766,6 +26134,28 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label"
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label"
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -24924,6 +26314,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -25049,6 +26457,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -25293,6 +26717,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -25459,6 +26913,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -25584,6 +27056,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -25824,6 +27312,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -25862,6 +27380,28 @@
               },
               "default": "50",
               "attribute": "speed"
+            },
+            {
+              "kind": "field",
+              "name": "supportsSpeed",
+              "privacy": "public",
+              "description": "Show a speed control; otherwise show the large power switch.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "supports-speed"
+            },
+            {
+              "kind": "field",
+              "name": "speedCount",
+              "privacy": "public",
+              "description": "Number of supported speeds; at most five uses vertical buttons, more uses the percentage slider.",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "attribute": "speed-count"
             },
             {
               "kind": "field",
@@ -26056,6 +27596,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -26081,6 +27639,24 @@
                 "text": "number"
               },
               "default": "50"
+            },
+            {
+              "name": "supports-speed",
+              "fieldName": "supportsSpeed",
+              "description": "Show a speed control; otherwise show the large power switch.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "speed-count",
+              "fieldName": "speedCount",
+              "description": "Number of supported speeds; at most five uses vertical buttons, more uses the percentage slider.",
+              "type": {
+                "text": "number"
+              },
+              "default": "100"
             },
             {
               "name": "oscillating",
@@ -26170,6 +27746,18 @@
           ],
           "cssProperties": [
             {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-segment-direction",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -26182,19 +27770,11 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-primary",
-              "description": "Inherited theme variable."
-            },
-            {
               "name": "--luma-pressed-opacity",
               "description": "Inherited theme variable."
             },
             {
               "name": "--luma-focus-color",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -26235,6 +27815,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -26475,6 +28071,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -26685,6 +28311,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -26846,6 +28490,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -27090,6 +28750,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -27289,6 +28979,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -27441,6 +29149,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -27677,6 +29401,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -27854,6 +29608,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -27988,6 +29760,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -28232,6 +30020,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -28409,6 +30227,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -28543,6 +30379,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -28783,6 +30635,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -29004,6 +30886,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -29174,6 +31074,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -29418,6 +31334,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -29628,6 +31574,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -29789,6 +31753,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -30033,6 +32013,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -30199,6 +32209,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -30324,6 +32352,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -30568,6 +32612,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -30734,6 +32808,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -30859,6 +32951,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -31103,6 +33211,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -31313,6 +33451,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -31474,6 +33630,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -31718,6 +33890,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -31917,6 +34119,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -32069,6 +34289,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -32313,6 +34549,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -32523,6 +34789,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -32684,6 +34968,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -32928,6 +35228,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -33094,6 +35424,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -33219,6 +35567,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -33463,6 +35827,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -33629,6 +36023,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -33754,6 +36166,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -33998,6 +36426,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -34175,6 +36633,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -34309,6 +36785,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -34553,6 +37045,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaCounter",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaCounter",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -34779,6 +37301,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -34940,6 +37480,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -35184,6 +37740,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -35372,6 +37958,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -35515,6 +38119,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -35759,6 +38379,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -35936,6 +38586,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -36070,6 +38738,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -36314,6 +38998,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaInputDate",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaInputDate",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -36491,6 +39205,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -36625,6 +39357,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -36869,6 +39617,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaInputDate",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaInputDate",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -37046,6 +39824,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -37180,6 +39976,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -37424,6 +40236,36 @@
             },
             {
               "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label",
+              "inheritedFrom": {
+                "name": "LumaDevice",
+                "module": "dist/devices.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "data",
               "privacy": "public",
               "description": "Values for custom properties referenced by control definitions.",
@@ -37590,6 +40432,24 @@
               "default": "true"
             },
             {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized main state label for the entity popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text shown below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
               "name": "data",
               "fieldName": "data",
               "description": "Values for custom properties referenced by control definitions.",
@@ -37715,6 +40575,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -38428,6 +41304,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -38689,6 +41581,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -38976,6 +41884,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -39241,6 +42165,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -39540,6 +42480,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -39766,6 +42722,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -39971,6 +42943,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -40297,6 +43285,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -40636,6 +43640,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -40881,6 +43901,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -41307,6 +44343,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -41814,6 +44866,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -42107,6 +45175,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -43561,6 +46645,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -43987,6 +47087,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -44397,6 +47513,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -44606,6 +47738,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -44832,6 +47980,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -45191,6 +48355,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -45380,6 +48560,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -45592,6 +48788,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": [
@@ -45790,6 +49002,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -46129,6 +49357,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -46435,6 +49679,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -46640,6 +49900,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],
@@ -47026,6 +50302,22 @@
             {
               "name": "--luma-on-primary",
               "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
             }
           ],
           "slots": []
@@ -47331,6 +50623,22 @@
             },
             {
               "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
               "description": "Inherited theme variable."
             }
           ],

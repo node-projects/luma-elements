@@ -296,3 +296,32 @@ test('adaptive popups drag to dismiss on phones while controls keep their own dr
  await popup.getByRole('button',{name:'Buttons',exact:true}).click();await expect(popup.getByRole('button',{name:'Open',exact:true})).toBeVisible();
  const handle=popup.locator('[part=handle]');const box=await handle.boundingBox();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);await page.mouse.down();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2+400,{steps:4});await page.mouse.up();await expect(dialog).not.toBeVisible();await expect(page.locator('html')).not.toHaveCSS('overflow','hidden');
 });
+
+test('composed light and feature controls retain their slider while values change',async({page})=>{
+ for(const tag of ['luma-light','luma-feature']){
+  const control=await mount(page,tag,tag==='luma-light'?{state:'on',brightness:40,panel:'brightness'}:{type:'light-brightness',config:{value:40}});const input=control.getByRole('slider');const tooltip=control.locator('[part=tooltip]');
+  await input.focus();await page.keyboard.down('ArrowUp');await expect(input).toHaveValue('41');await expect(tooltip).toBeVisible();await page.keyboard.up('ArrowUp');await expect(input).toBeFocused();await expect(tooltip).toBeVisible();await expect(tooltip).toBeHidden({timeout:1500});
+ }
+});
+
+test('specialized popup layouts compose the appropriate main device controls',async({page})=>{
+ for(const [domain,properties,sliderLabel] of [['humidifier',{humidity:50,currentHumidity:42},'Target temperature'],['water_heater',{temperature:55,currentTemperature:48},'Target temperature'],['fan',{speed:40,speedCount:10},'Speed']] as const){
+  const popup=await mount(page,'luma-more-info',{open:true,entity:{domain,label:domain,entityId:domain+'.test',state:'on',properties}});const input=popup.getByRole('slider',{name:sliderLabel,exact:true});await expect(input).toBeVisible();await input.press('ArrowUp');await expect(popup.locator('dialog')).toBeVisible();await page.keyboard.press('Escape');
+ }
+ const fan=await mount(page,'luma-fan',{showHeader:false,speedCount:3,state:'on',speed:100});await expect(fan.getByRole('button',{name:'Low',exact:true})).toBeVisible();await expect(fan.getByRole('slider')).toHaveCount(0);
+ const player=await mount(page,'luma-media-player',{showHeader:false,state:'playing',mediaTitle:'Test track',artist:'Artist',sources:['Radio','TV'],capabilities:['play','pause','volume','mute','source']});await expect(player.locator('[part=artwork]')).toBeVisible();await expect(player.getByRole('button',{name:'Pause',exact:true})).toBeVisible();await expect(player.getByRole('button',{name:'Shuffle',exact:true})).toHaveCount(0);await player.getByRole('button',{name:'Pause',exact:true}).click();expect(await player.evaluate((el:any)=>el.state)).toBe('paused');
+});
+
+test('chart keyboard inspection matches hover feedback and clears on blur; map shows drag feedback',async({page})=>{
+ const chart=await mount(page,'luma-bar-chart',{series:[{name:'Water',data:[2,3,4]}],unit:'L'});const bars=chart.locator('rect[tabindex]');await bars.first().focus();await expect(chart.locator('[part=tooltip]')).toContainText('2 L');await bars.first().press('ArrowRight');await expect(bars.nth(1)).toBeFocused();await expect(chart.locator('[part=tooltip]')).toContainText('3 L');await bars.nth(1).press('Escape');await expect(chart.locator('[part=tooltip]')).toBeHidden();
+ const map=await mount(page,'luma-map',{});const surface=map.locator('svg[part=map]');const box=await surface.boundingBox();await page.mouse.move(box!.x+100,box!.y+100);await page.mouse.down();await expect(surface).toHaveCSS('cursor','grabbing');await page.mouse.up();await expect(surface).toHaveCSS('cursor','grab');const before=await map.evaluate((el:any)=>el.center.longitude);await surface.press('ArrowRight');expect(await map.evaluate((el:any)=>el.center.longitude)).toBeGreaterThan(before);
+});
+
+test('every details route opens in light/dark desktop and mobile shells with usable focus',async({page})=>{
+ test.setTimeout(60000);const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));const domains=await page.evaluate(async()=>Object.keys((await import('/assets/luma-elements.js' as string)).detailDomains));
+ for(const mode of [{width:1280,height:900,theme:'light'},{width:390,height:844,theme:'dark'}]){
+  await page.setViewportSize({width:mode.width,height:mode.height});await page.locator('html').evaluate((el,theme)=>el.setAttribute('data-theme',theme),mode.theme);
+  for(const domain of domains){const popup=await mount(page,'luma-more-info',{open:true,entity:{domain,label:domain,entityId:domain+'.test',state:'on'}});const dialog=popup.locator('dialog');await expect(dialog).toBeVisible();const box=await dialog.boundingBox();expect(box!.x).toBeGreaterThanOrEqual(-1);expect(box!.x+box!.width).toBeLessThanOrEqual(mode.width+1);await expect.poll(()=>dialog.evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(mode.height+1);await popup.getByRole('button',{name:'History',exact:true}).focus();await expect(popup.getByRole('button',{name:'History',exact:true})).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();}
+ }
+ expect(errors).toEqual([]);
+});

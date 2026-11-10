@@ -9,7 +9,7 @@ export function verifyPackage(tarball){
  const manifest=JSON.parse(read('custom-elements.json'));
  assert.equal(manifest.schemaVersion,'1.0.0');
  for(const module of manifest.modules){assert.match(module.path,/^dist\/[^/]+\.js$/);assert(entries.has('package/'+module.path),'Missing designer module '+module.path);}
- for(const file of ['dist/index.js','dist/index.d.ts','dist/elements.d.ts','dist/themes.css','dist/luma-elements.js','docs/API.md','docs/COVERAGE.md','docs/RELEASING.md'])assert(entries.has('package/'+file),'Missing package file '+file);
+ for(const file of ['dist/index.js','dist/index.d.ts','dist/elements.d.ts','dist/themes.css','dist/luma-elements.js','docs/API.md','docs/COVERAGE.md','docs/RELEASING.md','THIRD_PARTY_NOTICES.md','licenses/material-design-icons.txt'])assert(entries.has('package/'+file),'Missing package file '+file);
  assert.deepEqual(Object.keys(pkg.dependencies),['@node-projects/base-custom-webcomponent']);
  assert(read('dist/version.js').includes(JSON.stringify(pkg.version)),'Compiled version does not match package version');
  const elements=manifest.modules.flatMap(m=>m.exports).filter(e=>e.kind==='custom-element-definition').length;
