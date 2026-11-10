@@ -1,10 +1,31 @@
 # Luma Elements
 
+[![Build and test](https://github.com/node-projects/luma-elements/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/node-projects/luma-elements/actions/workflows/ci.yml)
+[![GitHub Pages](https://github.com/node-projects/luma-elements/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/node-projects/luma-elements/actions/workflows/pages.yml)
+[![Live gallery](https://img.shields.io/badge/demo-live%20gallery-03a9f4)](https://node-projects.github.io/luma-elements/)
+[![License: MIT](https://img.shields.io/github/license/node-projects/luma-elements)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-declarations%20included-3178c6?logo=typescript&logoColor=white)](docs/API.md)
+[![npm: first release pending](https://img.shields.io/badge/npm-first%20release%20pending-cb3837?logo=npm&logoColor=white)](https://github.com/node-projects/luma-elements/releases)
+
+**[Live gallery](https://node-projects.github.io/luma-elements/) · [Energy demo](https://node-projects.github.io/luma-elements/#energy) · [All components](https://node-projects.github.io/luma-elements/#components) · [API reference](docs/API.md) · [Designer manifest](custom-elements.json)**
+
 Home automation web components inspired by the [Home Assistant Lovelace demo](https://demo.home-assistant.io/#/lovelace/home). Built with the real [`@node-projects/base-custom-webcomponent`](https://github.com/node-projects/base-custom-webcomponent) base class. No other runtime libraries, backend coupling, external fonts, icon services, or charting dependencies.
 
 The library includes standalone controls, composed device/dashboard cards, interactive charts, and automatic entity detail popups. All elements receive data through properties or attributes. It is an independent implementation: backend service connections, the Lovelace configuration editor, and server-specific stream negotiation belong to the host application. The full generated component/property inventory is in [docs/API.md](docs/API.md), and [docs/COVERAGE.md](docs/COVERAGE.md) maps dashboard cards, all 53 public tile feature types, and entity detail domains to their components.
 
+## Explore the library
+
+- **124 web components:** reusable controls, device cards, charts, layouts, and entity detail popups.
+- **Home Assistant-style interactions:** hover, focus, dragging, keyboard input, and responsive mobile sheets.
+- **Light, dark, and system themes:** style components through CSS variables and exposed shadow parts.
+- **Properties and attributes:** pass complex data as JavaScript objects or JSON attributes; listen for input, change, and action events.
+- **Designer support:** JavaScript-linked Custom Elements Manifest and TypeScript element declarations.
+
+See the [coverage inventory](docs/COVERAGE.md) and [interaction audit](docs/INTERACTION_AUDIT.md) for supported features, reference comparisons, and current boundaries.
+
 ## Run the gallery
+
+Try the **[hosted gallery](https://node-projects.github.io/luma-elements/)** without installing anything, or run it locally:
 
 Requires Node.js 22 or newer.
 
@@ -226,6 +247,6 @@ See [docs/RELEASING.md](docs/RELEASING.md). Push/PR builds test and pack the lib
 - `dist/`: generated library modules, declarations, source maps, and self-contained browser bundle.
 - `site/`: generated GitHub Pages artifact.
 
-MIT. See `THIRD_PARTY_NOTICES.md` for the bundled base library's BSD-3-Clause license and design attribution.
+MIT. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the base library's BSD-3-Clause license, selected SVG icons' Apache-2.0 license, and design attribution.
 
 The [interaction audit](docs/INTERACTION_AUDIT.md) records hover, focus, drag and popup behavior against the Home Assistant references. `luma-chart-navigator` is independently usable; line/history charts include it by default (`show-navigator` / `showNavigator`). Its `value` is a `{start,end}` object, in the same units as `min` and `max`.
