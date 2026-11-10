@@ -338,3 +338,22 @@ test('chart navigator resizes and pans the selected interval with mouse, keyboar
 test('canceling a live navigator drag restores the previous chart interval',async({page})=>{
  const chart=await mount(page,'luma-line-chart',{series:[{name:'Power',data:[1,3,9,4,6,3]}],timeRange:{start:1,end:3}});const selection=chart.locator('luma-chart-navigator [part=selection]');const box=await selection.boundingBox();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);await page.mouse.down();await page.mouse.move(box!.x+box!.width/2+40,box!.y+box!.height/2);expect((await chart.evaluate((el:any)=>el.timeRange)).start).toBeGreaterThan(1);await page.keyboard.press('Escape');await page.mouse.up();expect(await chart.evaluate((el:any)=>el.timeRange)).toEqual({start:1,end:3});
 });
+
+test('heating and cooling arcs end at the target and emphasize only the active direction',async({page})=>{
+ const cases=[
+  {mode:'start',value:15.5,currentValue:20.8,from:7,to:15.5,active:false},
+  {mode:'start',value:22.5,currentValue:20.8,from:7,to:22.5,active:true},
+  {mode:'end',value:24,currentValue:20.8,from:24,to:35,active:false},
+  {mode:'end',value:18,currentValue:20.8,from:18,to:35,active:true},
+  {mode:'start',value:20.8,currentValue:20.8,from:7,to:20.8,active:false},
+  {mode:'full',value:15.5,currentValue:20.8,from:7,to:35,active:false},
+ ];
+ for(const item of cases){
+  const arc=await mount(page,'luma-arc',{...item,min:7,max:35,showCurrentMarker:true,showThumb:true});const fill=arc.locator('#fill');const difference=arc.locator('#difference');
+  expect(Number((await fill.getAttribute('stroke-dasharray'))!.split(' ')[0])).toBeCloseTo((item.to-item.from)/28*100);
+  expect(Number(await fill.getAttribute('stroke-dashoffset'))).toBeCloseTo(-(item.from-7)/28*100);
+  if(item.active)await expect(difference).toBeVisible();else await expect(difference).toBeHidden();
+ }
+ const thermostat=await mount(page,'luma-thermostat',{temperature:22.5,currentTemperature:20.8});const point=await dialPoint(page,15.5);await page.mouse.click(point.x,point.y);await expect.poll(()=>thermostat.evaluate((el:any)=>el.temperature)).toBe(15.5);
+ await expect(thermostat.locator('luma-arc #difference')).toBeHidden();expect(Number((await thermostat.locator('luma-arc #fill').getAttribute('stroke-dasharray'))!.split(' ')[0])).toBeCloseTo(8.5/28*100);
+});
