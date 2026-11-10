@@ -4,10 +4,10 @@ import { LumaEntity } from './components.js';
 import { icon } from './icons.js';
 
 export class LumaButtonCard extends LumaEntity {
-  static schema={...entity};
+  static schema={...entity,tapAction:prop('string','auto','Default toggles supported domains; otherwise opens details. Use press for a scene/action button.')};
   protected render():void {
-    this.root.innerHTML=`<button class="card stack center" part="card" style="width:100%;min-height:140px;align-items:center;justify-content:center;padding:20px;gap:10px" ${this.disabled?'disabled':''} aria-label="${escape(this.label)}"><span style="color:${active(this.state)?accent(this.color):'var(--luma-secondary-text,#727272)'};transform:scale(1.4)"><slot name="icon">${icon(this.icon)}</slot></span><span class="name">${escape(this.label)}</span><span class="small muted">${escape(this.secondary || this.state)}</span></button>`;
-    this.on('button','click',()=>this.action('press'));
+    this.root.innerHTML=`<button class="card stack center" part="card" style="width:100%;min-height:140px;align-items:center;justify-content:center;padding:20px;gap:10px" ${this.interactionDisabled?'disabled':''} aria-label="${escape(this.label)}"><span style="color:${active(this.state)?accent(this.color):'var(--luma-secondary-text,#727272)'};transform:scale(1.4)"><slot name="icon">${icon(this.icon)}</slot></span><span class="name">${escape(this.label)}</span><span class="small muted">${escape(this.secondary || this.state)}</span></button>`;
+    this.bindEntityAction('button');
   }
 }
 register('luma-button-card',LumaButtonCard,'A large entity action button with state-colored icon.');

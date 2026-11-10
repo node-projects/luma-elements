@@ -10,7 +10,7 @@ declare global {
     'luma-attributes': import('./controls.js').LumaAttributes;
     'luma-automation': import('./devices.js').LumaAutomation;
     'luma-badge': import('./components.js').LumaBadge;
-    'luma-bar-chart': import('./cards.js').LumaBarChart;
+    'luma-bar-chart': import('./bar-chart.js').LumaBarChart;
     'luma-brightness': import('./light-controls.js').LumaBrightness;
     'luma-button': import('./primitives.js').LumaButton;
     'luma-button-card': import('./content.js').LumaButtonCard;
@@ -30,8 +30,10 @@ declare global {
     'luma-counter': import('./devices.js').LumaCounter;
     'luma-cover': import('./components.js').LumaCover;
     'luma-cover-controls': import('./controls.js').LumaCoverControls;
+    'luma-data-table': import('./energy-dashboard.js').LumaDataTable;
     'luma-date': import('./cards.js').LumaDate;
     'luma-date-picker': import('./controls.js').LumaDatePicker;
+    'luma-date-range-picker': import('./energy-dashboard.js').LumaDateRangePicker;
     'luma-datetime-picker': import('./controls.js').LumaDateTimePicker;
     'luma-device': import('./devices.js').LumaDevice;
     'luma-dial': import('./controls.js').LumaDial;
@@ -39,18 +41,22 @@ declare global {
     'luma-distribution': import('./cards.js').LumaDistribution;
     'luma-dropdown': import('./controls.js').LumaDropdown;
     'luma-energy': import('./energy.js').LumaEnergy;
+    'luma-energy-dashboard': import('./energy-dashboard.js').LumaEnergyDashboard;
     'luma-energy-flow': import('./energy.js').LumaEnergyFlow;
     'luma-energy-node': import('./energy.js').LumaEnergyNode;
+    'luma-energy-summary': import('./energy-dashboard.js').LumaEnergySummary;
     'luma-entities': import('./components.js').LumaEntities;
     'luma-entity': import('./cards.js').LumaSingleEntity;
     'luma-entity-filter': import('./cards.js').LumaEntityFilter;
     'luma-entity-row': import('./components.js').LumaEntityRow;
     'luma-fan': import('./devices.js').LumaFan;
+    'luma-feature': import('./features.js').LumaFeature;
     'luma-flow-line': import('./energy.js').LumaFlowLine;
     'luma-form': import('./cards.js').LumaForm;
     'luma-gauge': import('./charts.js').LumaGauge;
     'luma-gauge-arc': import('./charts.js').LumaGaugeArc;
     'luma-glance': import('./components.js').LumaGlance;
+    'luma-glance-item': import('./components.js').LumaGlanceItem;
     'luma-grid': import('./components.js').LumaGrid;
     'luma-heading': import('./components.js').LumaHeading;
     'luma-history': import('./charts.js').LumaHistory;
@@ -93,6 +99,7 @@ declare global {
     'luma-shortcut': import('./cards.js').LumaShortcut;
     'luma-siren': import('./devices.js').LumaSiren;
     'luma-slider': import('./primitives.js').LumaSlider;
+    'luma-sparkline': import('./sparkline.js').LumaSparkline;
     'luma-stack': import('./components.js').LumaStack;
     'luma-state-panel': import('./dialogs.js').LumaStatePanel;
     'luma-statistic': import('./cards.js').LumaStatistic;
@@ -100,6 +107,7 @@ declare global {
     'luma-switch': import('./primitives.js').LumaSwitch;
     'luma-switch-card': import('./devices.js').LumaSwitchCard;
     'luma-tabs': import('./controls.js').LumaTabs;
+    'luma-temperature-value': import('./temperature-value.js').LumaTemperatureValue;
     'luma-text': import('./content.js').LumaText;
     'luma-text-field': import('./controls.js').LumaTextField;
     'luma-thermostat': import('./components.js').LumaThermostat;

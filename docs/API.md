@@ -61,6 +61,8 @@ A compact increment/decrement control, used by thermostat cards.
 | `max` | `max` | number | `100` | Inclusive upper bound. Must be greater than min. |
 | `step` | `step` | number | `1` | Positive increment for pointer and keyboard adjustments. |
 | `unit` | `unit` | string | `""` | Unit shown after the value, such as %, °C, or W. |
+| `editable` | `editable` | boolean | `true` | Allow direct numeric entry in the bar variant, with native min/max/step validation. |
+| `variant` | `variant` | string | `"bar"` | Control appearance: bar shows a value between buttons; round uses standalone circular buttons for thermostat dials. |
 
 ## `luma-select`
 
@@ -72,6 +74,20 @@ A labeled native select for modes, presets, and input-select entities.
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
 | `value` | `value` | string | `""` | Selected option value. |
 | `options` | `options` | array | `[]` | Array of strings or {value, label} options. Supply a JavaScript array or JSON attribute. |
+
+## `luma-temperature-value`
+
+Standalone fixed-metric, locale-aware temperature readout with separate integer, decimal, and unit columns; fractional changes never auto-resize the font.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `value` | `value` | number | `21` | Displayed temperature. |
+| `unit` | `unit` | string | `"°C"` | Temperature unit, shown in a fixed upper suffix. |
+| `precision` | `precision` | number | `1` | Fractional digits to reserve, from 0 to 3. The decimal field stays present for whole values. |
+| `locale` | `locale` | string | `"en"` | Number-format locale; for example de displays a comma. |
+| `digits` | `digits` | number | `2` | Minimum integer-digit column width. All digits use tabular metrics. |
 
 ## `luma-arc`
 
@@ -90,7 +106,14 @@ Standalone 270° value/range arc. Use it as an indicator anywhere, or compose it
 | `highValue` | `high-value` | number | `24` | Upper set point when range is enabled. |
 | `range` | `range` | boolean | `false` | Draw the active segment between value and high-value. |
 | `showThumb` | `show-thumb` | boolean | `false` | Show draggable-handle markers; interaction is supplied by luma-dial. |
-| `secondary` | `secondary` | string | `""` | Caption under the central reading. |
+| `secondary` | `secondary` | string | `""` | Caption above the central reading. |
+| `currentValue` | `current-value` | number | `20.8` | Actual measured temperature shown separately and as an optional dial marker. |
+| `showCurrent` | `show-current` | boolean | `false` | Show the actual-temperature readout above the arc. |
+| `currentLabel` | `current-label` | string | `"Current temperature"` | Label above the actual-temperature reading. |
+| `showCurrentMarker` | `show-current-marker` | boolean | `false` | Show a small marker for the measured temperature. |
+| `showCurrentAsPrimary` | `show-current-as-primary` | boolean | `false` | Use the measured temperature as the main reading; the set point remains draggable. |
+| `precision` | `precision` | number | `1` | Fixed decimal digits for the main temperature readout. |
+| `locale` | `locale` | string | `"en"` | Number-format locale for decimal comma/point selection. |
 
 ## `luma-dial`
 
@@ -109,7 +132,14 @@ Reusable mouse/touch draggable dial with snapping, dual temperature set points, 
 | `highValue` | `high-value` | number | `24` | Upper set point when range is enabled. |
 | `range` | `range` | boolean | `false` | Draw the active segment between value and high-value. |
 | `showThumb` | `show-thumb` | boolean | `true` | Show the currently controlled set point handles. |
-| `secondary` | `secondary` | string | `""` | Caption under the central reading. |
+| `secondary` | `secondary` | string | `""` | Caption above the central reading. |
+| `currentValue` | `current-value` | number | `20.8` | Actual measured temperature shown separately and as an optional dial marker. |
+| `showCurrent` | `show-current` | boolean | `false` | Show the actual-temperature readout above the arc. |
+| `currentLabel` | `current-label` | string | `"Current temperature"` | Label above the actual-temperature reading. |
+| `showCurrentMarker` | `show-current-marker` | boolean | `false` | Show a small marker for the measured temperature. |
+| `showCurrentAsPrimary` | `show-current-as-primary` | boolean | `false` | Use the measured temperature as the main reading; the set point remains draggable. |
+| `precision` | `precision` | number | `1` | Fixed decimal digits for the main temperature readout. |
+| `locale` | `locale` | string | `"en"` | Number-format locale for decimal comma/point selection. |
 
 ## `luma-vertical-slider`
 
@@ -279,6 +309,7 @@ Color picker composed from the standalone wheel, validated hex field, and favori
 | `value` | `value` | string | `"#ffa24d"` | RGB color as a six-digit hexadecimal string. |
 | `showInput` | `show-input` | boolean | `true` | Show the hex color field. |
 | `hideFavorites` | `hide-favorites` | boolean | `false` | Hide built-in swatches when composing with a separate swatch control. |
+| `eyeDropper` | `eye-dropper` | boolean | `true` | Show screen color selection when the browser supports the native EyeDropper API. |
 | `favorites` | `favorites` | array | `["#ff9e47","#ff4141","#48b6ff","#a56aff","#ffffff"]` | Favorite RGB swatches as six-digit hex strings. |
 
 ## `luma-command-bar`
@@ -358,6 +389,18 @@ Standalone two-line mode/preset selector with a top-layer popover, icon options,
 | `value` | `value` | string | `""` | Selected option value. |
 | `options` | `options` | array | `[]` | Strings or {value,label,icon?} options shown in the popover menu. |
 | `icon` | `icon` | string | `""` | Optional trigger icon. |
+
+## `luma-feature`
+
+Standalone adapter for every public Lovelace feature kind, composed from the same reusable controls used in cards and popups.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `type` | `type` | string | `"light-brightness"` | Public Lovelace feature kind. See featureControls for the complete list. |
+| `config` | `config` | object | `{}` | Properties forwarded to the standalone primitive: value/checked, options, commands, limits, favorites, or chart series. |
+| `entityId` | `entity-id` | string | `""` | Entity identifier included in action/change/input details. |
 
 ## `luma-brightness`
 
@@ -501,6 +544,7 @@ A Home Assistant-style tile composed with optional brightness, target-temperatur
 | `toggle` | `toggle` | boolean | `false` | Make the icon toggle on/off instead of opening entity details. |
 | `feature` | `feature` | string | `""` | Optional embedded control: brightness, temperature, or cover. |
 | `value` | `value` | number | `0` | Value of the embedded brightness (%) or temperature (°C) control. |
+| `features` | `features` | array | `[]` | Additional standalone feature controls as {type,label?,config?}; all public feature kinds are supported by luma-feature. |
 
 ## `luma-entity-row`
 
@@ -535,6 +579,27 @@ An entities card composed from entity rows, with an optional group toggle.
 | `entities` | `entities` | array | `[]` | Array of {label, state, icon?, secondary?, entityId?, color?, toggle?, disabled?} entity rows. |
 | `showHeaderToggle` | `show-header-toggle` | boolean | `false` | Show a header switch that toggles all rows marked toggle. |
 
+## `luma-glance-item`
+
+Standalone compact entity summary with a real entity-details action, reusable outside glance cards.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `icon` | `icon` | string | `"light"` | Built-in icon name. Use the icon slot for a custom SVG. |
+| `state` | `state` | string | `"off"` | Displayed entity state. on, home, playing, heating, cooling, and open receive active styling. |
+| `secondary` | `secondary` | string | `""` | Optional secondary text; overrides the displayed state. |
+| `entityId` | `entity-id` | string | `""` | Opaque entity identifier returned in action and change event details. No backend connection is made. |
+| `domain` | `domain` | string | `""` | Entity domain such as light, climate, cover, fan, or sensor. Inferred from entity-id when omitted. |
+| `detailProperties` | `detail-properties` | object | `{}` | Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history. |
+| `entityAttributes` | `entity-attributes` | object | `{}` | Entity attribute name/value pairs shown in the Attributes detail tab. |
+| `tapAction` | `tap-action` | string | `"more-info"` | Content action: more-info, toggle, press, none, or an application-defined action. |
+| `iconTapAction` | `icon-tap-action` | string | `"auto"` | Icon action. auto toggles supported toggle domains, otherwise opens details. |
+| `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
+| `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
+| `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+
 ## `luma-glance`
 
 A compact row of entity names, icons, and states.
@@ -543,7 +608,7 @@ A compact row of entity names, icons, and states.
 | --- | --- | --- | --- | --- |
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
-| `entities` | `entities` | array | `[]` | Array of entity summaries: {label, state, icon?, entityId?, color?}. |
+| `entities` | `entities` | array | `[]` | Entity summaries: {label,state,icon?,entityId?,domain?,detailProperties?}. |
 
 ## `luma-grid`
 
@@ -584,6 +649,7 @@ A composed climate card with temperature dial, measured temperature, target cont
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
 | `temperature` | `temperature` | number | `21` | Target temperature changed by the increment/decrement control. |
 | `currentTemperature` | `current-temperature` | number | `20.5` | Measured room temperature. |
 | `min` | `min` | number | `7` | Minimum target temperature. |
@@ -594,6 +660,16 @@ A composed climate card with temperature dial, measured temperature, target cont
 | `modes` | `modes` | array | `["off","heat","cool","auto"]` | Available HVAC mode names. |
 | `range` | `range` | boolean | `false` | Enable lower/upper set points for heat/cool mode. |
 | `highTemperature` | `high-temperature` | number | `24` | Upper temperature set point. |
+| `showCurrentTemperature` | `show-current-temperature` | boolean | `true` | Display actual measured temperature above the dial. |
+| `showCurrentMarker` | `show-current-marker` | boolean | `true` | Display the measured-temperature marker on the dial. |
+| `showCurrentAsPrimary` | `show-current-as-primary` | boolean | `false` | Use the measured temperature as the primary dial reading and show the target below it. |
+| `precision` | `precision` | number | `1` | Fixed decimal places; keeps the readout stable at whole and fractional temperatures. |
+| `locale` | `locale` | string | `"en"` | Formatting locale, e.g. de uses a comma. |
+| `stateLabel` | `state-label` | string | `""` | Human-readable HVAC activity label; empty uses state. |
+| `currentTemperatureLabel` | `current-temperature-label` | string | `"Current temperature"` | Label above the measured-temperature reading. |
+| `modeLabel` | `mode-label` | string | `"HVAC mode"` | Accessible and visible mode-selector label. |
+| `presetLabel` | `preset-label` | string | `"Preset"` | Accessible and visible preset-selector label. |
+| `controlStyle` | `control-style` | string | `"round"` | Temperature buttons: round, matching the thermostat dial, or bar. |
 | `presets` | `presets` | array | `[]` | Available climate presets; empty hides the selector. |
 | `preset` | `preset` | string | `""` | Selected climate preset. |
 | `fanModes` | `fan-modes` | array | `[]` | Available fan modes. |
@@ -621,6 +697,7 @@ A light card composed from an entity row, power switch, brightness slider, and c
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
 | `brightness` | `brightness` | number | `70` | Brightness percentage. |
 | `rgbColor` | `rgb-color` | string | `"#ffa24d"` | RGB color as a six-digit hex string. |
 | `colorTemperature` | `color-temperature` | number | `3000` | Color temperature in kelvin. |
@@ -653,6 +730,7 @@ A blinds/shutter card with open, stop, close actions and position control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
 | `position` | `position` | number | `100` | Cover position, from 0 (closed) to 100 (open). Commands emit actions; position changes only when assigned or moved with the slider. |
 | `tiltPosition` | `tilt-position` | number | `50` | Slat tilt percentage. |
 | `supportsTilt` | `supports-tilt` | boolean | `false` | Show independently reusable slat-tilt controls. |
@@ -677,6 +755,7 @@ A media player card with track metadata, playback actions, and volume control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
 | `mediaTitle` | `media-title` | string | `""` | Current track or program title. |
 | `artist` | `artist` | string | `""` | Artist, station, or source name. |
 | `volume` | `volume` | number | `30` | Volume in percent from 0 to 100. |
@@ -698,6 +777,8 @@ A weather card with current conditions and up to seven daily forecast columns.
 | --- | --- | --- | --- | --- |
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `domain` | `domain` | string | `"weather"` | Weather entity domain. |
+| `entityId` | `entity-id` | string | `""` | Weather entity identifier. |
 | `condition` | `condition` | string | `"Partly cloudy"` | Human-readable current weather condition. |
 | `temperature` | `temperature` | number | `22` | Current outdoor temperature. |
 | `unit` | `unit` | string | `"°C"` | Temperature unit. |
@@ -726,8 +807,23 @@ An alarm panel with explicit arm/disarm command events; state is supplied by you
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
 | `modes` | `modes` | array | `["home","away","night"]` | Available arming modes. |
 | `requireCode` | `require-code` | boolean | `false` | Require a non-empty code before enabling arm/disarm commands. Read the code property explicitly in your command handler. |
+
+## `luma-sparkline`
+
+Standalone smooth/linear compact sensor trace with optional area fill and mouse/keyboard value inspection.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `data` | `data` | array | `[]` | Numeric history samples ordered by time. |
+| `color` | `color` | string | `"#ffad41"` | Trace and fill color. |
+| `smooth` | `smooth` | boolean | `true` | Use a smooth cubic trace instead of straight segments. |
+| `fill` | `fill` | boolean | `true` | Fill the area under the trace. |
+| `unit` | `unit` | string | `""` | Unit shown by pointer/keyboard value inspection. |
 
 ## `luma-line-chart`
 
@@ -771,7 +867,7 @@ Sensor value card composed with an optional standalone interactive history plot.
 | --- | --- | --- | --- | --- |
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
-| `icon` | `icon` | string | `"light"` | Built-in icon name. Use the icon slot for a custom SVG. |
+| `icon` | `icon` | string | `"temperature"` | Header icon. |
 | `state` | `state` | string | `""` | Optional displayed state; empty uses value. |
 | `secondary` | `secondary` | string | `""` | Secondary description below the value. |
 | `entityId` | `entity-id` | string | `""` | Opaque entity identifier returned in action and change event details. No backend connection is made. |
@@ -792,6 +888,9 @@ Sensor value card composed with an optional standalone interactive history plot.
 | `hiddenSeries` | `hidden-series` | array | `[]` | Names of series hidden by clicking their legend buttons. |
 | `zoomEnabled` | `zoom-enabled` | boolean | `true` | Allow pointer-drag selection to zoom the time range; Escape or Reset zoom restores it. |
 | `value` | `value` | number | `0` | Current numeric sensor reading. |
+| `graphStyle` | `graph-style` | string | `"sparkline"` | Graph presentation: sparkline, history, or none. |
+| `graphColor` | `graph-color` | string | `"#ffad41"` | Compact trace/fill color. |
+| `precision` | `precision` | number | `1` | Fixed decimal places in the value readout. |
 
 ## `luma-gauge-arc`
 
@@ -820,6 +919,23 @@ Gauge card composed from the independently usable semicircular gauge arc.
 | `max` | `max` | number | `100` | Maximum scale. |
 | `unit` | `unit` | string | `"%"` | Reading unit. |
 | `severity` | `severity` | array | `[{"from":0,"color":"green"},{"from":60,"color":"amber"},{"from":85,"color":"red"}]` | Thresholds as {from,color}. |
+| `entityId` | `entity-id` | string | `""` | Sensor entity identifier. |
+| `domain` | `domain` | string | `"sensor"` | Sensor domain. |
+
+## `luma-bar-chart`
+
+Standalone grouped/stacked energy bar chart with signed contributions, axes, interactive legends, keyboard value labels, and pointer tooltips.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `series` | `series` | array | `[]` | Series of {name,color?,data} with numeric or {x,y} samples. Negative samples render below zero. |
+| `unit` | `unit` | string | `""` | Value unit. |
+| `stacked` | `stacked` | boolean | `false` | Stack positive and negative contributions separately, as in Home Assistant energy charts. |
+| `labels` | `labels` | array | `[]` | Optional x-axis labels corresponding to sample positions. |
+| `hiddenSeries` | `hidden-series` | array | `[]` | Names hidden by clicking their legend buttons. |
+| `locale` | `locale` | string | `"en"` | Numeric label locale. |
 
 ## `luma-button-card`
 
@@ -836,7 +952,7 @@ A large entity action button with state-colored icon.
 | `domain` | `domain` | string | `""` | Entity domain such as light, climate, cover, fan, or sensor. Inferred from entity-id when omitted. |
 | `detailProperties` | `detail-properties` | object | `{}` | Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history. |
 | `entityAttributes` | `entity-attributes` | object | `{}` | Entity attribute name/value pairs shown in the Attributes detail tab. |
-| `tapAction` | `tap-action` | string | `"more-info"` | Content action: more-info, toggle, press, none, or an application-defined action. |
+| `tapAction` | `tap-action` | string | `"auto"` | Default toggles supported domains; otherwise opens details. Use press for a scene/action button. |
 | `iconTapAction` | `icon-tap-action` | string | `"auto"` | Icon action. auto toggles supported toggle domains, otherwise opens details. |
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
@@ -884,6 +1000,8 @@ Composable device card driven by control definitions; each control is also a sta
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
 ## `luma-switch-card`
@@ -906,6 +1024,8 @@ Switch/input-boolean card composed from an entity row and power switch.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
 ## `luma-fan`
@@ -928,6 +1048,8 @@ Fan power, speed, oscillation, direction and preset controls.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `speed` | `speed` | number | `50` | Fan speed percentage. |
 | `oscillating` | `oscillating` | boolean | `false` | Whether the fan oscillates. |
@@ -956,6 +1078,8 @@ Humidifier/dehumidifier card with independently reusable power, target humidity,
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `humidity` | `humidity` | number | `50` | Target relative humidity percentage. |
 | `currentHumidity` | `current-humidity` | number | `42` | Measured humidity. |
@@ -982,6 +1106,8 @@ Vacuum start/pause/stop/dock/locate/spot-clean actions and fan-speed selection.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `battery` | `battery` | number | `85` | Battery charge percentage. |
 | `fanSpeed` | `fan-speed` | string | `"normal"` | Selected cleaning power. |
@@ -1007,6 +1133,8 @@ Lock/unlock/unlatch command card. The supplied state remains authoritative.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `supportsOpen` | `supports-open` | boolean | `true` | Show the unlatch/open-door command. |
 
@@ -1030,6 +1158,8 @@ Valve open/stop/close actions and position control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `position` | `position` | number | `50` | Valve position from closed (0) to open (100). |
 
@@ -1053,6 +1183,8 @@ Water heater target temperature, operation mode, and away mode.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `temperature` | `temperature` | number | `55` | Target water temperature. |
 | `currentTemperature` | `current-temperature` | number | `48` | Measured water temperature. |
@@ -1080,6 +1212,8 @@ Siren power, tone, volume, and duration controls.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `tone` | `tone` | string | `"alarm"` | Selected tone. |
 | `tones` | `tones` | array | `["alarm","chime","warning"]` | Available siren tones. |
@@ -1106,6 +1240,8 @@ Remote-control navigation, selection, home/back, and volume commands.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
 ## `luma-lawn-mower`
@@ -1128,6 +1264,8 @@ Lawn mower start, pause, and return-to-dock commands.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
 ## `luma-counter`
@@ -1150,6 +1288,8 @@ Counter increment/decrement and reset controls.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | number | `0` | Current counter value. |
 | `min` | `min` | number | `0` | Minimum value. |
@@ -1176,6 +1316,8 @@ Timer duration and start/pause/cancel/finish commands, with an optional timestam
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `duration` | `duration` | number | `300` | Configured timer duration in seconds. |
 | `remaining` | `remaining` | number | `180` | Remaining duration in seconds, supplied by the application. |
@@ -1201,6 +1343,8 @@ Update versions, release notes, installation progress and install/skip commands.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `installedVersion` | `installed-version` | string | `"1.0.0"` | Installed version. |
 | `latestVersion` | `latest-version` | string | `"1.1.0"` | Available version. |
@@ -1227,6 +1371,8 @@ Automation enable/disable and manual trigger controls.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
 ## `luma-script`
@@ -1249,6 +1395,8 @@ Script run/stop commands.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
 ## `luma-input-text`
@@ -1271,6 +1419,8 @@ Input-text entity card using the standalone text-field control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `""` | Current text value. |
 
@@ -1294,6 +1444,8 @@ Numeric helper entity card with synchronized slider and numeric stepper.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | number | `0` | Current counter value. |
 | `min` | `min` | number | `0` | Minimum value. |
@@ -1320,6 +1472,8 @@ Select/helper entity card using the standalone select control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"home"` | Selected option. |
 | `options` | `options` | array | `["home","away","night"]` | Available options. |
@@ -1344,6 +1498,8 @@ Date entity detail control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"2026-11-10"` | Local date string, YYYY-MM-DD. |
 
@@ -1367,6 +1523,8 @@ Time entity detail control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"18:30"` | Local time string, HH:MM[:SS]. |
 
@@ -1390,6 +1548,8 @@ Date/time helper entity detail control.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 | `value` | `value` | string | `"2026-11-10T18:30"` | Local date/time without an implicit timezone. |
 
@@ -1413,6 +1573,8 @@ Scene activation control, also used by scene-like entity details.
 | `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `data` | `data` | object | `{}` | Values for custom properties referenced by control definitions. |
 | `controls` | `controls` | array | `[]` | Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag. |
 
 ## `luma-entity`
@@ -1501,17 +1663,6 @@ Home-wide state summary using the same area/entity primitives.
 | `temperature` | `temperature` | number | `22` | Area temperature. |
 | `humidity` | `humidity` | number | `50` | Area humidity percentage. |
 
-## `luma-bar-chart`
-
-Standalone grouped SVG bar chart with keyboard-focusable value labels.
-
-| Property | Attribute | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
-| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
-| `series` | `series` | array | `[]` | Series of {name,color?,data:number[]} for grouped bars. |
-| `unit` | `unit` | string | `""` | Value unit. |
-
 ## `luma-statistics-graph`
 
 Statistics card composed from independently usable line or grouped-bar chart components.
@@ -1523,6 +1674,10 @@ Statistics card composed from independently usable line or grouped-bar chart com
 | `series` | `series` | array | `[]` | Chart series using the line/bar-chart data format. |
 | `unit` | `unit` | string | `""` | Value unit. |
 | `chartType` | `chart-type` | string | `"line"` | line or bar. |
+| `stacked` | `stacked` | boolean | `false` | Use stacked signed bars for energy charts. |
+| `labels` | `labels` | array | `[]` | Optional x-axis bar labels. |
+| `total` | `total` | number | `0` | Optional total value shown in the card header. |
+| `showTotal` | `show-total` | boolean | `false` | Display the total badge. |
 
 ## `luma-statistic`
 
@@ -1789,6 +1944,7 @@ Standalone circular energy node with independent readings and optional source-mi
 | `icon` | `icon` | string | `"home"` | Node icon. |
 | `color` | `color` | string | `"blue"` | Node ring color. |
 | `values` | `values` | array | `[]` | Displayed readings as {value,unit,color?,label?}. |
+| `labelPosition` | `label-position` | string | `"bottom"` | Place the node label above or below its circle. |
 | `segments` | `segments` | array | `[]` | Optional ring segments as {value,color} for the home energy-source mix. |
 
 ## `luma-flow-line`
@@ -1848,6 +2004,58 @@ Energy distribution card composed from the standalone connected flow diagram.
 | `gasUnit` | `gas-unit` | string | `"m³"` | Gas unit. |
 | `waterUnit` | `water-unit` | string | `"L"` | Water unit. |
 | `label` | `label` | string | `"Energy distribution"` | Card title. |
+
+## `luma-data-table`
+
+Standalone escaped-data table with column definitions, swatch cells, and an optional totals footer.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `columns` | `columns` | array | `[]` | Column definitions as {key,label}. |
+| `rows` | `rows` | array | `[]` | Objects keyed by column name. Cells can be strings/numbers or {text,color?,swatch?}. |
+| `footer` | `footer` | object | `{}` | Optional footer row keyed by column names. |
+
+## `luma-energy-summary`
+
+Energy-source totals and costs table, composed from the standalone data-table component.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `sources` | `sources` | array | `[]` | Energy sources as {label,energy,unit,cost?,color?}. |
+| `currency` | `currency` | string | `"USD"` | ISO currency code for costs. |
+| `locale` | `locale` | string | `"en"` | Number/currency formatting locale. |
+
+## `luma-date-range-picker`
+
+Standalone energy/history date toolbar with native calendar, Today, previous/next, and day/week/month/year navigation.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `value` | `value` | object | `{"start":"2026-11-10","end":"2026-11-10"}` | Selected inclusive date range as {start,end}, both YYYY-MM-DD. |
+| `period` | `period` | string | `"day"` | Navigation period: day, week, month, or year. |
+
+## `luma-energy-dashboard`
+
+Energy dashboard assembled from reusable flow, totals table, history plot, signed stacked-bar charts, grid, and date-range controls.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `flow` | `flow` | object | `{}` | Properties forwarded to luma-energy-flow. |
+| `sources` | `sources` | array | `[]` | Sources forwarded to luma-energy-summary. |
+| `powerSeries` | `power-series` | array | `[]` | Power-source history chart series. |
+| `electricitySeries` | `electricity-series` | array | `[]` | Signed electrical energy series for stacked bars. |
+| `gasSeries` | `gas-series` | array | `[]` | Gas consumption bar series. |
+| `waterSeries` | `water-series` | array | `[]` | Water consumption bar series. |
+| `labels` | `labels` | array | `[]` | Labels for hourly/daily bar positions. |
+| `dateRange` | `date-range` | object | `{"start":"2026-11-10","end":"2026-11-10"}` | Selected date interval. luma-change asks the application to supply data for the new interval. |
 
 ## `luma-map`
 

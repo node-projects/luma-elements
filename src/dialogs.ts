@@ -2,6 +2,7 @@ import {LumaElement,register,escape,setDetailsHandler} from './base.js';
 import {common,prop} from './metadata.js';
 import './devices.js';
 import './charts.js';
+import {featureProperties,type FeatureDefinition} from './features.js';
 
 const deepActive=():HTMLElement|null=>{let el=document.activeElement;while(el?.shadowRoot?.activeElement)el=el.shadowRoot.activeElement;return el as HTMLElement|null;};
 export class LumaDialog extends LumaElement {
@@ -31,7 +32,7 @@ export class LumaConfirmDialog extends LumaElement {
   declare open:boolean;declare message:string;declare confirmLabel:string;declare cancelLabel:string;
   protected render():void {
     if(!this.root.querySelector('luma-dialog')){this.root.innerHTML='<luma-dialog><p id="message"></p><div class="row" style="justify-content:flex-end"><luma-button id="cancel"></luma-button><luma-button id="confirm"></luma-button></div></luma-dialog>';for(const action of ['cancel','confirm'])this.on('#'+action,'luma-action',event=>{event.stopPropagation();this.setValue('open',false);this.emit('luma-confirm',{confirmed:action==='confirm'});});this.on('luma-dialog','luma-close',()=>this.setValue('open',false));}
-    this.root.querySelector('#message')!.textContent=this.message;this.configure('luma-dialog',{label:this.label||'Confirm action',open:this.open});this.configure('#cancel',{label:this.cancelLabel,variant:'text',disabled:this.disabled});this.configure('#confirm',{label:this.confirmLabel,disabled:this.disabled});
+    this.root.querySelector('#message')!.textContent=this.message;this.configure('luma-dialog',{label:this.label||'Confirm action',open:this.open});this.configure('#cancel',{label:this.cancelLabel,variant:'text',disabled:this.interactionDisabled});this.configure('#confirm',{label:this.confirmLabel,disabled:this.interactionDisabled});
   }
 }
 register('luma-confirm-dialog',LumaConfirmDialog,'Reusable confirmation popup composed from the native dialog and buttons; confirmation is reported as luma-confirm.');
@@ -49,9 +50,20 @@ export const detailDomains:Record<string,string>={
 };
 export interface DetailEntity {domain?:string;entityId?:string;label?:string;state?:string;properties?:Record<string,unknown>;entityAttributes?:Record<string,unknown>;series?:unknown[];}
 const sourceLocator=(source:LumaElement):(()=>LumaElement|undefined)=>{
+  const expectedId=String(source.configuration.entityId||'');const label=source.configuration.label;const tag=source.localName;
+  const matches=(element:Element|undefined):element is LumaElement=>element instanceof LumaElement&&element.localName===tag&&(expectedId?element.configuration.entityId===expectedId:element.configuration.label===label);
   const path:Array<{tag:string;index:number}>=[];let element:Element=source;
   while(true){const root=element.getRootNode() as Document|ShadowRoot;path.unshift({tag:element.localName,index:[...root.querySelectorAll(element.localName)].indexOf(element)});if(root instanceof ShadowRoot)element=root.host;else break;}
-  return ()=>{let root:Document|ShadowRoot=document;let found:Element|undefined;for(const segment of path){found=root.querySelectorAll(segment.tag)[segment.index];if(!found)return undefined;if(found.shadowRoot)root=found.shadowRoot;}return found as LumaElement;};
+  return ()=>{
+    if(source.isConnected&&matches(source))return source;
+    let root:Document|ShadowRoot=document;let found:Element|undefined;
+    for(const segment of path){found=root.querySelectorAll(segment.tag)[segment.index];if(!found)break;if(found.shadowRoot)root=found.shadowRoot;}
+    if(matches(found))return found;
+    if(!expectedId)return undefined;
+    // Entity rows may have moved while the popup was open. Never update a different entity at the old index.
+    const candidates:LumaElement[]=[];const walk=(scope:Document|ShadowRoot)=>{for(const candidate of scope.querySelectorAll('*')){if(candidate.localName==='luma-more-info')continue;if(matches(candidate))candidates.push(candidate);if(candidate.shadowRoot)walk(candidate.shadowRoot);}};walk(document);
+    return candidates.length===1?candidates[0]:undefined;
+  };
 };
 export class LumaMoreInfo extends LumaElement {
   static schema={...common,open:prop('boolean',false,'Open the entity details popup.'),entity:prop('object',{},'Entity snapshot: {domain,entityId,label,state,properties,entityAttributes,series}. All device values are properties supplied by the application.'),view:prop('string','info','Selected popup view: info, history, or attributes.')};
@@ -66,22 +78,24 @@ export class LumaMoreInfo extends LumaElement {
     const domain=String(config.domain||String(config.entityId||'').split('.')[0]||({temperature:'sensor',humidity:'sensor',cover:'cover',speaker:'media_player',light:'light'} as Record<string,string>)[String(config.icon)]||'default');
     this.triggerLabel=deepActive()?.getAttribute('aria-label')??null;
     this.locateSource=sourceLocator(source);
-    this.entity={domain,entityId:String(config.entityId||''),label:String(config.label||domain),state:String(config.state!==''&&config.state!==undefined?config.state:config.value??'unknown'),properties:{...config,...explicit},entityAttributes:config.entityAttributes as Record<string,unknown>,series:explicit?.series as unknown[]};
+    const featureValues:Record<string,unknown>={};for(const feature of (config.features as FeatureDefinition[]||[])){const property=featureProperties[feature.type];if(property&&feature.config&&'value' in feature.config)featureValues[property]=feature.config.value;}
+    this.entity={domain,entityId:String(config.entityId||''),label:String(config.label||domain),state:String(config.state!==''&&config.state!==undefined?config.state:config.value??'unknown'),properties:{...config,...featureValues,...(source.localName==='luma-tile'&&config.feature==='brightness'?{brightness:config.value}:{}),...(source.localName==='luma-tile'&&config.feature==='temperature'?{temperature:config.value}:{}),...explicit},entityAttributes:config.entityAttributes as Record<string,unknown>,series:explicit?.series as unknown[]};
     this.view='info';this.open=true;
   }
   close():void {(this.root.querySelector('luma-dialog') as LumaDialog)?.close();this.setValue('open',false);}
   protected render():void {
     if(!this.root.querySelector('luma-dialog')){
-      this.root.innerHTML='<luma-dialog><luma-icon-button slot="header-actions" id="history"></luma-icon-button><luma-icon-button slot="header-actions" id="attributes"></luma-icon-button><div id="panel" style="padding-top:12px;--luma-border-width:0;--luma-shadow:none"></div></luma-dialog>';
+      this.root.innerHTML='<luma-dialog><luma-icon-button slot="header-actions" id="history"></luma-icon-button><luma-icon-button slot="header-actions" id="attributes"></luma-icon-button><div id="panel" style="padding-top:12px;--luma-border-width:0;--luma-shadow:none;--luma-card-padding:0"></div></luma-dialog>';
       this.on('luma-dialog','luma-close',event=>{event.stopPropagation();this.setValue('open',false);this.emit('luma-close',(event as CustomEvent).detail);requestAnimationFrame(()=>{const source=this.locateSource?.();if(!source)return;const find=(root:ShadowRoot):HTMLElement|undefined=>{for(const child of root.querySelectorAll<HTMLElement>('*')){if(this.triggerLabel&&child.getAttribute('aria-label')===this.triggerLabel)return child;if(child.shadowRoot){const found=find(child.shadowRoot);if(found)return found;}}return undefined;};(source.shadowRoot&&find(source.shadowRoot))?.focus({preventScroll:true});});});
       this.on('#history','luma-action',event=>{event.stopPropagation();this.change('view','history');});
       this.on('#attributes','luma-action',event=>{event.stopPropagation();this.change('view','attributes');});
       this.on('luma-dialog','luma-back',event=>{event.stopPropagation();this.change('view','info');});
       this.on('#panel','luma-change',event=>{
         event.stopPropagation();const {property,value}=(event as CustomEvent).detail;
-        const properties={...this.entity.properties,[property]:value};const state=property==='state'?String(value):this.entity.state;
+        const properties={...this.entity.properties,[property]:value};const lightValue=this.entity.domain==='light'&&['brightness','rgbColor','colorTemperature'].includes(property);
+        const state=lightValue?(property==='brightness'&&Number(value)<=0?'off':'on'):property==='state'?String(value):this.entity.state;
         this.setValue('entity',{...this.entity,state,properties});
-        const source=this.locateSource?.();if(source){if(Object.hasOwn((source.constructor as typeof LumaElement).schema,property))source.commitChange(property,value);else if(source.localName==='luma-tile'&&((source.configuration.feature==='brightness'&&property==='brightness')||(source.configuration.feature==='temperature'&&property==='temperature')))source.commitChange('value',value);else source.commitChange('detailProperties',{...(source.configuration.detailProperties as object||{}),[property]:value});}else this.emit('luma-change',{property,value,entityId:this.entity.entityId||''});
+        const source=this.locateSource?.();if(source){if(lightValue)Object.assign(source,{state});if(Object.hasOwn((source.constructor as typeof LumaElement).schema,property))source.commitChange(property,value);else if(source.localName==='luma-tile'&&((source.configuration.feature==='brightness'&&property==='brightness')||(source.configuration.feature==='temperature'&&property==='temperature')))source.commitChange('value',value);else if(source.localName==='luma-tile'&&(source.configuration.features as FeatureDefinition[]).some(f=>featureProperties[f.type]===property))source.commitChange('features',(source.configuration.features as FeatureDefinition[]).map(f=>featureProperties[f.type]===property?{...f,config:{...f.config,value}}:f));else source.commitChange('detailProperties',{...(source.configuration.detailProperties as object||{}),[property]:value});}else this.emit('luma-change',{property,value,entityId:this.entity.entityId||''});
       });
       this.on('#panel','luma-action',event=>{event.stopPropagation();const detail=(event as CustomEvent).detail;if(detail.action==='more-info'){event.preventDefault();return;}if(detail.action!=='more-info')this.emit('luma-action',{...detail,entityId:this.entity.entityId||''});});
       this.on('#panel','luma-input',event=>{event.stopPropagation();this.emit('luma-input',{...(event as CustomEvent).detail,entityId:this.entity.entityId||''});});
@@ -92,7 +106,7 @@ export class LumaMoreInfo extends LumaElement {
     const panel=this.root.querySelector('#panel')!;
     if(key!==this.panelKey||!panel.firstElementChild){panel.replaceChildren(document.createElement(customElements.get(tag)?tag:'luma-state-panel'));this.panelKey=key;}
     const child=panel.firstElementChild!;
-    Object.assign(child,this.view==='history'?{...entity.properties,label:entity.label,series:entity.series||entity.properties?.series||[]}:this.view==='attributes'?{data:entity.entityAttributes||{}}:{...entity.properties,label:entity.label,state:entity.state,domain,entityId:entity.entityId,entityAttributes:entity.entityAttributes||{},series:entity.series||entity.properties?.series||[],disabled:this.disabled});
+    Object.assign(child,this.view==='history'?{...entity.properties,label:entity.label,series:entity.series||entity.properties?.series||[]}:this.view==='attributes'?{data:entity.entityAttributes||{}}:{...entity.properties,showHeader:false,label:entity.label,state:entity.state,domain,entityId:entity.entityId,entityAttributes:entity.entityAttributes||{},series:entity.series||entity.properties?.series||[],disabled:this.interactionDisabled});
     this.configure('#history',{label:'History',icon:'chart'});this.configure('#attributes',{label:'Attributes',icon:'settings'});
     this.configure('luma-dialog',{label:entity.label||'Entity details',open:this.open,back:this.view!=='info'});
   }

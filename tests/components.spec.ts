@@ -109,7 +109,7 @@ test('gallery search, category filters, routes, and persisted themes work',async
   await page.getByRole('searchbox').fill('thermostat');
   await expect(page.locator('#luma-thermostat')).toBeVisible();
   await page.getByRole('searchbox').fill('');
-  await page.getByRole('button',{name:'Layout',exact:true}).click();await expect(page.locator('.specimen:visible')).toHaveCount(3);
+  await page.getByRole('button',{name:'Layout',exact:true}).click();await expect(page.locator('.specimen:visible')).toHaveCount(7);
   await page.getByRole('combobox',{name:'Color theme'}).selectOption('dark');
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
   await page.reload();await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
@@ -119,7 +119,7 @@ test('gallery search, category filters, routes, and persisted themes work',async
 
 test('mobile dashboard and collection fit the viewport in both themes',async({page})=>{
   await page.setViewportSize({width:390,height:844});
-  for(const theme of ['light','dark'])for(const view of ['dashboard','components','usage']){
+  for(const theme of ['light','dark'])for(const view of ['dashboard','energy','components','usage']){
     await page.goto('/#'+view);await page.getByRole('combobox',{name:'Color theme'}).selectOption(theme);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   }

@@ -1,0 +1,17 @@
+import {LumaElement,register,accent,escape,clamp} from './base.js';
+import {common,prop} from './metadata.js';
+export class LumaSparkline extends LumaElement {
+  static schema={...common,data:prop('array',[],'Numeric history samples ordered by time.'),color:prop('string','#ffad41','Trace and fill color.'),smooth:prop('boolean',true,'Use a smooth cubic trace instead of straight segments.'),fill:prop('boolean',true,'Fill the area under the trace.'),unit:prop('string','','Unit shown by pointer/keyboard value inspection.')};
+  declare data:number[];declare color:string;declare smooth:boolean;declare fill:boolean;declare unit:string;
+  protected render():void {
+    const values=this.data.filter(Number.isFinite);if(!values.length){this.root.innerHTML='<div class="empty">No history data</div>';return;}
+    const lo=Math.min(...values),hi=Math.max(...values);const pad=(hi-lo)*.2||1;
+    const points=values.map((value,i)=>({x:i/Math.max(1,values.length-1)*300,y:50-(value-lo+pad)/(hi-lo+pad*2)*42,value}));
+    let d=`M${points[0].x} ${points[0].y}`;
+    for(let i=1;i<points.length;i++){const p0=points[Math.max(0,i-2)],p1=points[i-1],p2=points[i],p3=points[Math.min(points.length-1,i+1)];d+=this.smooth?` C${p1.x+(p2.x-p0.x)/6} ${p1.y+(p2.y-p0.y)/6} ${p2.x-(p3.x-p1.x)/6} ${p2.y-(p3.y-p1.y)/6} ${p2.x} ${p2.y}`:` L${p2.x} ${p2.y}`;}
+    this.root.innerHTML=`<div style="position:relative" part="sparkline"><svg class="chart" viewBox="0 0 300 60" tabindex="0" role="img" aria-label="${escape(this.label||'Sensor history')}">${this.fill?`<path part="fill" d="${d} L300 60 L0 60Z" fill="${accent(this.color)}" opacity=".12"/>`:''}<path part="line" d="${d}" stroke="${accent(this.color)}" stroke-width="2" fill="none"/><circle id="point" r="3" fill="${accent(this.color)}" visibility="hidden"/></svg><output class="small" hidden style="position:absolute;right:8px;top:0;background:var(--luma-card-background,#fff);padding:2px 6px;border-radius:4px"></output></div>`;
+    let index=0;const show=(i:number)=>{const point=points[i];const marker=this.root.querySelector('#point')!;marker.setAttribute('cx',String(point.x));marker.setAttribute('cy',String(point.y));marker.setAttribute('visibility','visible');const output=this.root.querySelector('output')!;output.hidden=false;output.textContent=point.value+' '+this.unit;this.emit('luma-chart-hover',{index:i,value:point.value});};
+    const svg=this.root.querySelector('svg')!;svg.addEventListener('pointermove',e=>{const r=svg.getBoundingClientRect();show(Math.round(clamp((e.clientX-r.left)/r.width,0,1)*(points.length-1)));});svg.addEventListener('pointerleave',()=>{this.root.querySelector('output')!.hidden=true;this.root.querySelector('#point')!.setAttribute('visibility','hidden');});svg.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();index=e.key==='Home'?0:e.key==='End'?points.length-1:clamp(index+(e.key==='ArrowRight'?1:-1),0,points.length-1);show(index);});
+  }
+}
+register('luma-sparkline',LumaSparkline,'Standalone smooth/linear compact sensor trace with optional area fill and mouse/keyboard value inspection.');

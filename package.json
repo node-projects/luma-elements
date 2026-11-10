@@ -13,15 +13,29 @@
       "import": "./dist/index.js"
     },
     "./themes.css": "./dist/themes.css",
-    "./bundle": "./dist/luma-elements.js",
-    "./custom-elements.json": "./custom-elements.json"
+    "./bundle": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/luma-elements.js"
+    },
+    "./custom-elements.json": "./custom-elements.json",
+    "./dist/*.js": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    },
+    "./dist/luma-elements.js": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/luma-elements.js"
+    }
   },
   "files": [
     "dist",
     "custom-elements.json",
     "README.md",
     "LICENSE",
-    "THIRD_PARTY_NOTICES.md"
+    "THIRD_PARTY_NOTICES.md",
+    "docs/API.md",
+    "docs/COVERAGE.md",
+    "docs/RELEASING.md"
   ],
   "customElements": "custom-elements.json",
   "sideEffects": [
@@ -30,7 +44,7 @@
     "**/*.css"
   ],
   "scripts": {
-    "build": "node scripts/element-types.mjs && tsc && node scripts/build.mjs",
+    "build": "node scripts/clean.mjs && node scripts/element-types.mjs && tsc && node scripts/build.mjs",
     "dev": "npm run build && node scripts/serve.mjs",
     "test": "node --test tests/release.test.mjs && npm run build && playwright test",
     "check": "node scripts/element-types.mjs && tsc --noEmit",

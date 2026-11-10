@@ -43,8 +43,10 @@ export async function writeManifest(catalog){
     members.push(...record.methods);
     for(const [name,field] of record.fields)if(!members.some(m=>m.name===name))members.push({kind:'field',name,privacy:'public',type:{text:field.type||'unknown'},...(field.readonly?{readonly:true}:{})});
     const text=chain.map(c=>c.text).join('\n');
-    const parts=[...new Set([...text.matchAll(/part="([a-z][a-z -]*)"/g)].flatMap(match=>match[1].split(' ')))];
-    const slots=[...new Set([...text.matchAll(/<slot(?:\s+name="([a-z-]+)")?/g)].map(match=>match[1]||''))];
+    const rendered=[];for(const candidate of chain){if(!/protected render\s*\(/.test(candidate.text))continue;rendered.push(candidate.text);if(!candidate.text.includes('super.render('))break;}
+    const templateText=rendered.join('\n');
+    const parts=[...new Set(['root',...[...templateText.matchAll(/part="([a-z][a-z -]*)"/g)].flatMap(match=>match[1].split(' ')),...[...templateText.matchAll(/exportparts="([a-z,: -]+)"/g)].flatMap(match=>match[1].split(',').map(value=>value.trim().split(':').at(-1)))])];
+    const slots=[...new Set([...templateText.matchAll(/<slot(?:\s+name="([a-z-]+)")?/g)].map(match=>match[1]||''))];
     const css=[...new Set([...text.matchAll(/--luma-[a-z-]+/g)].map(match=>match[0]))];
     const superclass=record.superclass?(classes.has(record.superclass)?{name:record.superclass,module:classes.get(record.superclass).module}:{name:record.superclass,package:'@node-projects/base-custom-webcomponent'}):undefined;
     const extraEvents=[...new Set([...text.matchAll(/this\.emit\(['"](luma-[a-z-]+)['"]/g)].map(match=>match[1]))].filter(name=>!standardEvents.some(([known])=>known===name));

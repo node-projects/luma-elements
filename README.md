@@ -2,7 +2,7 @@
 
 Home automation web components inspired by the [Home Assistant Lovelace demo](https://demo.home-assistant.io/#/lovelace/home). Built with the real [`@node-projects/base-custom-webcomponent`](https://github.com/node-projects/base-custom-webcomponent) base class. No other runtime libraries, backend coupling, external fonts, icon services, or charting dependencies.
 
-The library includes standalone controls, composed device/dashboard cards, interactive charts, and automatic entity detail popups. All elements receive data through properties or attributes. It is an independent implementation: backend service connections, the Lovelace configuration editor, and server-specific stream negotiation belong to the host application. The full generated component/property inventory is in [docs/API.md](docs/API.md).
+The library includes standalone controls, composed device/dashboard cards, interactive charts, and automatic entity detail popups. All elements receive data through properties or attributes. It is an independent implementation: backend service connections, the Lovelace configuration editor, and server-specific stream negotiation belong to the host application. The full generated component/property inventory is in [docs/API.md](docs/API.md), and [docs/COVERAGE.md](docs/COVERAGE.md) maps dashboard cards, all 53 public tile feature types, and entity detail domains to their components.
 
 ## Run the gallery
 
@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-Open **http://127.0.0.1:4186**. The gallery includes an interactive dashboard, all components, searchable categories, copyable examples, property/attribute descriptions, and light/dark/system theme controls. All values in the gallery are sample data.
+Open **http://127.0.0.1:4186**. The gallery includes Home and Energy demos, all components grouped into primitives/layout/devices/cards/popups, searchable categories, copyable examples, property/attribute descriptions, live domain-specific popup examples, and light/dark/system themes. All values in the gallery are sample data.
 
 ```sh
 npm run check                  # TypeScript validation
@@ -173,6 +173,49 @@ Controls use native buttons, range inputs, and selects, accessible names, visibl
 3. Run **Build, test, and deploy component gallery** if it has not run automatically.
 
 The resulting repository Pages URL will normally be `https://node-projects.github.io/luma-elements/`. Assets and navigation are relative, so the gallery works under the repository subpath. This URL is not live until the workflow is enabled and successfully deployed.
+
+
+## Standalone controls, composed cards, and popups
+
+Low-level controls are exported as real custom elements: `luma-arc`, `luma-dial`, `luma-temperature-value`, `luma-color-wheel`, `luma-color-picker`, `luma-color-swatches`, `luma-color-temperature`, `luma-brightness`, `luma-dropdown`, `luma-line-chart`, `luma-sparkline`, `luma-bar-chart`, `luma-gauge-arc`, `luma-energy-node`, `luma-flow-line`, `luma-data-table`, and others. Cards compose those controls; their SVG/input implementations are not embedded copies.
+
+```html
+<luma-dial value="21" min="7" max="35" step="0.5" unit="°C"></luma-dial>
+<luma-color-picker value="#ffa24d"></luma-color-picker>
+<luma-thermostat temperature="22.5" current-temperature="20.8"
+  precision="1" locale="de" show-current-temperature show-current-marker>
+</luma-thermostat>
+```
+
+`luma-temperature-value` reserves the integer, decimal, and unit columns, uses tabular numerals, and never auto-fits its font. `precision="1"` retains the decimal column for both whole and fractional temperatures. `locale="de"` uses a comma. Thermostats expose `showCurrentTemperature`, `showCurrentMarker`, `showCurrentAsPrimary`, `stateLabel`, presets, fan modes, swing modes, and paired low/high target temperatures. The dial supports mouse/touch drag, keyboard steps/Home/End, pointer cancellation, and bounds.
+
+Entity content opens details; supported tile icons toggle independently. `tapAction`, `iconTapAction`, `holdAction`, and `doubleTapAction` customize those gestures. `disabled` prevents interaction. `unavailable` disables device controls while keeping entity details accessible; `unknown` entities can still accept commands. Dialogs use native top-layer focus trapping, Escape/backdrop dismissal, and trigger-focus restoration. Property changes keep the open dialog stable. Domain-specific edits are sent back through the source component's normal event path, including rows recreated by a parent.
+
+Light capabilities are declared through `colorModes` (`brightness`, `rgb`/`hs`/`xy`, `color_temp`, etc.). The popup composes a tall brightness slider, hue/saturation wheel, kelvin gradient, compact mode toolbar, optional swatches, and supported effects. Editing a color/brightness while off requests the new value and previews the light as on. Browser-supported screen eyedropper selection is optional.
+
+```js
+const tile = document.querySelector('luma-tile');
+tile.entityId = 'light.spotlights';
+tile.features = [
+  { type: 'light-brightness', config: { value: 65 } },
+  { type: 'light-color-temp', config: { value: 3000, vertical: false } }
+];
+tile.detailProperties = { rgbColor: '#ffa24d', effects: ['none', 'relax'] };
+```
+
+Feature values and legacy embedded tile values are shared with the details view. Every public feature kind is mapped in `featureControls`; the wrapper's `config` is passed to an independently usable underlying control.
+
+## Designer manifest
+
+`custom-elements.json` is a Custom Elements Manifest with actual compiled module paths. For example, `luma-dial` points to `dist/controls.js` and its exported `LumaDial`; it does not pretend every class is declared in the entry point or point to TypeScript source. Modules include class exports and tag registrations, inheritance, typed/described fields, associated attributes, defaults, events, methods, slots, CSS parts and theme variables. The npm export map exposes the designer-facing `dist/*.js` modules.
+
+The gallery ships the same unbundled modules and an import map for BaseCustomWebComponent, alongside its self-contained demo bundle. Designer integration can resolve each module path relative to the package manifest. Use either the unbundled entry/modules or the standalone bundle in a given document, so the browser sees one set of constructors.
+
+Browser checks import every definition's actual module, compare its exported constructor with the registration, and check all module paths/attribute-field associations. The manifest is regenerated by `npm run build`.
+
+## Builds and npm releases
+
+See [docs/RELEASING.md](docs/RELEASING.md). Push/PR builds test and pack the library. Publishing a GitHub release runs `release.yml`, derives the npm version from its semantic release tag, builds/tests that version, attaches the exact `.tgz` and checksum to the release, and publishes that tarball to npm. Stable versions use `latest`; prereleases use `next`. Configure npm trusted publishing for `node-projects/luma-elements`, workflow `release.yml`, or supply `NPM_TOKEN` for an initial bootstrap publish.
 
 ## Project structure
 

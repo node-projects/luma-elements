@@ -10,6 +10,7 @@ export const common: Schema = {
   label: prop('string', '', 'Accessible name and primary label of the element.'),
   disabled: prop('boolean', false, 'Disables user interaction. Boolean attributes use presence; disabled="false" also disables.'),
 };
+export const cardHeader:Schema={showHeader:prop('boolean',true,'Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title.')};
 export const entity: Schema = {
   ...common,
   icon: prop('string', 'light', 'Built-in icon name. Use the icon slot for a custom SVG.'),

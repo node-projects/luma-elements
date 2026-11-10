@@ -4,7 +4,7 @@ import { attributeName, catalog, common, type Schema } from './metadata.js';
 export const escape = (value: unknown): string => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]!));
 export const clamp = (n: number, min: number, max: number): number => Math.min(max, Math.max(min, Number.isFinite(n) ? n : min));
 export const active = (state: string): boolean => ['on','home','playing','heating','cooling','open','unlocked','active'].includes(state);
-export const accent = (color: string): string => ({amber:'#ffc107',blue:'#03a9f4',green:'#43a047',red:'#e53935',purple:'#926bc7',orange:'#ff9800'}[color] ?? (CSS.supports('color', color) ? color : '#03a9f4'));
+export const accent = (color: string): string => ({primary:'var(--luma-primary,#03a9f4)',accent:'var(--luma-accent,#ff9800)',disabled:'var(--luma-secondary-text,#727272)',amber:'#ffc107',yellow:'#ffeb3b',blue:'#03a9f4',green:'#43a047',red:'#e53935',purple:'#926bc7',orange:'#ff9800',pink:'#e91e63',teal:'#009688',cyan:'#00bcd4','deep-purple':'#673ab7',indigo:'#3f51b5','light-blue':'#03a9f4','light-green':'#8bc34a',lime:'#cddc39','deep-orange':'#ff5722',brown:'#795548',grey:'#9e9e9e','blue-grey':'#607d8b'}[color] ?? (CSS.supports('color', color) ? color : '#03a9f4'));
 
 let detailsHandler:((source:LumaElement)=>void)|undefined;
 export const setDetailsHandler=(handler:(source:LumaElement)=>void):void=>{detailsHandler=handler;};
@@ -15,12 +15,12 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
   static readonly template = html`<div id="root" part="root"></div>`;
   static readonly style = css`
     :host{display:block;color:var(--luma-text,#212121);font-family:var(--luma-font,Roboto,Arial,sans-serif);font-size:14px;box-sizing:border-box;color-scheme:var(--luma-color-scheme,light)}
-    :host([hidden]){display:none!important}*,*::before,*::after{box-sizing:border-box}
+    :host([hidden]),[hidden]{display:none!important}*,*::before,*::after{box-sizing:border-box}
     button,input,select{font:inherit;color:inherit}button{cursor:pointer}button:disabled,input:disabled,select:disabled{cursor:default;opacity:.45}
     button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--luma-primary,#03a9f4);outline-offset:3px}
     button{border:0}a{color:var(--luma-primary,#03a9f4)}
     .card{background:var(--luma-card-background,#fff);border:var(--luma-border-width,1px) solid var(--luma-border,#e0e0e0);border-radius:var(--luma-radius,12px);box-shadow:var(--luma-shadow,0 1px 2px #00000008);overflow:hidden}
-    .pad{padding:20px}.title{font-size:var(--luma-title-size,20px);font-weight:400;margin:0 0 20px;line-height:1.4}
+    .pad{padding:var(--luma-card-padding,20px)}.title{font-size:var(--luma-title-size,20px);font-weight:400;margin:0 0 20px;line-height:1.4}
     .muted{color:var(--luma-secondary-text,#727272)}.small{font-size:12px}.row{display:flex;align-items:center;gap:14px}.spread{justify-content:space-between}.grow{flex:1;min-width:0}
     .name{font-weight:500;line-height:20px}.state{font-size:12px;line-height:18px}.truncate{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .icon-circle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--luma-control-background,#f0f0f0);color:var(--luma-secondary-text,#727272);flex-shrink:0}
@@ -79,8 +79,9 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
       this.dispatchEvent(new CustomEvent('luma-error', { detail: { attribute: name, value, message: String(error) }, bubbles: true, composed: true }));
     }
   }
+  protected get interactionDisabled():boolean {return this.disabled||this.getValue<string>('state')==='unavailable';}
   protected getValue<T>(key: string): T { return this.propertyValues[key] as T; }
-  protected setValue(key: string, value: unknown): void { if (!Object.is(this.propertyValues[key],value)) { this.propertyValues[key] = value; this.requestUpdate(); } }
+  protected setValue(key: string, value: unknown, render=true): void { if (!Object.is(this.propertyValues[key],value)) { this.propertyValues[key] = value; if(render)this.requestUpdate(); } }
   protected requestUpdate(): void {
     // Capture before any child update removes the currently focused DOM node.
     const focus = this.captureFocus();
@@ -107,6 +108,8 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
   private renderWithFocus(path: Array<{tag:string;label:string|null;index:number}>): void {
     this.render();
     if (path.length) requestAnimationFrame(() => {
+      // A new focused child means the user already moved within this component.
+      if(this.shadowRoot?.activeElement)return;
       // Do not steal focus if the user has already moved to another control.
       if (document.activeElement !== document.body && document.activeElement !== this && !this.contains(document.activeElement)) return;
       let current: ShadowRoot | null = this.shadowRoot;
@@ -133,7 +136,7 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
     this.on(selector,'luma-input',event=>{event.stopPropagation();this.emit('luma-input',{property:target,value:(event as CustomEvent).detail.value,entityId:this.getValue('entityId')??''});});
   }
   protected change(property: string, value: unknown): void {
-    if(this.disabled)return;
+    if(this.interactionDisabled)return;
     this.setValue(property, value);
     this.requestUpdate();
     this.emit('luma-change', { property, value, entityId: this.getValue('entityId') ?? '' });
@@ -143,7 +146,7 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
   /** Commit an interaction from an associated detail view through this element's normal event path. */
   commitChange(property:string,value:unknown):void {this.change(property,value);}
   protected action(action: string): void {
-    if(this.disabled || action==='none')return;
+    if((action==='more-info'?this.disabled:this.interactionDisabled) || action==='none')return;
     const event=new CustomEvent('luma-action',{detail:{action,entityId:this.getValue('entityId')??''},bubbles:true,composed:true,cancelable:true});
     if(this.dispatchEvent(event)&&action==='more-info')detailsHandler?.(this);
   }

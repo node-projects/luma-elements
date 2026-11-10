@@ -12,7 +12,7 @@ The workflow:
 2. Validates the tag and derives the package version from it. The release title is not used.
 3. Updates `package.json` and `package-lock.json` in the runner, without creating a Git commit or another tag.
 4. Builds and tests that version, including the JavaScript-linked Custom Elements Manifest.
-5. Creates one npm `.tgz` and its `SHA256SUMS` file.
+5. Creates one npm `.tgz`, verifies its actual manifest/module/type/theme contents and compiled version, and writes `SHA256SUMS`.
 6. Attaches those files to the same GitHub release.
 7. Publishes that exact `.tgz` to the public npm registry.
 
