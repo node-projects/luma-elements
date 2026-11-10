@@ -26,6 +26,7 @@ declare global {
     'luma-command-bar': import('./controls.js').LumaCommandBar;
     'luma-conditional': import('./cards.js').LumaConditional;
     'luma-confirm-dialog': import('./dialogs.js').LumaConfirmDialog;
+    'luma-control-switch': import('./controls.js').LumaControlSwitch;
     'luma-conversation': import('./cards.js').LumaConversation;
     'luma-counter': import('./devices.js').LumaCounter;
     'luma-cover': import('./components.js').LumaCover;

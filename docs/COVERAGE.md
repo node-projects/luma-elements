@@ -1,6 +1,6 @@
 # Home Assistant UI coverage
 
-Reference audit: 2026-11-10. This inventory distinguishes UI coverage from backend integration. The library has 122 registered components; its complete property reference is [API.md](API.md).
+Reference audit: 2026-11-10. This inventory distinguishes UI coverage from backend integration. The library has 123 registered components; its complete property reference is [API.md](API.md).
 
 Sources: [Lovelace cards](https://www.home-assistant.io/dashboards/cards/), [public feature registry](https://github.com/home-assistant/frontend/blob/dev/src/panels/lovelace/card-features/registry.ts), and [entity detail control inventory](https://github.com/home-assistant/frontend/tree/dev/src/dialogs/more-info/controls). The reference is Home Assistant's moving dev branch; future upstream additions are not automatically included.
 
@@ -73,11 +73,11 @@ Each type is available independently through `<luma-feature type="…" config="�
 | `cover-tilt-position` | `luma-slider` |
 | `date-set` | `luma-date-picker` |
 | `fan-direction` | `luma-segmented` |
-| `fan-oscillate` | `luma-switch` |
+| `fan-oscillate` | `luma-control-switch` |
 | `fan-preset-modes` | `luma-dropdown` |
 | `fan-speed` | `luma-slider` |
 | `humidifier-modes` | `luma-dropdown` |
-| `humidifier-toggle` | `luma-switch` |
+| `humidifier-toggle` | `luma-control-switch` |
 | `lawn-mower-commands` | `luma-command-bar` |
 | `light-brightness` | `luma-slider` |
 | `light-color` | `luma-color-picker` |
@@ -99,7 +99,7 @@ Each type is available independently through `<luma-feature type="…" config="�
 | `temperature-forecast` | `luma-line-chart` |
 | `timer-actions` | `luma-command-bar` |
 | `timer-presets` | `luma-segmented` |
-| `toggle` | `luma-switch` |
+| `toggle` | `luma-control-switch` |
 | `trend-graph` | `luma-line-chart` |
 | `update-actions` | `luma-command-bar` |
 | `vacuum-commands` | `luma-command-bar` |
@@ -210,6 +210,7 @@ Manifest tests import the actual compiled modules and compare their exported con
 - `luma-arc` — Standalone 270° value/range arc. Use it as an indicator anywhere, or compose it with luma-dial for interaction.
 - `luma-dial` — Reusable mouse/touch draggable dial with snapping, dual temperature set points, pointer capture/cancellation, and keyboard slider semantics.
 - `luma-vertical-slider` — Standalone vertical brightness/volume slider with the tall control shape used in entity details.
+- `luma-control-switch` — Large swipeable device power control with hover tint, keyboard focus, horizontal tile and vertical popup variants.
 - `luma-icon-button` — Reusable accessible icon action/toggle button for popup headers and toolbars.
 - `luma-checkbox` — A native labeled checkbox used by lists and filter controls.
 - `luma-text-field` — Reusable validated native text/password/number/date/time field.

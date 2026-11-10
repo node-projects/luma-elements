@@ -158,10 +158,12 @@ export class LumaLight extends LumaEntity {
 register('luma-light',LumaLight,'A light card composed from an entity row, power switch, brightness slider, and color-temperature slider.');
 
 export class LumaCover extends LumaEntity {
-  static schema={...entity,...cardHeader,icon:prop('string','cover','Cover icon.'),domain:prop('string','cover','Cover domain.'),position:prop('number',100,'Cover position, from 0 (closed) to 100 (open). Commands emit actions; position changes only when assigned or moved with the slider.'),tiltPosition:prop('number',50,'Slat tilt percentage.'),supportsTilt:prop('boolean',false,'Show independently reusable slat-tilt controls.')};
-  declare position:number;declare tiltPosition:number;declare supportsTilt:boolean;
+  static schema={...entity,...cardHeader,icon:prop('string','cover','Cover icon.'),domain:prop('string','cover','Cover domain.'),position:prop('number',100,'Cover position, from 0 (closed) to 100 (open). Commands emit actions; position changes only when assigned or moved with the slider.'),tiltPosition:prop('number',50,'Slat tilt percentage.'),supportsTilt:prop('boolean',false,'Show independently reusable slat-tilt controls.'),controlMode:prop('string','position','Popup control panel: position, buttons, or tilt (when supported).'),lastChangedLabel:prop('string','','Application-formatted last-changed text below the popup state.')};
+  declare position:number;declare tiltPosition:number;declare supportsTilt:boolean;declare controlMode:string;declare lastChangedLabel:string;
+  private popupLayout="";
   declare showHeader:boolean;
   protected render():void {
+    if(!this.showHeader){this.renderPopup();return;}
     this.root.innerHTML=`<section class="card pad stack" part="card"><luma-entity-row ${this.showHeader?'':'hidden'}></luma-entity-row><luma-cover-controls></luma-cover-controls><luma-slider></luma-slider>${this.supportsTilt?'<luma-command-bar id="tilt-controls"></luma-command-bar><luma-slider id="tilt"></luma-slider>':''}</section>`;
     this.configure('luma-entity-row',{...this.entityProperties(),secondary:`${this.state} · ${this.position}%`});
     this.configure('luma-cover-controls',{entityId:this.entityId,disabled:this.interactionDisabled,commands:[{action:'open',label:'open',icon:'up',disabled:this.position>=100},{action:'stop',label:'stop',icon:'stop'},{action:'close',label:'close',icon:'down',disabled:this.position<=0}]});
@@ -169,6 +171,15 @@ export class LumaCover extends LumaEntity {
     this.configure('#tilt-controls',{entityId:this.entityId,disabled:this.interactionDisabled,commands:[{action:'open-tilt',label:'Open tilt'},{action:'stop-tilt',label:'Stop tilt'},{action:'close-tilt',label:'Close tilt'}]});
     this.configure('#tilt',{label:'Tilt',value:this.tiltPosition,unit:'%',showValue:true,disabled:this.interactionDisabled});this.bindChildChange('#tilt','value','tiltPosition');
   }
+  private renderPopup():void {
+    const mode=this.controlMode==='tilt'&&this.supportsTilt?'tilt':this.controlMode==='buttons'?'buttons':'position';const key=mode+':'+this.supportsTilt;
+    const tag=mode==='buttons'?'luma-cover-controls':'luma-vertical-slider';
+    if(this.popupLayout!==key||!this.root.querySelector('[part=cover-panel]')){this.popupLayout=key;this.root.innerHTML=`<section class="stack center" part="cover-panel" style="gap:24px;--accent:var(--luma-cover-color,#926bc7)"><div><div class="stat" id="cover-state"></div><div class="small" id="changed" style="font-weight:500;margin-top:8px"></div></div><${tag}></${tag}><luma-segmented style="width:max-content;max-width:100%;margin:auto"></luma-segmented></section>`;if(mode!=='buttons')this.bindChildChange(tag,'value',mode==='tilt'?'tiltPosition':'position');this.on('luma-segmented','luma-change',event=>{event.stopPropagation();this.change('controlMode',(event as CustomEvent).detail.value);});}
+    this.root.querySelector('#cover-state')!.textContent=this.state==='unavailable'?'Unavailable':this.state==='opening'?'Opening':this.state==='closing'?'Closing':this.position>=100?'Open':this.position<=0?'Closed':this.position+' %';this.root.querySelector('#changed')!.textContent=this.lastChangedLabel;
+    this.configure(tag,mode==='buttons'?{label:'Cover motion',vertical:true,hideLabels:true,disabled:this.interactionDisabled,entityId:this.entityId,commands:[{action:'open',label:'Open',icon:'up',disabled:this.position>=100},{action:'stop',label:'Stop',icon:'stop'},{action:'close',label:'Close',icon:'down',disabled:this.position<=0}]}:{label:mode==='tilt'?'Tilt':'Position',value:mode==='tilt'?this.tiltPosition:this.position,min:0,max:100,mode:mode==='tilt'?'cursor':'end',hideLabel:true,unit:'%',disabled:this.interactionDisabled});
+    this.configure('luma-segmented',{label:'Cover control',value:mode,options:[{value:'position',label:'Position',icon:'cover'},{value:'buttons',label:'Buttons',icon:'up'},...(this.supportsTilt?[{value:'tilt',label:'Tilt',icon:'menu'}]:[])],disabled:this.disabled});
+  }
+
 }
 register('luma-cover',LumaCover,'A blinds/shutter card with open, stop, close actions and position control.');
 

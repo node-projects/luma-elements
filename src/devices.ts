@@ -1,4 +1,4 @@
-import {register, active, type LumaElement} from './base.js';
+import {register, active, escape, type LumaElement} from './base.js';
 import {LumaEntity} from './components.js';
 import {entity, cardHeader, prop, type Schema} from './metadata.js';
 import {type Command} from './controls.js';
@@ -8,18 +8,19 @@ export interface DeviceControl {type:string;property?:string;label:string;option
 export class LumaDevice extends LumaEntity {
   static schema:Schema={...entity,...cardHeader,data:prop('object',{},'Values for custom properties referenced by control definitions.'),controls:prop('array',[],'Control definitions: {type, property?, label, options?, min?, max?, step?, unit?, commands?}. type is a registered luma tag.')};
   declare controls:DeviceControl[];declare data:Record<string,unknown>;declare showHeader:boolean;
+  private layoutKey="";
   protected get deviceControls():DeviceControl[]{return this.controls;}
   protected render():void {
     const controls=this.deviceControls;
-    this.root.innerHTML=`<section class="card pad stack" part="card"><luma-entity-row ${this.showHeader?'':'hidden'}></luma-entity-row>${controls.map((_,i)=>`<div data-control="${i}"></div>`).join('')}<slot></slot></section>`;
+    const layoutKey=JSON.stringify([controls,this.showHeader]);if(layoutKey!==this.layoutKey){this.layoutKey=layoutKey;this.root.innerHTML=`<section class="card pad stack" part="card"><div id="device-state" class="center" ${this.showHeader?'hidden':''} style="font-size:36px;padding:12px 0">${this.state==='on'?'On':this.state==='off'?'Off':escape(this.state)}</div><luma-entity-row ${this.showHeader?'':'hidden'}></luma-entity-row>${controls.map((_,i)=>`<div data-control="${i}"></div>`).join('')}<slot></slot></section>`;}
+    this.root.querySelector('#device-state')!.textContent=this.state==='on'?'On':this.state==='off'?'Off':this.state;
     const properties=this.entityProperties();if(!this.secondary){const current=this.getValue('currentHumidity')??this.getValue('currentTemperature');const battery=this.getValue('battery');if(current!==undefined)properties.secondary=`${current}${this.domain==='humidifier'?' %':' °C'} · ${this.state}`;else if(battery!==undefined)properties.secondary=`${this.state} · Battery ${battery}%`;}this.configure('luma-entity-row',properties);
     controls.forEach((c,i)=>{
       if(!/^luma-[a-z-]+$/.test(c.type)||!customElements.get(c.type))return;
-      const control=document.createElement(c.type) as LumaElement;
-      this.root.querySelector(`[data-control="${i}"]`)!.append(control);
+      const holder=this.root.querySelector(`[data-control="${i}"]`)!;const type=!this.showHeader&&c.type==='luma-switch'&&c.property==='state'?'luma-control-switch':c.type;const fresh=!holder.firstElementChild;const control=(holder.firstElementChild||document.createElement(type)) as LumaElement;if(fresh)holder.append(control);
       const options=c.options?this.getValue(c.options):undefined;
-      Object.assign(control,{label:c.label,disabled:this.interactionDisabled||this.state==='unavailable',entityId:this.entityId,...(c.min!==undefined?{min:c.min}:{}),...(c.max!==undefined?{max:c.max}:{}),...(c.step!==undefined?{step:c.step}:{}),...(c.unit!==undefined?{unit:c.unit}:{}),...(c.type==='luma-slider'?{showValue:true}:{}),...(options?{options}:{}),...(c.commands?{commands:c.commands}:{}),...(c.property?{[c.type==='luma-switch'?'checked':'value']:c.property==='state'?active(this.state):(Object.hasOwn((this.constructor as typeof LumaElement).schema,c.property)?this.getValue(c.property):this.data[c.property])}:{})});
-      if(c.property){control.addEventListener('luma-change',event=>{event.stopPropagation();let value=(event as CustomEvent).detail.value;if(c.property==='state')value=value?'on':'off';if(Object.hasOwn((this.constructor as typeof LumaElement).schema,c.property!))this.change(c.property!,value);else this.change('data',{...this.data,[c.property!]:value});});control.addEventListener('luma-input',event=>{event.stopPropagation();this.emit('luma-input',{property:c.property,value:(event as CustomEvent).detail.value,entityId:this.entityId});});}
+      Object.assign(control,{label:c.label,vertical:!this.showHeader,disabled:this.interactionDisabled||this.state==='unavailable',entityId:this.entityId,...(c.min!==undefined?{min:c.min}:{}),...(c.max!==undefined?{max:c.max}:{}),...(c.step!==undefined?{step:c.step}:{}),...(c.unit!==undefined?{unit:c.unit}:{}),...(c.type==='luma-slider'?{showValue:true}:{}),...(options?{options}:{}),...(c.commands?{commands:c.commands}:{}),...(c.property?{[c.type==='luma-switch'?'checked':'value']:c.property==='state'?active(this.state):(Object.hasOwn((this.constructor as typeof LumaElement).schema,c.property)?this.getValue(c.property):this.data[c.property])}:{})});
+      if(fresh&&c.property){control.addEventListener('luma-change',event=>{event.stopPropagation();let value=(event as CustomEvent).detail.value;if(c.property==='state')value=value?'on':'off';if(Object.hasOwn((this.constructor as typeof LumaElement).schema,c.property!))this.change(c.property!,value);else this.change('data',{...this.data,[c.property!]:value});});control.addEventListener('luma-input',event=>{event.stopPropagation();this.emit('luma-input',{property:c.property,value:(event as CustomEvent).detail.value,entityId:this.entityId});});}
     });
   }
 }

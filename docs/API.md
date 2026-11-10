@@ -45,6 +45,7 @@ A range input with keyboard controls, live luma-input events, and committed luma
 | `max` | `max` | number | `100` | Inclusive upper bound. Must be greater than min. |
 | `step` | `step` | number | `1` | Positive increment for pointer and keyboard adjustments. |
 | `unit` | `unit` | string | `""` | Unit shown after the value, such as %, °C, or W. |
+| `mode` | `mode` | string | `"start"` | Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill. |
 | `showValue` | `show-value` | boolean | `false` | Display the numeric value beside the slider. |
 | `hideLabel` | `hide-label` | boolean | `false` | Visually hide the label while retaining the accessible name. |
 
@@ -154,10 +155,23 @@ Standalone vertical brightness/volume slider with the tall control shape used in
 | `max` | `max` | number | `100` | Inclusive upper bound. Must be greater than min. |
 | `step` | `step` | number | `1` | Positive increment for pointer and keyboard adjustments. |
 | `unit` | `unit` | string | `""` | Unit shown after the value, such as %, °C, or W. |
+| `mode` | `mode` | string | `"start"` | Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill. |
 | `showValue` | `show-value` | boolean | `false` | Display the numeric value beside the slider. |
 | `hideLabel` | `hide-label` | boolean | `false` | Visually hide the label while retaining the accessible name. |
 | `orientation` | `orientation` | string | `"vertical"` | Range orientation: vertical or horizontal. |
 | `inverted` | `inverted` | boolean | `false` | Place the minimum at the top of a vertical slider, useful for warm-to-cool kelvin controls. |
+
+## `luma-control-switch`
+
+Large swipeable device power control with hover tint, keyboard focus, horizontal tile and vertical popup variants.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `checked` | `checked` | boolean | `false` | Whether the switch is on. User changes emit luma-change with property checked. |
+| `vertical` | `vertical` | boolean | `false` | Use the tall main-device control shown in entity popups; on is at the top. |
+| `icon` | `icon` | string | `"power"` | Icon shown inside the switch knob. |
 
 ## `luma-icon-button`
 
@@ -322,6 +336,8 @@ Reusable action toolbar; supports per-command disabled state and entity IDs.
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
 | `commands` | `commands` | array | `[]` | Array of {action,label,icon?,disabled?}; activating a button emits its action unchanged. |
+| `vertical` | `vertical` | boolean | `false` | Stack action buttons vertically, as in cover details. |
+| `hideLabels` | `hide-labels` | boolean | `false` | Show icons without visible text; accessible labels remain. |
 | `entityId` | `entity-id` | string | `""` | Entity identifier included in command events. |
 
 ## `luma-cover-controls`
@@ -333,6 +349,8 @@ Standalone open/stop/close controls, reusable outside cover cards.
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
 | `commands` | `commands` | array | `[{"action":"open","label":"Open","icon":"up"},{"action":"stop","label":"Stop","icon":"stop"},{"action":"close","label":"Close","icon":"down"}]` | Cover motion commands. |
+| `vertical` | `vertical` | boolean | `false` | Stack action buttons vertically, as in cover details. |
+| `hideLabels` | `hide-labels` | boolean | `false` | Show icons without visible text; accessible labels remain. |
 | `entityId` | `entity-id` | string | `""` | Entity identifier included in command events. |
 
 ## `luma-media-controls`
@@ -344,6 +362,8 @@ Standalone media transport controls.
 | `label` | `label` | string | `""` | Accessible name and primary label of the element. |
 | `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
 | `commands` | `commands` | array | `[{"action":"previous","label":"Previous","icon":"previous"},{"action":"play-pause","label":"Play/pause","icon":"play"},{"action":"next","label":"Next","icon":"next"}]` | Playback commands. |
+| `vertical` | `vertical` | boolean | `false` | Stack action buttons vertically, as in cover details. |
+| `hideLabels` | `hide-labels` | boolean | `false` | Show icons without visible text; accessible labels remain. |
 | `entityId` | `entity-id` | string | `""` | Entity identifier included in command events. |
 
 ## `luma-keypad`
@@ -416,6 +436,7 @@ Standalone tall light-brightness control, usable in any layout or dialog.
 | `max` | `max` | number | `100` | Inclusive upper bound. Must be greater than min. |
 | `step` | `step` | number | `1` | Positive increment for pointer and keyboard adjustments. |
 | `unit` | `unit` | string | `"%"` | Brightness unit. |
+| `mode` | `mode` | string | `"start"` | Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill. |
 | `showValue` | `show-value` | boolean | `false` | Show a secondary numeric percentage. |
 | `hideLabel` | `hide-label` | boolean | `true` | Hide the visual label; the range retains its accessible name. |
 | `orientation` | `orientation` | string | `"vertical"` | Range orientation: vertical or horizontal. |
@@ -434,6 +455,7 @@ Standalone tall media-volume control.
 | `max` | `max` | number | `100` | Inclusive upper bound. Must be greater than min. |
 | `step` | `step` | number | `1` | Positive increment for pointer and keyboard adjustments. |
 | `unit` | `unit` | string | `"%"` | Volume unit. |
+| `mode` | `mode` | string | `"start"` | Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill. |
 | `showValue` | `show-value` | boolean | `true` | Show the numeric percentage. |
 | `hideLabel` | `hide-label` | boolean | `false` | Visually hide the label while retaining the accessible name. |
 | `orientation` | `orientation` | string | `"vertical"` | Range orientation: vertical or horizontal. |
@@ -737,6 +759,8 @@ A blinds/shutter card with open, stop, close actions and position control.
 | `position` | `position` | number | `100` | Cover position, from 0 (closed) to 100 (open). Commands emit actions; position changes only when assigned or moved with the slider. |
 | `tiltPosition` | `tilt-position` | number | `50` | Slat tilt percentage. |
 | `supportsTilt` | `supports-tilt` | boolean | `false` | Show independently reusable slat-tilt controls. |
+| `controlMode` | `control-mode` | string | `"position"` | Popup control panel: position, buttons, or tilt (when supported). |
+| `lastChangedLabel` | `last-changed-label` | string | `""` | Application-formatted last-changed text below the popup state. |
 
 ## `luma-media-player`
 
@@ -2085,6 +2109,7 @@ Standalone modal shell with native focus trapping, Escape/backdrop dismissal, re
 | `open` | `open` | boolean | `false` | Show a modal using the native top layer and focus trap. Escape, close button, and backdrop dismiss it. |
 | `dismissible` | `dismissible` | boolean | `true` | Allow Escape, close-button, and backdrop dismissal. |
 | `back` | `back` | boolean | `false` | Show a Back to details action in place of Close; emits luma-back. |
+| `adaptive` | `adaptive` | boolean | `false` | Use a bottom sheet on screens at most 870px wide or 500px tall. The sheet supports dragging its header to dismiss; confirmation dialogs remain standard dialogs. |
 | `width` | `width` | number | `580` | Preferred dialog width in pixels, constrained to the viewport. |
 
 ## `luma-confirm-dialog`

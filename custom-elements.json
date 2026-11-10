@@ -265,6 +265,18 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -769,6 +781,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -794,10 +822,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -927,6 +951,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -952,10 +992,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -1090,6 +1126,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -1115,10 +1167,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -1229,6 +1277,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -1254,10 +1318,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -1460,6 +1520,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -1485,10 +1561,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -1710,6 +1782,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -1735,10 +1823,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -1973,6 +2057,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -1998,10 +2098,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -2276,6 +2372,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -2297,10 +2409,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -2486,6 +2594,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -2511,10 +2635,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -2684,6 +2804,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -2709,10 +2845,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -2918,6 +3050,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -2943,10 +3091,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -3176,6 +3320,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -3201,10 +3361,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -3370,6 +3526,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -3395,10 +3567,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -3564,6 +3732,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -3589,10 +3773,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -3738,6 +3918,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -3763,10 +3959,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -3972,6 +4164,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -3997,10 +4205,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -4214,6 +4418,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -4239,10 +4459,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -4408,6 +4624,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -4433,10 +4665,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -4586,6 +4814,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -4611,10 +4855,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -5020,6 +5260,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -5045,10 +5301,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -5543,6 +5795,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -5568,10 +5836,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -5742,6 +6006,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -5767,10 +6047,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -6216,6 +6492,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -6241,10 +6533,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -6417,6 +6705,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -6442,10 +6746,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -6615,6 +6915,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -6640,10 +6956,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -7005,6 +7317,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -7030,10 +7358,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -7774,6 +8098,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -7791,10 +8131,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -8135,6 +8471,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -8152,10 +8504,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -8820,6 +9168,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -8837,10 +9201,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -9070,6 +9430,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -9095,10 +9471,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -9392,6 +9764,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -9417,10 +9805,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -9976,6 +10360,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -10001,10 +10401,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -10134,6 +10530,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -10159,10 +10571,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -10337,6 +10745,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -10362,10 +10786,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -10828,6 +11248,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -10853,10 +11289,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -11251,6 +11683,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -11276,10 +11724,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -11450,6 +11894,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -11475,10 +11935,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -11853,6 +12309,18 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -12031,6 +12499,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -12056,10 +12540,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -12205,6 +12685,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -12230,10 +12726,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -12364,6 +12856,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -12389,10 +12897,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -13311,6 +13815,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -13336,10 +13856,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -13945,6 +14461,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -13970,10 +14502,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -14195,6 +14723,28 @@
               },
               "default": "false",
               "attribute": "supports-tilt"
+            },
+            {
+              "kind": "field",
+              "name": "controlMode",
+              "privacy": "public",
+              "description": "Popup control panel: position, buttons, or tilt (when supported).",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"position\"",
+              "attribute": "control-mode"
+            },
+            {
+              "kind": "field",
+              "name": "lastChangedLabel",
+              "privacy": "public",
+              "description": "Application-formatted last-changed text below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "last-changed-label"
             }
           ],
           "attributes": [
@@ -14359,6 +14909,24 @@
                 "text": "boolean"
               },
               "default": "false"
+            },
+            {
+              "name": "control-mode",
+              "fieldName": "controlMode",
+              "description": "Popup control panel: position, buttons, or tilt (when supported).",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"position\""
+            },
+            {
+              "name": "last-changed-label",
+              "fieldName": "lastChangedLabel",
+              "description": "Application-formatted last-changed text below the popup state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
             }
           ],
           "events": [
@@ -14399,9 +14967,17 @@
             {
               "name": "card",
               "description": "Outer card surface."
+            },
+            {
+              "name": "cover-panel",
+              "description": "cover-panel styling hook."
             }
           ],
           "cssProperties": [
+            {
+              "name": "--luma-cover-color",
+              "description": "Inherited theme variable."
+            },
             {
               "name": "--luma-text",
               "description": "Inherited theme variable."
@@ -14416,6 +14992,22 @@
             },
             {
               "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
               "description": "Inherited theme variable."
             },
             {
@@ -14444,10 +15036,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -15073,6 +15661,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -15098,10 +15702,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -15411,6 +16011,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -15432,10 +16048,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -15870,6 +16482,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -15895,10 +16523,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -16540,6 +17164,18 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -16759,6 +17395,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -16784,10 +17436,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -16942,6 +17590,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -16967,10 +17631,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -17537,6 +18197,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -17558,10 +18234,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -18131,6 +18803,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -18152,10 +18840,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -18283,6 +18967,21 @@
             },
             {
               "kind": "field",
+              "name": "mode",
+              "privacy": "public",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\"",
+              "attribute": "mode",
+              "inheritedFrom": {
+                "name": "LumaSlider",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "showValue",
               "privacy": "public",
               "description": "Display the numeric value beside the slider.",
@@ -18399,6 +19098,15 @@
               "default": "\"\""
             },
             {
+              "name": "mode",
+              "fieldName": "mode",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\""
+            },
+            {
               "name": "show-value",
               "fieldName": "showValue",
               "description": "Display the numeric value beside the slider.",
@@ -18473,6 +19181,10 @@
             {
               "name": "slider",
               "description": "slider styling hook."
+            },
+            {
+              "name": "tooltip",
+              "description": "tooltip styling hook."
             }
           ],
           "cssProperties": [
@@ -18489,6 +19201,26 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-vertical-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-vertical-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-vertical-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-tooltip-background",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -18498,6 +19230,260 @@
             },
             {
               "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaControlSwitch",
+          "description": "Large swipeable device power control with hover tint, keyboard focus, horizontal tile and vertical popup variants.",
+          "tagName": "luma-control-switch",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaSwitch",
+            "module": "dist/primitives.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label",
+              "inheritedFrom": {
+                "name": "LumaSwitch",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "inheritedFrom": {
+                "name": "LumaSwitch",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "privacy": "public",
+              "description": "Whether the switch is on. User changes emit luma-change with property checked.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "checked",
+              "inheritedFrom": {
+                "name": "LumaSwitch",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "vertical",
+              "privacy": "public",
+              "description": "Use the tall main-device control shown in entity popups; on is at the top.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "vertical"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "privacy": "public",
+              "description": "Icon shown inside the switch knob.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"power\"",
+              "attribute": "icon"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "checked",
+              "fieldName": "checked",
+              "description": "Whether the switch is on. User changes emit luma-change with property checked.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "vertical",
+              "fieldName": "vertical",
+              "description": "Use the tall main-device control shown in entity popups; on is at the top.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "icon",
+              "fieldName": "icon",
+              "description": "Icon shown inside the switch knob.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"power\""
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "switch",
+              "description": "switch styling hook."
+            },
+            {
+              "name": "thumb",
+              "description": "Interactive handle or thumb."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-switch-track",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
               "description": "Inherited theme variable."
             },
             {
@@ -18529,7 +19515,7 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-secondary-text",
+              "name": "--luma-control-background",
               "description": "Inherited theme variable."
             },
             {
@@ -18711,6 +19697,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -18736,10 +19738,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -18885,6 +19883,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -18910,10 +19924,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -19207,6 +20217,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -19228,10 +20254,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -19557,6 +20579,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -19578,10 +20616,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -19907,6 +20941,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -19928,10 +20978,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -20257,6 +21303,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -20278,10 +21340,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -20427,6 +21485,18 @@
           ],
           "cssProperties": [
             {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -20439,7 +21509,15 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-primary",
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -20471,15 +21549,7 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-secondary-text",
-              "description": "Inherited theme variable."
-            },
-            {
               "name": "--luma-control-background",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-on-primary",
               "description": "Inherited theme variable."
             }
           ],
@@ -20637,6 +21707,18 @@
           ],
           "cssProperties": [
             {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -20649,7 +21731,15 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-primary",
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -20681,15 +21771,7 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-secondary-text",
-              "description": "Inherited theme variable."
-            },
-            {
               "name": "--luma-control-background",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-on-primary",
               "description": "Inherited theme variable."
             }
           ],
@@ -20851,6 +21933,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -20876,10 +21974,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -21165,6 +22259,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -21190,10 +22300,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -21443,6 +22549,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -21464,10 +22586,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -21523,6 +22641,28 @@
             },
             {
               "kind": "field",
+              "name": "vertical",
+              "privacy": "public",
+              "description": "Stack action buttons vertically, as in cover details.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "vertical"
+            },
+            {
+              "kind": "field",
+              "name": "hideLabels",
+              "privacy": "public",
+              "description": "Show icons without visible text; accessible labels remain.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "hide-labels"
+            },
+            {
+              "kind": "field",
               "name": "entityId",
               "privacy": "public",
               "description": "Entity identifier included in command events.",
@@ -21560,6 +22700,24 @@
                 "text": "string"
               },
               "default": "[]"
+            },
+            {
+              "name": "vertical",
+              "fieldName": "vertical",
+              "description": "Stack action buttons vertically, as in cover details.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "hide-labels",
+              "fieldName": "hideLabels",
+              "description": "Show icons without visible text; accessible labels remain.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
             },
             {
               "name": "entity-id",
@@ -21629,6 +22787,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -21654,10 +22828,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -21725,6 +22895,36 @@
             },
             {
               "kind": "field",
+              "name": "vertical",
+              "privacy": "public",
+              "description": "Stack action buttons vertically, as in cover details.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "vertical",
+              "inheritedFrom": {
+                "name": "LumaCommandBar",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hideLabels",
+              "privacy": "public",
+              "description": "Show icons without visible text; accessible labels remain.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "hide-labels",
+              "inheritedFrom": {
+                "name": "LumaCommandBar",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "entityId",
               "privacy": "public",
               "description": "Entity identifier included in command events.",
@@ -21766,6 +22966,24 @@
                 "text": "string"
               },
               "default": "[{\"action\":\"open\",\"label\":\"Open\",\"icon\":\"up\"},{\"action\":\"stop\",\"label\":\"Stop\",\"icon\":\"stop\"},{\"action\":\"close\",\"label\":\"Close\",\"icon\":\"down\"}]"
+            },
+            {
+              "name": "vertical",
+              "fieldName": "vertical",
+              "description": "Stack action buttons vertically, as in cover details.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "hide-labels",
+              "fieldName": "hideLabels",
+              "description": "Show icons without visible text; accessible labels remain.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
             },
             {
               "name": "entity-id",
@@ -21835,6 +23053,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -21860,10 +23094,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -21931,6 +23161,36 @@
             },
             {
               "kind": "field",
+              "name": "vertical",
+              "privacy": "public",
+              "description": "Stack action buttons vertically, as in cover details.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "vertical",
+              "inheritedFrom": {
+                "name": "LumaCommandBar",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hideLabels",
+              "privacy": "public",
+              "description": "Show icons without visible text; accessible labels remain.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "hide-labels",
+              "inheritedFrom": {
+                "name": "LumaCommandBar",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "entityId",
               "privacy": "public",
               "description": "Entity identifier included in command events.",
@@ -21972,6 +23232,24 @@
                 "text": "string"
               },
               "default": "[{\"action\":\"previous\",\"label\":\"Previous\",\"icon\":\"previous\"},{\"action\":\"play-pause\",\"label\":\"Play/pause\",\"icon\":\"play\"},{\"action\":\"next\",\"label\":\"Next\",\"icon\":\"next\"}]"
+            },
+            {
+              "name": "vertical",
+              "fieldName": "vertical",
+              "description": "Stack action buttons vertically, as in cover details.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "hide-labels",
+              "fieldName": "hideLabels",
+              "description": "Show icons without visible text; accessible labels remain.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
             },
             {
               "name": "entity-id",
@@ -22041,6 +23319,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -22066,10 +23360,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -22242,6 +23532,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -22267,10 +23573,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -22496,6 +23798,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -22521,10 +23839,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -22630,6 +23944,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -22655,10 +23985,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -22840,6 +24166,10 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-primary",
               "description": "Inherited theme variable."
             },
@@ -22853,6 +24183,18 @@
             },
             {
               "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -22873,10 +24215,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -22937,6 +24275,22 @@
           "name": "luma-vertical-slider",
           "declaration": {
             "name": "LumaVerticalSlider",
+            "module": "dist/controls.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaControlSwitch",
+          "declaration": {
+            "name": "LumaControlSwitch",
+            "module": "dist/controls.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-control-switch",
+          "declaration": {
+            "name": "LumaControlSwitch",
             "module": "dist/controls.js"
           }
         },
@@ -23646,6 +25000,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -23671,10 +25041,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -24169,6 +25535,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -24194,10 +25576,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -24808,6 +26186,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -24833,10 +26227,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -25407,6 +26797,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -25432,10 +26838,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -25990,6 +27392,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -26015,10 +27433,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -26525,6 +27939,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -26550,10 +27980,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -27068,6 +28494,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -27093,10 +28535,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -27687,6 +29125,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -27712,10 +29166,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -28290,6 +29740,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -28315,10 +29781,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -28813,6 +30275,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -28838,10 +30316,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -29336,6 +30810,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -29361,10 +30851,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -29939,6 +31425,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -29964,10 +31466,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -30522,6 +32020,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -30547,10 +32061,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -31125,6 +32635,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -31150,10 +32676,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -31648,6 +33170,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -31673,10 +33211,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -32171,6 +33705,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -32196,10 +33746,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -32714,6 +34260,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -32739,10 +34301,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -33333,6 +34891,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -33358,10 +34932,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -33896,6 +35466,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -33921,10 +35507,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -34439,6 +36021,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -34464,10 +36062,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -34982,6 +36576,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -35007,10 +36617,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -35525,6 +37131,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -35550,10 +37172,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -36048,6 +37666,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -36073,10 +37707,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -36539,6 +38169,17 @@
             },
             {
               "kind": "field",
+              "name": "adaptive",
+              "privacy": "public",
+              "description": "Use a bottom sheet on screens at most 870px wide or 500px tall. The sheet supports dragging its header to dismiss; confirmation dialogs remain standard dialogs.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "adaptive"
+            },
+            {
+              "kind": "field",
               "name": "width",
               "privacy": "public",
               "description": "Preferred dialog width in pixels, constrained to the viewport.",
@@ -36628,6 +38269,15 @@
               "default": "false"
             },
             {
+              "name": "adaptive",
+              "fieldName": "adaptive",
+              "description": "Use a bottom sheet on screens at most 870px wide or 500px tall. The sheet supports dragging its header to dismiss; confirmation dialogs remain standard dialogs.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
               "name": "width",
               "fieldName": "width",
               "description": "Preferred dialog width in pixels, constrained to the viewport.",
@@ -36698,6 +38348,10 @@
               "description": "Native modal surface."
             },
             {
+              "name": "handle",
+              "description": "handle styling hook."
+            },
+            {
               "name": "header",
               "description": "Dialog header."
             },
@@ -36716,6 +38370,10 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-font",
               "description": "Inherited theme variable."
             },
@@ -36728,11 +38386,23 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-border-width",
+              "name": "--luma-pressed-opacity",
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-border",
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
             {
@@ -36749,10 +38419,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -36974,6 +38640,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -36999,10 +38681,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -37248,6 +38926,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -37273,10 +38967,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -37514,6 +39204,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -37527,10 +39233,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -37792,6 +39494,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -37813,10 +39531,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -38002,6 +39716,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -38027,10 +39757,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -38196,6 +39922,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -38221,10 +39963,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -38510,6 +40248,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -38535,10 +40289,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -38840,6 +40590,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -38861,10 +40627,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -39070,6 +40832,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -39095,10 +40873,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -39484,6 +41258,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -39509,10 +41299,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -39978,6 +41764,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -40003,10 +41805,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -40260,6 +42058,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -40285,10 +42099,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -40772,6 +42582,14 @@
           "name": "LumaVerticalSlider",
           "declaration": {
             "name": "LumaVerticalSlider",
+            "module": "dist/controls.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaControlSwitch",
+          "declaration": {
+            "name": "LumaControlSwitch",
             "module": "dist/controls.js"
           }
         },
@@ -41435,6 +43253,21 @@
             },
             {
               "kind": "field",
+              "name": "mode",
+              "privacy": "public",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\"",
+              "attribute": "mode",
+              "inheritedFrom": {
+                "name": "LumaVerticalSlider",
+                "module": "dist/controls.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "showValue",
               "privacy": "public",
               "description": "Show a secondary numeric percentage.",
@@ -41551,6 +43384,15 @@
               "default": "\"%\""
             },
             {
+              "name": "mode",
+              "fieldName": "mode",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\""
+            },
+            {
               "name": "show-value",
               "fieldName": "showValue",
               "description": "Show a secondary numeric percentage.",
@@ -41625,6 +43467,10 @@
             {
               "name": "slider",
               "description": "slider styling hook."
+            },
+            {
+              "name": "tooltip",
+              "description": "tooltip styling hook."
             }
           ],
           "cssProperties": [
@@ -41641,6 +43487,26 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-vertical-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-vertical-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-vertical-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-tooltip-background",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -41653,7 +43519,19 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-card-background",
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
               "description": "Inherited theme variable."
             },
             {
@@ -41678,10 +43556,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -41798,6 +43672,21 @@
               },
               "default": "\"%\"",
               "attribute": "unit"
+            },
+            {
+              "kind": "field",
+              "name": "mode",
+              "privacy": "public",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\"",
+              "attribute": "mode",
+              "inheritedFrom": {
+                "name": "LumaVerticalSlider",
+                "module": "dist/controls.js"
+              }
             },
             {
               "kind": "field",
@@ -41921,6 +43810,15 @@
               "default": "\"%\""
             },
             {
+              "name": "mode",
+              "fieldName": "mode",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\""
+            },
+            {
               "name": "show-value",
               "fieldName": "showValue",
               "description": "Show the numeric percentage.",
@@ -41995,6 +43893,10 @@
             {
               "name": "slider",
               "description": "slider styling hook."
+            },
+            {
+              "name": "tooltip",
+              "description": "tooltip styling hook."
             }
           ],
           "cssProperties": [
@@ -42011,6 +43913,26 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-vertical-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-vertical-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-vertical-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-tooltip-background",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
               "description": "Inherited theme variable."
             },
@@ -42023,7 +43945,19 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-card-background",
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
               "description": "Inherited theme variable."
             },
             {
@@ -42048,10 +43982,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -42417,6 +44347,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -42442,10 +44388,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -42615,6 +44557,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -42640,10 +44598,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -42837,6 +44791,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -42854,10 +44824,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -43183,6 +45149,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -43204,10 +45186,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -43353,6 +45331,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -43378,10 +45372,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -43552,6 +45542,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -43577,10 +45583,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -43739,6 +45741,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -43764,10 +45782,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -43871,6 +45885,17 @@
             },
             {
               "kind": "field",
+              "name": "mode",
+              "privacy": "public",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\"",
+              "attribute": "mode"
+            },
+            {
+              "kind": "field",
               "name": "showValue",
               "privacy": "public",
               "description": "Display the numeric value beside the slider.",
@@ -43957,6 +45982,15 @@
               "default": "\"\""
             },
             {
+              "name": "mode",
+              "fieldName": "mode",
+              "description": "Fill direction: start for brightness/volume, end for cover position, cursor for a marker without an amount fill.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"start\""
+            },
+            {
               "name": "show-value",
               "fieldName": "showValue",
               "description": "Display the numeric value beside the slider.",
@@ -44013,11 +46047,35 @@
             {
               "name": "slider",
               "description": "slider styling hook."
+            },
+            {
+              "name": "tooltip",
+              "description": "tooltip styling hook."
             }
           ],
           "cssProperties": [
             {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-tooltip-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-range-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
               "description": "Inherited theme variable."
             },
             {
@@ -44029,11 +46087,19 @@
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-primary",
+              "name": "--luma-pressed-opacity",
               "description": "Inherited theme variable."
             },
             {
-              "name": "--luma-card-background",
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
               "description": "Inherited theme variable."
             },
             {
@@ -44058,14 +46124,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-control-background",
               "description": "Inherited theme variable."
             },
             {
@@ -44331,6 +46389,18 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -44521,6 +46591,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -44546,10 +46632,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -44898,6 +46980,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-border-width",
               "description": "Inherited theme variable."
             },
@@ -44919,10 +47017,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {
@@ -45188,6 +47282,22 @@
               "description": "Inherited theme variable."
             },
             {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
               "name": "--luma-card-background",
               "description": "Inherited theme variable."
             },
@@ -45213,10 +47323,6 @@
             },
             {
               "name": "--luma-title-size",
-              "description": "Inherited theme variable."
-            },
-            {
-              "name": "--luma-secondary-text",
               "description": "Inherited theme variable."
             },
             {

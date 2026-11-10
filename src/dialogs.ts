@@ -1,29 +1,38 @@
 import {LumaElement,register,escape,setDetailsHandler} from './base.js';
+import {icon} from './icons.js';
 import {common,prop} from './metadata.js';
 import './devices.js';
 import './charts.js';
 import {featureProperties,type FeatureDefinition} from './features.js';
 
+const modalLocks=new Set<LumaDialog>();let previousOverflow='';
+const lockScroll=(dialog:LumaDialog,lock:boolean)=>{if(lock){if(modalLocks.has(dialog))return;if(!modalLocks.size){previousOverflow=document.documentElement.style.overflow;document.documentElement.style.overflow='hidden';}modalLocks.add(dialog);}else{if(!modalLocks.delete(dialog))return;if(!modalLocks.size)document.documentElement.style.overflow=previousOverflow;}};
 const deepActive=():HTMLElement|null=>{let el=document.activeElement;while(el?.shadowRoot?.activeElement)el=el.shadowRoot.activeElement;return el as HTMLElement|null;};
 export class LumaDialog extends LumaElement {
-  static schema={...common,open:prop('boolean',false,'Show a modal using the native top layer and focus trap. Escape, close button, and backdrop dismiss it.'),dismissible:prop('boolean',true,'Allow Escape, close-button, and backdrop dismissal.'),back:prop('boolean',false,'Show a Back to details action in place of Close; emits luma-back.'),width:prop('number',580,'Preferred dialog width in pixels, constrained to the viewport.')};
-  declare open:boolean;declare dismissible:boolean;declare width:number;declare back:boolean;
+  static schema={...common,open:prop('boolean',false,'Show a modal using the native top layer and focus trap. Escape, close button, and backdrop dismiss it.'),dismissible:prop('boolean',true,'Allow Escape, close-button, and backdrop dismissal.'),back:prop('boolean',false,'Show a Back to details action in place of Close; emits luma-back.'),adaptive:prop('boolean',false,'Use a bottom sheet on screens at most 870px wide or 500px tall. The sheet supports dragging its header to dismiss; confirmation dialogs remain standard dialogs.'),width:prop('number',580,'Preferred dialog width in pixels, constrained to the viewport.')};
+  declare open:boolean;declare dismissible:boolean;declare width:number;declare back:boolean;declare adaptive:boolean;
   private returnFocus:HTMLElement|null=null;
   show():void {this.setValue('open',true);}
-  close(reason='close'):void {if(!this.open)return;this.setValue('open',false);const dialog=this.root.querySelector('dialog');dialog?.close();this.returnFocus?.focus({preventScroll:true});this.emit('luma-close',{reason});}
-  disconnectedCallback():void {this.root.querySelector('dialog')?.close();}
+  close(reason='close'):void {if(!this.open)return;this.setValue('open',false);const dialog=this.root.querySelector('dialog');dialog?.close();lockScroll(this,false);this.returnFocus?.focus({preventScroll:true});this.emit('luma-close',{reason});}
+  disconnectedCallback():void {this.root.querySelector('dialog')?.close();lockScroll(this,false);}
   protected render():void {
     if(!this.root.querySelector('dialog')){
-      this.root.innerHTML=`<style>dialog{border:0;border-radius:24px;background:var(--luma-card-background,#fff);color:var(--luma-text,#212121);padding:0;max-width:calc(100vw - 24px);max-height:calc(100dvh - 32px);box-shadow:0 12px 60px #0004}dialog::backdrop{background:#0006}header{display:flex;align-items:center;gap:12px;padding:16px 20px;position:sticky;top:0;background:inherit;z-index:2}.body{padding:0 24px 24px}h2{font-size:18px;font-weight:500;margin:0;flex:1}@media(max-width:500px){dialog{width:calc(100vw - 16px)!important;border-radius:22px}.body{padding:0 16px 20px}}</style><dialog part="dialog"><header part="header"><button class="flat" aria-label="Close dialog" id="close" style="font-size:26px">×</button><h2 id="dialog-title"></h2><slot name="header-actions"></slot></header><div class="body" part="body"><slot></slot></div><slot name="footer"></slot></dialog>`;
+      this.root.innerHTML=`<style>dialog{border:0;border-radius:24px;background:var(--luma-card-background,#fff);color:var(--luma-text,#212121);padding:0;max-width:calc(100vw - 24px);max-height:calc(100dvh - 80px);box-shadow:0 12px 60px #0004;overflow:hidden}dialog[open]{display:flex;flex-direction:column}dialog::backdrop{background:#0006}header{display:flex;align-items:center;gap:8px;padding:8px;min-height:56px;flex-shrink:0;background:inherit;z-index:2}.body{padding:0 24px 24px;overflow:auto;min-height:0}h2{font-size:20px;font-weight:500;line-height:1.2;margin:0;flex:1;overflow-wrap:anywhere}#handle{display:none}.sheet{position:fixed;inset:auto 0 0;margin:0 auto;width:100%!important;max-width:100%;max-height:min(90dvh,calc(100dvh - 48px));border-radius:20px 20px 0 0}.sheet #handle:not([hidden]){display:block;height:20px;flex-shrink:0;touch-action:none;cursor:grab}.sheet #handle::after{content:"";display:block;width:40px;height:4px;border-radius:4px;background:var(--luma-border,#ddd);margin:8px auto}.sheet header{touch-action:none}dialog.dragging{animation:none;transition:none}dialog.dragging #handle{cursor:grabbing}@media(max-width:450px),(max-height:500px){dialog:not(.sheet){width:100vw!important;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0;margin:0}.body{padding:0 24px 24px}}@media(prefers-reduced-motion:no-preference){dialog[open]{animation:dialog-enter .2s ease-out}.sheet[open]{animation:sheet-enter .3s ease-out}@keyframes dialog-enter{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}@keyframes sheet-enter{from{transform:translateY(100%)}to{transform:none}}}</style><dialog part="dialog" tabindex="-1"><div id="handle" part="handle" aria-hidden="true"></div><header part="header"><button class="flat" aria-label="Close dialog" id="close"></button><h2 id="dialog-title"></h2><slot name="header-actions"></slot></header><div class="body" part="body"><slot></slot></div><slot name="footer"></slot></dialog>`;
       const dialog=this.root.querySelector('dialog')!;
+      let startY:number|undefined;let startTime=0;let delta=0;let pointer:number|undefined;
+      dialog.addEventListener('pointerdown',event=>{if(!this.dismissible||!dialog.classList.contains('sheet')||event.button!==0)return;const target=event.target as Element;if(!target.closest('header,#handle')||event.composedPath().some(node=>node instanceof Element&&node.matches('button,input,select,[role=slider]')))return;startY=event.clientY;startTime=performance.now();delta=0;pointer=event.pointerId;dialog.setPointerCapture(event.pointerId);});
+      dialog.addEventListener('pointermove',event=>{if(startY===undefined)return;delta=Math.max(0,event.clientY-startY);dialog.classList.add('dragging');dialog.style.transform=`translateY(${delta}px)`;});
+      const stop=(cancel=false)=>{if(startY===undefined)return;startY=undefined;if(pointer!==undefined&&dialog.hasPointerCapture(pointer))dialog.releasePointerCapture(pointer);const dismiss=!cancel&&(delta>dialog.getBoundingClientRect().height/2||delta>48&&delta/(performance.now()-startTime)>.5);dialog.classList.remove('dragging');dialog.style.transform='';if(dismiss)this.close('swipe');};
+      dialog.addEventListener('pointerup',()=>stop());dialog.addEventListener('pointercancel',()=>stop(true));
       this.on('#close','click',()=>this.back?this.emit('luma-back',{}):this.close('button'));
       dialog.addEventListener('cancel',event=>{event.preventDefault();if(this.dismissible)this.close('escape');});
       dialog.addEventListener('click',event=>{if(event.target!==dialog||!this.dismissible)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)this.close('backdrop');});
     }
     const dialog=this.root.querySelector('dialog')!;dialog.style.width=`${Math.max(240,this.width)}px`;dialog.setAttribute('aria-labelledby','dialog-title');
-    const close=this.root.querySelector<HTMLButtonElement>('#close')!;close.textContent=this.back?'‹':'×';close.setAttribute('aria-label',this.back?'Back to details':'Close dialog');
+    const close=this.root.querySelector<HTMLButtonElement>('#close')!;close.innerHTML=icon(this.back?'back':'close');close.setAttribute('aria-label',this.back?'Back to details':'Close dialog');
     this.root.querySelector('#dialog-title')!.textContent=this.label||'Details';(this.root.querySelector('#close') as HTMLElement).hidden=!this.dismissible;
-    if(this.open&&!dialog.open&&this.isConnected){this.returnFocus=deepActive();dialog.showModal();this.emit('luma-open',{});}else if(!this.open&&dialog.open)dialog.close();
+    this.root.querySelector<HTMLElement>('#handle')!.hidden=!this.dismissible;
+    if(this.open&&!dialog.open&&this.isConnected){this.returnFocus=deepActive();dialog.classList.toggle('sheet',this.adaptive&&matchMedia('(max-width:870px),(max-height:500px)').matches);lockScroll(this,true);dialog.showModal();dialog.focus({preventScroll:true});this.emit('luma-open',{});}else if(!this.open&&dialog.open){dialog.close();lockScroll(this,false);}
   }
 }
 register('luma-dialog',LumaDialog,'Standalone modal shell with native focus trapping, Escape/backdrop dismissal, return focus, header/footer slots, and responsive sizing.');
@@ -108,7 +117,7 @@ export class LumaMoreInfo extends LumaElement {
     const child=panel.firstElementChild!;
     Object.assign(child,this.view==='history'?{...entity.properties,label:entity.label,series:entity.series||entity.properties?.series||[]}:this.view==='attributes'?{data:entity.entityAttributes||{}}:{...entity.properties,showHeader:false,label:entity.label,state:entity.state,domain,entityId:entity.entityId,entityAttributes:entity.entityAttributes||{},series:entity.series||entity.properties?.series||[],disabled:this.interactionDisabled});
     this.configure('#history',{label:'History',icon:'chart'});this.configure('#attributes',{label:'Attributes',icon:'settings'});
-    this.configure('luma-dialog',{label:entity.label||'Entity details',open:this.open,back:this.view!=='info'});
+    this.configure('luma-dialog',{label:entity.label||'Entity details',open:this.open,adaptive:true,back:this.view!=='info'});
   }
 }
 register('luma-more-info',LumaMoreInfo,'Domain-aware entity details popup composed from the standalone dialog, tabs, device controls, history chart, and attributes table.');

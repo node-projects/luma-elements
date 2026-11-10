@@ -260,3 +260,39 @@ test('vertical slider marker remains visible and follows native pointer and keyb
  await slider.press('End');await expect(slider).toHaveValue('6500');const end=await marker.boundingBox();expect(end!.y).toBeGreaterThan(start!.y);
  await expect(marker).toHaveCSS('height','4px');await expect(marker).toHaveCSS('opacity','1');
 });
+
+test('shared buttons distinguish hover, press, focus and disabled states in both themes',async({page})=>{
+ for(const theme of ['light','dark']){
+  await page.locator('html').evaluate((el,theme)=>el.setAttribute('data-theme',theme),theme);
+  for(const tag of ['luma-button','luma-icon-button','luma-switch']){
+   const control=await mount(page,tag,{label:'Action'});const button=control.locator('button');await page.mouse.move(0,0);
+   const opacity=()=>button.evaluate(el=>Number(getComputedStyle(el,'::before').opacity));await expect.poll(opacity).toBe(0);
+   await button.hover();await expect.poll(opacity).toBe(.08);await page.mouse.down();await expect.poll(opacity).toBe(.12);await page.mouse.up();
+   await page.keyboard.press('Tab');await button.focus();await expect(button).toHaveCSS('outline-style','solid');
+   await control.evaluate((el:any)=>el.disabled=true);await button.hover({force:true});await expect.poll(opacity).toBe(0);
+  }
+ }
+});
+
+test('slider value tooltips follow dragging and linger briefly after keyboard release',async({page})=>{
+ for(const tag of ['luma-slider','luma-brightness','luma-color-temperature']){
+  const control=await mount(page,tag,{value:50,min:0,max:100,step:1,unit:'%',hideLabel:true});const input=control.getByRole('slider');const tip=control.locator('[part=tooltip]');
+  await input.focus();await page.keyboard.down('ArrowUp');await expect(tip).toBeVisible();await expect(tip).toHaveText(tag==='luma-color-temperature'?'49 K':'51 %');await page.keyboard.up('ArrowUp');await expect(tip).toBeVisible();await expect(tip).toBeHidden({timeout:1500});
+  const box=await input.boundingBox();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);await page.mouse.down();await expect(tip).toBeVisible();await page.mouse.move(box!.x+box!.width*.7,box!.y+box!.height*.7);await page.mouse.up();await expect(tip).toBeHidden();
+ }
+});
+
+test('large device switches swipe in either direction, cancel cleanly, and keep tile switches compact',async({page})=>{
+ const control=await mount(page,'luma-control-switch',{label:'Power',checked:false,vertical:true});const button=control.getByRole('switch');const box=await button.boundingBox();
+ await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height*.8);await page.mouse.down();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height*.2);await page.mouse.up();await expect(button).toHaveAttribute('aria-checked','true');
+ await button.press('ArrowDown');await expect(button).toHaveAttribute('aria-checked','false');
+ const popup=await mount(page,'luma-more-info',{open:true,entity:{domain:'switch',label:'Socket',state:'on',entityId:'switch.socket'}});await expect(popup.locator('luma-control-switch')).toBeVisible();await expect(popup.getByRole('switch',{name:'Power'})).toHaveCSS('height','320px');
+});
+
+test('adaptive popups drag to dismiss on phones while controls keep their own drag behavior',async({page})=>{
+ await page.setViewportSize({width:390,height:844});const popup=await mount(page,'luma-more-info',{open:true,entity:{domain:'cover',label:'Blinds',state:'open',entityId:'cover.blinds',properties:{position:70,supportsTilt:true}}});const dialog=popup.locator('dialog');
+ await expect(dialog).toHaveCSS('border-top-left-radius','20px');await expect(page.locator('html')).toHaveCSS('overflow','hidden');
+ const slider=popup.getByRole('slider',{name:'Position',exact:true});await slider.press('Home');await expect(slider).toHaveValue('0');await expect(dialog).toBeVisible();
+ await popup.getByRole('button',{name:'Buttons',exact:true}).click();await expect(popup.getByRole('button',{name:'Open',exact:true})).toBeVisible();
+ const handle=popup.locator('[part=handle]');const box=await handle.boundingBox();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2);await page.mouse.down();await page.mouse.move(box!.x+box!.width/2,box!.y+box!.height/2+400,{steps:4});await page.mouse.up();await expect(dialog).not.toBeVisible();await expect(page.locator('html')).not.toHaveCSS('overflow','hidden');
+});

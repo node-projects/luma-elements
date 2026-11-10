@@ -18,17 +18,20 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
     :host([hidden]),[hidden]{display:none!important}*,*::before,*::after{box-sizing:border-box}
     button,input,select{font:inherit;color:inherit}button{cursor:pointer}button:disabled,input:disabled,select:disabled{cursor:default;opacity:.45}
     button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--luma-primary,#03a9f4);outline-offset:3px}
-    button{border:0}a{color:var(--luma-primary,#03a9f4)}
+    button{border:0;position:relative;isolation:isolate;-webkit-tap-highlight-color:transparent}button::before{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;pointer-events:none;z-index:-1}button:enabled:active::before{opacity:var(--luma-pressed-opacity,.12)}button:focus-visible{outline:2px solid var(--luma-focus-color,var(--luma-primary,#03a9f4));outline-offset:2px}button:disabled::before{opacity:0}.flat:focus-visible{outline-color:var(--luma-secondary-text,#727272)}
+    @media(hover:hover){button:enabled:hover::before{opacity:var(--luma-hover-opacity,.08)}button:enabled:active:hover::before{opacity:var(--luma-pressed-opacity,.12)}input:enabled:hover,select:enabled:hover{border-color:var(--luma-secondary-text,#727272)}}
+    [role=slider]:focus{outline:none}[role=slider]:focus-visible{box-shadow:0 0 0 2px var(--accent,var(--luma-primary,#03a9f4))}svg[tabindex]:focus-visible,[role=group][tabindex]:focus-visible{outline:2px solid var(--luma-primary,#03a9f4);outline-offset:2px}
+    a{color:var(--luma-primary,#03a9f4)}
     .card{background:var(--luma-card-background,#fff);border:var(--luma-border-width,1px) solid var(--luma-border,#e0e0e0);border-radius:var(--luma-radius,12px);box-shadow:var(--luma-shadow,0 1px 2px #00000008);overflow:hidden}
     .pad{padding:var(--luma-card-padding,20px)}.title{font-size:var(--luma-title-size,20px);font-weight:400;margin:0 0 20px;line-height:1.4}
     .muted{color:var(--luma-secondary-text,#727272)}.small{font-size:12px}.row{display:flex;align-items:center;gap:14px}.spread{justify-content:space-between}.grow{flex:1;min-width:0}
     .name{font-weight:500;line-height:20px}.state{font-size:12px;line-height:18px}.truncate{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .icon-circle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--luma-control-background,#f0f0f0);color:var(--luma-secondary-text,#727272);flex-shrink:0}
     .active{color:var(--accent,var(--luma-primary,#03a9f4));background:color-mix(in srgb,var(--accent,var(--luma-primary,#03a9f4)) 16%,transparent)}
-    .flat{background:none;color:inherit;padding:8px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px}.flat:hover{background:var(--luma-control-background,#f0f0f0)}
+    .flat{background:none;color:inherit;padding:8px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px}
     .pill{border-radius:22px;background:var(--luma-primary,#03a9f4);color:var(--luma-on-primary,#fff);padding:10px 20px;min-height:40px}
     .controls{background:var(--luma-control-background,#f0f0f0);border-radius:12px;padding:4px 8px;display:flex;align-items:center;gap:8px}
-    input[type=range]{accent-color:var(--accent,var(--luma-primary,#03a9f4));width:100%;height:38px;cursor:pointer;min-width:0;margin:0;appearance:none;border-radius:10px;background:linear-gradient(to right,var(--accent,var(--luma-primary,#03a9f4)) var(--range-progress,0%),color-mix(in srgb,var(--accent,var(--luma-primary,#03a9f4)) 15%,var(--luma-control-background,#f0f0f0)) var(--range-progress,0%))}
+    input[type=range]{accent-color:var(--accent,var(--luma-primary,#03a9f4));width:100%;height:40px;cursor:pointer;min-width:0;margin:0;appearance:none;border-radius:10px;background:linear-gradient(to right,var(--accent,var(--luma-primary,#03a9f4)) var(--range-progress,0%),color-mix(in srgb,var(--accent,var(--luma-primary,#03a9f4)) 15%,var(--luma-control-background,#f0f0f0)) var(--range-progress,0%))}
     input[type=range]::-webkit-slider-thumb{appearance:none;width:5px;height:22px;background:#fff;border-radius:3px;box-shadow:0 0 2px #0002}
     input[type=range]::-moz-range-thumb{border:0;width:5px;height:22px;background:#fff;border-radius:3px}
     input[type=number],select,input[type=password]{width:100%;padding:12px;border:1px solid var(--luma-border,#e0e0e0);border-radius:8px;background:var(--luma-control-background,#f0f0f0)}
@@ -37,7 +40,7 @@ export class LumaElement extends BaseCustomWebComponentConstructorAppend {
     .stat{font-size:40px;font-weight:300;line-height:1.2}.unit{font-size:18px;margin-left:4px}.center{text-align:center}.stack{display:flex;flex-direction:column;gap:12px}
     .chart{width:100%;height:auto;display:block;overflow:visible}.chart text{font-family:inherit;fill:var(--luma-secondary-text,#727272);font-size:11px}.chart .gridline{stroke:var(--luma-border,#e0e0e0);stroke-dasharray:3 4}
     .empty{padding:28px 0;text-align:center;color:var(--luma-secondary-text,#727272)}
-    @media(prefers-reduced-motion:no-preference){button{transition:background .15s ease}}
+    @media(prefers-reduced-motion:no-preference){button{transition:background-color .15s ease-out}button::before{transition:opacity .15s ease-out}}
   `;
   /** Accessible name and primary label. */ declare label: string;
   /** Disable user interaction. */ declare disabled: boolean;
