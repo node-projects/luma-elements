@@ -14,6 +14,8 @@ export * from './bar-chart.js';
 export * from './content.js';
 export * from './devices.js';
 export * from './cards.js';
+export * from './automation-primitives.js';
+export * from './automation-cards.js';
 export * from './energy.js';
 export * from './energy-dashboard.js';
 export * from './map.js';
