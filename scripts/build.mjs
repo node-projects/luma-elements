@@ -25,6 +25,7 @@ await cp('dist/luma-elements.js.map','site/assets/luma-elements.js.map');
 await cp('src/themes.css','site/assets/themes.css');
 await cp('custom-elements.json','site/custom-elements.json');
 await cp('docs/INTERACTION_AUDIT.md','site/INTERACTION_AUDIT.md');
+await cp('docs/IOBROKER_COMPARISON.md','site/IOBROKER_COMPARISON.md');
 await cp('licenses','site/licenses',{recursive:true});
 await cp('THIRD_PARTY_NOTICES.md','site/THIRD_PARTY_NOTICES.md');
 console.log(`Built ${catalog.length} components, ESM bundle, type declarations, manifest, and GitHub Pages site.`);

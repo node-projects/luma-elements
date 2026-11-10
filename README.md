@@ -15,13 +15,15 @@ The library includes standalone controls, composed device/dashboard cards, inter
 
 ## Explore the library
 
-- **124 web components:** reusable controls, device cards, charts, layouts, and entity detail popups.
+- **136 web components:** reusable controls, device cards, charts, layouts, and entity detail popups.
 - **Home Assistant-style interactions:** hover, focus, dragging, keyboard input, and responsive mobile sheets.
 - **Light, dark, and system themes:** style components through CSS variables and exposed shadow parts.
 - **Properties and attributes:** pass complex data as JavaScript objects or JSON attributes; listen for input, change, and action events.
 - **Designer support:** JavaScript-linked Custom Elements Manifest and TypeScript element declarations.
 
 See the [coverage inventory](docs/COVERAGE.md) and [interaction audit](docs/INTERACTION_AUDIT.md) for supported features, reference comparisons, and current boundaries.
+
+The [ioBroker comparison](docs/IOBROKER_COMPARISON.md) maps the VIS 2 standard/jQui catalogs and the requested Inventwo VIS 1 templates to Luma. Additions include tank levels, window/door illustrations, appliance cycles, analog clocks, radio groups, momentary buttons, state images, marquees, and a theme selector, all using Luma styling.
 
 ## Run the gallery
 

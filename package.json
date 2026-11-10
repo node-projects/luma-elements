@@ -37,7 +37,8 @@
     "docs/COVERAGE.md",
     "docs/RELEASING.md",
     "licenses",
-    "docs/INTERACTION_AUDIT.md"
+    "docs/INTERACTION_AUDIT.md",
+    "docs/IOBROKER_COMPARISON.md"
   ],
   "customElements": "custom-elements.json",
   "sideEffects": [

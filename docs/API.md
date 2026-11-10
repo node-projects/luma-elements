@@ -2036,6 +2036,216 @@ Shortcut card that emits a navigate action for the application router.
 | `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
 | `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
 
+## `luma-radio-group`
+
+Native accessible single-choice list with keyboard navigation, descriptions, per-option disabled state and Luma selection/hover styling.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `value` | `value` | string | `""` | Selected option value. User input emits luma-change with property value. |
+| `options` | `options` | array | `[]` | Strings or {value,label,disabled?,description?} options. Values are strings; disabled options are skipped by native keyboard navigation. |
+| `orientation` | `orientation` | string | `"vertical"` | Option layout: vertical or horizontal. |
+
+## `luma-momentary-button`
+
+Press-and-hold control that emits paired pressed/released values for pointer and keyboard input, including cancellation and focus-loss release.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `icon` | `icon` | string | `""` | Optional leading built-in icon. |
+| `variant` | `variant` | string | `"filled"` | Visual variant: filled or text. |
+| `entityId` | `entity-id` | string | `""` | Optional source identifier included in press and release events. |
+| `pressed` | `pressed` | boolean | `false` | Current pressed state. Pointer/key press emits true; release, cancel, focus loss or removal emits false. Applications must handle release events as well as press events. |
+
+## `luma-marquee`
+
+Overflow-aware plain-text ticker with pause/resume, hover/focus pause, responsive measurement, and static readable reduced-motion rendering.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `text` | `text` | string | `""` | Plain text to display; HTML is always escaped. |
+| `speed` | `speed` | number | `30` | Scrolling speed in pixels per second; only overflowing text moves. |
+| `paused` | `paused` | boolean | `false` | Pause scrolling. Hover and keyboard focus also pause without changing this property. |
+
+## `luma-analog-clock`
+
+Theme-aware SVG analog clock with supplied/live time, IANA timezone, optional seconds/numbers, accessible time, and inherited timer cleanup.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `time` | `time` | string | `""` | ISO date/time to display. Empty follows the local clock. |
+| `locale` | `locale` | string | `"en"` | Intl formatting locale. |
+| `timeZone` | `time-zone` | string | `""` | IANA time zone; empty uses the browser zone. |
+| `showSeconds` | `show-seconds` | boolean | `false` | Display seconds. |
+| `showNumbers` | `show-numbers` | boolean | `true` | Show hour numbers around the clock face. |
+
+## `luma-level-indicator`
+
+Standalone measured tank/bar fill with scale, clamped geometry, units, accessible meter values and low/high warnings.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `value` | `value` | number | `65` | Measured fill level, clamped to min/max for the graphic. |
+| `min` | `min` | number | `0` | Empty value. |
+| `max` | `max` | number | `100` | Full value. |
+| `unit` | `unit` | string | `"%"` | Unit of the measured value. |
+| `low` | `low` | number | `20` | Low-level warning threshold. |
+| `high` | `high` | number | `-1` | High-level warning threshold in measured units. -1 disables high warnings; a threshold at max also disables them. |
+| `precision` | `precision` | number | `0` | Decimal places, from 0 to 6. |
+| `locale` | `locale` | string | `"en"` | Numeric formatting locale. |
+| `color` | `color` | string | `"primary"` | Normal fill color, using a Luma color name or CSS color. |
+| `orientation` | `orientation` | string | `"vertical"` | vertical tank or horizontal bar. |
+| `showScale` | `show-scale` | boolean | `true` | Show scale labels and ticks. |
+
+## `luma-progress-ring`
+
+Standalone determinate/indeterminate progress ring with center caption, accessibility and reduced-motion support.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `value` | `value` | number | `0` | Completion percentage from 0 to 100. |
+| `indeterminate` | `indeterminate` | boolean | `false` | Show an indeterminate arc instead of a measured percentage; reduced motion keeps it still. |
+| `caption` | `caption` | string | `""` | Text in the center, e.g. remaining time. Empty uses the percentage. |
+| `color` | `color` | string | `"primary"` | Ring color, a Luma color name or CSS color. |
+
+## `luma-opening-indicator`
+
+Standalone window/door illustration for closed, open, tilted and unavailable states, with configurable hinge side.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `state` | `state` | string | `"closed"` | Opening state: closed, open, tilted, or unavailable. |
+| `kind` | `kind` | string | `"window"` | Physical opening: window or door. |
+| `hinge` | `hinge` | string | `"left"` | Hinge side: left or right; mirrors the illustration. |
+| `color` | `color` | string | `"primary"` | Active/open accent, using a Luma color or CSS color. |
+
+## `luma-state-image`
+
+State-dependent image display with fallback, safe URLs, alt text and theme-consistent rounding.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `state` | `state` | string | `""` | State used to select an image. |
+| `images` | `images` | array | `[]` | Array of {state,src,alt?} image mappings. URLs may be relative, http(s), or blob; scripts and arbitrary HTML are not allowed. |
+| `src` | `src` | string | `""` | Fallback image URL when no state mapping matches. |
+| `alt` | `alt` | string | `""` | Fallback alternative text. |
+| `fit` | `fit` | string | `"contain"` | Image fit: contain or cover. |
+
+## `luma-tank`
+
+Fill-level card for cisterns, oil tanks, pellet stores or batteries, composed from an entity row and standalone level indicator.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `icon` | `icon` | string | `"humidity"` | Header icon for the measured tank or store. |
+| `state` | `state` | string | `"off"` | Displayed entity state. on, home, playing, heating, cooling, and open receive active styling. |
+| `secondary` | `secondary` | string | `""` | Optional secondary text; overrides the displayed state. |
+| `entityId` | `entity-id` | string | `""` | Opaque entity identifier returned in action and change event details. No backend connection is made. |
+| `domain` | `domain` | string | `"tank"` | Domain used by the automatic detail popup. |
+| `detailProperties` | `detail-properties` | object | `{}` | Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history. |
+| `entityAttributes` | `entity-attributes` | object | `{}` | Entity attribute name/value pairs shown in the Attributes detail tab. |
+| `tapAction` | `tap-action` | string | `"more-info"` | Content action: more-info, toggle, press, none, or an application-defined action. |
+| `iconTapAction` | `icon-tap-action` | string | `"auto"` | Icon action. auto toggles supported toggle domains, otherwise opens details. |
+| `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
+| `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
+| `color` | `color` | string | `"primary"` | Normal fill color, using a Luma color name or CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `value` | `value` | number | `65` | Measured fill level, clamped to min/max for the graphic. |
+| `min` | `min` | number | `0` | Empty value. |
+| `max` | `max` | number | `100` | Full value. |
+| `unit` | `unit` | string | `"%"` | Unit of the measured value. |
+| `low` | `low` | number | `20` | Low-level warning threshold. |
+| `high` | `high` | number | `-1` | High-level warning threshold in measured units. -1 disables high warnings; a threshold at max also disables them. |
+| `precision` | `precision` | number | `0` | Decimal places, from 0 to 6. |
+| `locale` | `locale` | string | `"en"` | Numeric formatting locale. |
+| `orientation` | `orientation` | string | `"vertical"` | vertical tank or horizontal bar. |
+| `showScale` | `show-scale` | boolean | `true` | Show scale labels and ticks. |
+
+## `luma-opening`
+
+Window/door contact card with localized states and an independently reusable closed/open/tilted illustration.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `icon` | `icon` | string | `"home"` | Header icon. |
+| `state` | `state` | string | `"closed"` | Opening state: closed, open, tilted, or unavailable. |
+| `secondary` | `secondary` | string | `""` | Optional secondary text; overrides the displayed state. |
+| `entityId` | `entity-id` | string | `""` | Opaque entity identifier returned in action and change event details. No backend connection is made. |
+| `domain` | `domain` | string | `"opening"` | Domain for the graphical contact details. |
+| `detailProperties` | `detail-properties` | object | `{}` | Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history. |
+| `entityAttributes` | `entity-attributes` | object | `{}` | Entity attribute name/value pairs shown in the Attributes detail tab. |
+| `tapAction` | `tap-action` | string | `"more-info"` | Content action: more-info, toggle, press, none, or an application-defined action. |
+| `iconTapAction` | `icon-tap-action` | string | `"auto"` | Icon action. auto toggles supported toggle domains, otherwise opens details. |
+| `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
+| `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
+| `color` | `color` | string | `"primary"` | Active/open accent, using a Luma color or CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `kind` | `kind` | string | `"window"` | Physical opening: window or door. |
+| `hinge` | `hinge` | string | `"left"` | Hinge side: left or right; mirrors the illustration. |
+| `stateLabels` | `state-labels` | object | `{"closed":"Closed","open":"Open","tilted":"Tilted","unavailable":"Unavailable","unknown":"Unknown"}` | Localized display names keyed by opening state. |
+| `alarm` | `alarm` | boolean | `false` | Use the error accent while open or tilted; this does not operate a lock or alarm. |
+
+## `luma-appliance`
+
+Washer/dryer/dishwasher cycle card composed from the standalone progress ring, supplied program/remaining-time data and optional command controls.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `icon` | `icon` | string | `"power"` | Appliance header icon. |
+| `state` | `state` | string | `"idle"` | Authoritative cycle state, such as idle, running, paused, finished, error or unavailable. |
+| `secondary` | `secondary` | string | `""` | Optional secondary text; overrides the displayed state. |
+| `entityId` | `entity-id` | string | `""` | Opaque entity identifier returned in action and change event details. No backend connection is made. |
+| `domain` | `domain` | string | `"appliance"` | Domain for appliance cycle details. |
+| `detailProperties` | `detail-properties` | object | `{}` | Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history. |
+| `entityAttributes` | `entity-attributes` | object | `{}` | Entity attribute name/value pairs shown in the Attributes detail tab. |
+| `tapAction` | `tap-action` | string | `"more-info"` | Content action: more-info, toggle, press, none, or an application-defined action. |
+| `iconTapAction` | `icon-tap-action` | string | `"auto"` | Icon action. auto toggles supported toggle domains, otherwise opens details. |
+| `holdAction` | `hold-action` | string | `"more-info"` | Action after a 500ms pointer hold. none disables hold handling. |
+| `doubleTapAction` | `double-tap-action` | string | `"none"` | Optional double-click action. A non-none action defers single clicks to distinguish the gestures. |
+| `color` | `color` | string | `"amber"` | State accent: amber, blue, green, red, purple, orange, or any valid CSS color. |
+| `showHeader` | `show-header` | boolean | `true` | Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title. |
+| `kind` | `kind` | string | `"washer"` | Appliance kind: washer, dryer, dishwasher, or an application-defined kind. |
+| `stateLabel` | `state-label` | string | `""` | Optional localized state label; empty uses a humanized state. |
+| `program` | `program` | string | `""` | Current cycle/program name. |
+| `progress` | `progress` | number | `-1` | Reported completion percentage. -1 means unknown; running then uses an indeterminate ring. |
+| `remainingMinutes` | `remaining-minutes` | number | `-1` | Reported remaining minutes. -1 hides the remaining-time reading; 0 means no time remains. |
+| `finishesAt` | `finishes-at` | string | `""` | Optional ISO finish timestamp supplied by the application. |
+| `locale` | `locale` | string | `"en"` | Locale for the finish-time display. |
+| `timeZone` | `time-zone` | string | `""` | Optional IANA timezone for the finish time. |
+| `commands` | `commands` | array | `[]` | Optional {action,label,icon?,disabled?} command definitions. Actions are requests only and do not assume the appliance accepted them. |
+
+## `luma-theme-selector`
+
+Light/dark/system appearance selector composed with the shared segmented control; emits changes without silently modifying global document styling.
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `label` | `label` | string | `""` | Accessible name and primary label of the element. |
+| `disabled` | `disabled` | boolean | `false` | Disables user interaction. Boolean attributes use presence; disabled="false" also disables. |
+| `value` | `value` | string | `"system"` | Selected appearance: light, dark or system. Changes emit a value event; the host application decides which theme scope to update. |
+
 ## `luma-energy-node`
 
 Standalone circular energy node with independent readings and optional source-mix ring segments.

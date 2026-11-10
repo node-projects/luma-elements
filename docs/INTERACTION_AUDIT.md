@@ -20,3 +20,16 @@ Reviewed on 2026-11-10 against the [Home Assistant demo](https://demo.home-assis
 References: [controls](https://contributors.home-assistant.io/design/components/controls/), [switch](https://contributors.home-assistant.io/design/components/switch/), [button](https://contributors.home-assistant.io/design/components/button/), [dialog](https://contributors.home-assistant.io/design/components/dialog/), [adaptive dialog](https://contributors.home-assistant.io/design/components/adaptive-dialog/), and the [more-info inventory](https://contributors.home-assistant.io/design/more-info/).
 
 The browser suite checks shared interaction states in both themes, real pointer/touch input, keyboard focus and tooltips, every public feature mapping, and every detail route in desktop/light and mobile/dark layouts. Targeted screenshots are reviewed manually for the principal control families. This is not a pixel-diff certification against every upstream screen. Native select/date/time choosers and screen eyedropper prompts retain browser/OS appearance; maps and media depend on the supplied assets. Backend-dependent actions and administrative Home Assistant dialogs remain outside this UI library, as described in [COVERAGE.md](COVERAGE.md).
+
+## Additional automation controls
+
+The [ioBroker comparison](IOBROKER_COMPARISON.md) records the source widget families and why these additions are useful. These are independently authored controls using Luma theme tokens and shared surfaces, rather than copies of VIS appearance.
+
+- Native radio groups support arrow keys, disabled-option skipping and JSON options; selection updates both input state and the public value.
+- Momentary buttons pair press/release events through pointer capture, keyboard repeat, cancellation, focus loss and removal. Disabled controls reject input.
+- Measured level indicators clamp their graphic and expose meter semantics with low/high warnings; progress rings distinguish known percentages from indeterminate work.
+- Analog clocks resolve supplied/live timestamps in an IANA timezone. Opening indicators distinguish closed/open/tilted states and mirror hinges. State images select explicit URL mappings and reject executable URLs.
+- Marquees measure actual overflow, pause for hover/focus and explicit pause, and display static wrapping text under reduced motion.
+- Tank, opening and appliance cards reuse those primitives in their automatic detail dialogs. Commands remain requests with source identity; supplied cycle state remains authoritative. Theme selection emits a value without changing application theme scope.
+
+The browser suite covers these behaviors. Manual gallery review includes the composed appliance popup in light mode and tank details in dark mode.

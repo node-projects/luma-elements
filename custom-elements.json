@@ -1,7 +1,4562 @@
 {
   "schemaVersion": "1.0.0",
-  "readme": "# Luma Elements\n\n[![Build and test](https://github.com/node-projects/luma-elements/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/node-projects/luma-elements/actions/workflows/ci.yml)\n[![GitHub Pages](https://github.com/node-projects/luma-elements/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/node-projects/luma-elements/actions/workflows/pages.yml)\n[![Live gallery](https://img.shields.io/badge/demo-live%20gallery-03a9f4)](https://node-projects.github.io/luma-elements/)\n[![License: MIT](https://img.shields.io/github/license/node-projects/luma-elements)](LICENSE)\n[![TypeScript](https://img.shields.io/badge/TypeScript-declarations%20included-3178c6?logo=typescript&logoColor=white)](docs/API.md)\n[![npm: first release pending](https://img.shields.io/badge/npm-first%20release%20pending-cb3837?logo=npm&logoColor=white)](https://github.com/node-projects/luma-elements/releases)\n\n**[Live gallery](https://node-projects.github.io/luma-elements/) · [Energy demo](https://node-projects.github.io/luma-elements/#energy) · [All components](https://node-projects.github.io/luma-elements/#components) · [API reference](docs/API.md) · [Designer manifest](custom-elements.json)**\n\nHome automation web components inspired by the [Home Assistant Lovelace demo](https://demo.home-assistant.io/#/lovelace/home). Built with the real [`@node-projects/base-custom-webcomponent`](https://github.com/node-projects/base-custom-webcomponent) base class. No other runtime libraries, backend coupling, external fonts, icon services, or charting dependencies.\n\nThe library includes standalone controls, composed device/dashboard cards, interactive charts, and automatic entity detail popups. All elements receive data through properties or attributes. It is an independent implementation: backend service connections, the Lovelace configuration editor, and server-specific stream negotiation belong to the host application. The full generated component/property inventory is in [docs/API.md](docs/API.md), and [docs/COVERAGE.md](docs/COVERAGE.md) maps dashboard cards, all 53 public tile feature types, and entity detail domains to their components.\n\n## Explore the library\n\n- **124 web components:** reusable controls, device cards, charts, layouts, and entity detail popups.\n- **Home Assistant-style interactions:** hover, focus, dragging, keyboard input, and responsive mobile sheets.\n- **Light, dark, and system themes:** style components through CSS variables and exposed shadow parts.\n- **Properties and attributes:** pass complex data as JavaScript objects or JSON attributes; listen for input, change, and action events.\n- **Designer support:** JavaScript-linked Custom Elements Manifest and TypeScript element declarations.\n\nSee the [coverage inventory](docs/COVERAGE.md) and [interaction audit](docs/INTERACTION_AUDIT.md) for supported features, reference comparisons, and current boundaries.\n\n## Run the gallery\n\nTry the **[hosted gallery](https://node-projects.github.io/luma-elements/)** without installing anything, or run it locally:\n\nRequires Node.js 22 or newer.\n\n```sh\nnpm install\nnpm run dev\n```\n\nOpen **http://127.0.0.1:4186**. The gallery includes Home and Energy demos, all components grouped into primitives/layout/devices/cards/popups, searchable categories, copyable examples, property/attribute descriptions, live domain-specific popup examples, and light/dark/system themes. All values in the gallery are sample data.\n\n```sh\nnpm run check                  # TypeScript validation\nnpx playwright install chromium\nnpm test                       # Build + browser integration tests\nnpm run build                  # ESM modules, types, bundle, manifest, Pages site\nnpm pack --dry-run             # Inspect the publishable package\n```\n\n## Use in an application\n\nThe package is prepared for publication as `@node-projects/luma-elements`; a registry release is required before `npm install @node-projects/luma-elements` works. Until then, build this checkout and install its tarball (`npm pack`), or copy `dist/luma-elements.js` and `dist/themes.css` to your application.\n\nWith a bundler:\n\n```js\nimport '@node-projects/luma-elements';\nimport '@node-projects/luma-elements/themes.css';\n```\n\nWithout a bundler (the bundle includes BaseCustomWebComponent):\n\n```html\n<link rel=\"stylesheet\" href=\"./themes.css\">\n<script type=\"module\" src=\"./luma-elements.js\"></script>\n\n<luma-tile label=\"Reading lamp\" icon=\"light\" state=\"on\" toggle\n  entity-id=\"light.reading\"></luma-tile>\n```\n\n## Representative components\n\n| Primitives | Composed cards | Layout and content |\n| --- | --- | --- |\n| `luma-icon` | `luma-tile` | `luma-card` |\n| `luma-button` | `luma-entities` | `luma-heading` |\n| `luma-switch` | `luma-glance` | `luma-grid` |\n| `luma-slider` | `luma-light` | `luma-stack` |\n| `luma-number` | `luma-thermostat` | `luma-text` |\n| `luma-select` | `luma-cover` | `luma-picture` |\n| `luma-badge` | `luma-media-player` | |\n| `luma-entity-row` | `luma-weather` | |\n| | `luma-alarm` | |\n| | `luma-button-card` | |\n| | `luma-sensor` | |\n| | `luma-gauge` | |\n| | `luma-history` | |\n\nThe gallery's **Properties & attributes** disclosure under every example is the complete property reference; the same reference is available in [docs/API.md](docs/API.md). `custom-elements.json` contains the same descriptions in Custom Elements Manifest format for editor integrations. `dist/*.d.ts` provides TypeScript declarations, including `HTMLElementTagNameMap` entries. Definitions and defaults live beside each implementation in `src/`.\n\n## Properties and attributes\n\nSimple values accept both properties and attributes. Camel-case properties use kebab-case attributes: `currentTemperature` corresponds to `current-temperature`. Updates are batched into microtasks. Properties set before the element is upgraded are preserved.\n\nArrays and objects accept properties or JSON attributes. Replace an array/object to trigger an update; mutating it in place does not trigger rendering. Removing an attribute restores its default. Invalid JSON, incorrect top-level JSON types, and non-finite numeric attributes preserve the previous value and emit `luma-error`.\n\n```html\n<luma-entities id=\"room\" label=\"Living room\"\n  entities='[{\"label\":\"Lamp\",\"state\":\"on\",\"toggle\":true}]'>\n</luma-entities>\n\n<luma-history id=\"power\" label=\"Power\" unit=\"W\"></luma-history>\n```\n\n```js\nconst room = document.querySelector('#room');\nroom.entities = [{\n  label: 'Floor lamp', state: 'on', icon: 'light',\n  toggle: true, entityId: 'light.floor_lamp'\n}];\n\nconst power = document.querySelector('#power');\npower.series = [{\n  name: 'Consumption', color: '#03a9f4',\n  data: [\n    { x: '2026-11-10T08:00:00Z', y: 420 },\n    { x: '2026-11-10T09:00:00Z', y: 650 },\n    { x: '2026-11-10T11:00:00Z', y: 510 }\n  ]\n}];\n```\n\nHistory series also accept plain number arrays, plotted by index. Standalone `luma-line-chart` supports stepped/linear traces, area fills, mouse-hover values, keyboard point inspection, legends, and time-range selection. `{x, y}` points use a numeric x coordinate or ISO timestamp. Time gaps are plotted proportionally. Invalid/non-finite points are skipped; empty data shows an empty state. Keep the same x-coordinate representation across series in a chart.\n\nBoolean attributes follow standard HTML presence semantics. `disabled=\"false\"` is still disabled. Use `element.disabled = false` or remove the attribute. Property assignment does not reflect back to attributes; properties represent current state after interaction.\n\n## Events and backend integration\n\n| Event | Detail | Meaning |\n| --- | --- | --- |\n| `luma-change` | `{ property, value, entityId }` | A committed local value change. |\n| `luma-input` | `{ property: 'value', value }` | Live slider input, before commitment. |\n| `luma-action` | `{ action, entityId }` | Request to perform a command or open details. |\n| `luma-error` | `{ attribute, value, message }` | Invalid attribute input. |\n\nEvents bubble and cross shadow boundaries. `luma-action` is cancelable: `more-info` opens an automatic domain-specific popup unless your handler calls `event.preventDefault()`. You can also use `luma-dialog`, `luma-more-info`, and `luma-confirm-dialog` directly. Escape and backdrop clicks dismiss native modals; focus returns to the trigger. Composed cards translate child changes to their own properties: a thermostat's number control emits one `temperature` change carrying the thermostat's entity ID; an entities card emits the updated `entities` array. Entity commands bubble with the selected row's ID.\n\n```js\ndocument.addEventListener('luma-change', ({ target, detail }) => {\n  // e.g. { property: 'brightness', value: 65, entityId: 'light.reading' }\n  // Persist with your own backend adapter, then assign authoritative values.\n  console.log(target, detail);\n});\n\ndocument.addEventListener('luma-action', ({ detail }) => {\n  // more-info, press, open, stop, close, previous, next,\n  // arm-home, arm-away, arm-night, disarm\n  console.log(detail.action, detail.entityId);\n});\n```\n\nSwitches, sliders, numeric controls, selects, tiles, lights, and media play/pause update their local values. Cover open/stop/close and alarm commands emit requests without assuming successful device operation. Connect your backend and assign the actual state yourself. Components never call Home Assistant APIs or store credentials.\n\n## Styling and themes\n\nLoad `themes.css`, then set `data-theme=\"light\"` or `data-theme=\"dark\"` on any ancestor. Omitting both follows `prefers-color-scheme`. Variables inherit through nested Shadow DOM, so a theme applies to composed controls too. Override individual variables after importing the stylesheet.\n\n| Variable | Light default | Purpose |\n| --- | --- | --- |\n| `--luma-primary` | `#03a9f4` | Primary controls and emphasis |\n| `--luma-on-primary` | `#fff` | Text on primary buttons |\n| `--luma-background` | `#fafafa` | Application background |\n| `--luma-card-background` | `#fff` | Card surface |\n| `--luma-text` | `#212121` | Primary text |\n| `--luma-secondary-text` | `#727272` | Secondary text |\n| `--luma-border` | `#e0e0e0` | Card and control outlines |\n| `--luma-border-width` | `1px` | Card border width |\n| `--luma-control-background` | `#f0f0f0` | Control surface |\n| `--luma-switch-track` | `#bdbdbd` | Inactive switch track |\n| `--luma-radius` | `12px` | Card corner radius |\n| `--luma-shadow` | subtle shadow | Card shadow |\n| `--luma-font` | `Roboto, Arial, sans-serif` | Font stack (no font is downloaded) |\n| `--luma-title-size` | `20px` | Card title font size |\n\n```css\n.my-dashboard {\n  --luma-primary: #00897b;\n  --luma-radius: 16px;\n  --luma-font: system-ui, sans-serif;\n}\nluma-tile::part(card) { border-width: 2px; }\nluma-switch::part(thumb) { box-shadow: none; }\n```\n\nAll components expose `root`. Surfaces expose `card`, with additional parts where applicable: `title`, `name`, `state`, `icon`, `content`, `button`, `switch`, `thumb`, `slider`, `control`, `heading`, `row`, `grid`, `stack`, `dial`, `chart`, `empty`, `gauge`, `value`, and `image`. CSS variables are the shared styling API across composed controls; a `::part()` selector targets that element's own shadow tree.\n\nCustom icons can be supplied through `slot=\"icon\"` on entity rows, tiles, and button cards. `luma-icon` accepts SVG in its default slot. `luma-card`, `luma-stack`, and `luma-grid` accept slotted content. `luma-text` escapes its content property; use its default slot for application-controlled rich HTML. `luma-picture` accepts relative, HTTP(S), and blob image URLs, and an `alt` description.\n\nControls use native buttons, range inputs, and selects, accessible names, visible focus indicators, and disabled states. Composed updates preserve keyboard focus. SVG charts have accessible labels and point tooltips. History charts support arrow/Home/End point inspection, mouse-hover tooltips, drag-to-zoom, and Escape to reset the range.\n\n## GitHub Pages\n\n`.github/workflows/pages.yml` builds and browser-tests the library, uploads `site/`, and deploys the gallery on a push to `main` or `master` (or a manual dispatch). Pull requests build and test without deployment.\n\n1. Push these changes to the repository.\n2. In **Settings → Pages → Build and deployment**, select **GitHub Actions**.\n3. Run **Build, test, and deploy component gallery** if it has not run automatically.\n\nThe resulting repository Pages URL will normally be `https://node-projects.github.io/luma-elements/`. Assets and navigation are relative, so the gallery works under the repository subpath. This URL is not live until the workflow is enabled and successfully deployed.\n\n\n## Standalone controls, composed cards, and popups\n\nLow-level controls are exported as real custom elements: `luma-arc`, `luma-dial`, `luma-temperature-value`, `luma-color-wheel`, `luma-color-picker`, `luma-color-swatches`, `luma-color-temperature`, `luma-brightness`, `luma-dropdown`, `luma-line-chart`, `luma-sparkline`, `luma-bar-chart`, `luma-gauge-arc`, `luma-energy-node`, `luma-flow-line`, `luma-data-table`, and others. Cards compose those controls; their SVG/input implementations are not embedded copies.\n\n```html\n<luma-dial value=\"21\" min=\"7\" max=\"35\" step=\"0.5\" unit=\"°C\"></luma-dial>\n<luma-color-picker value=\"#ffa24d\"></luma-color-picker>\n<luma-thermostat temperature=\"22.5\" current-temperature=\"20.8\"\n  precision=\"1\" locale=\"de\" show-current-temperature show-current-marker>\n</luma-thermostat>\n```\n\n`luma-temperature-value` reserves the integer, decimal, and unit columns, uses tabular numerals, and never auto-fits its font. `precision=\"1\"` retains the decimal column for both whole and fractional temperatures. `locale=\"de\"` uses a comma. Thermostats expose `showCurrentTemperature`, `showCurrentMarker`, `showCurrentAsPrimary`, `stateLabel`, presets, fan modes, swing modes, and paired low/high target temperatures. The dial supports mouse/touch drag, keyboard steps/Home/End, pointer cancellation, and bounds.\n\nEntity content opens details; supported tile icons toggle independently. `tapAction`, `iconTapAction`, `holdAction`, and `doubleTapAction` customize those gestures. `disabled` prevents interaction. `unavailable` disables device controls while keeping entity details accessible; `unknown` entities can still accept commands. Dialogs use native top-layer focus trapping, Escape/backdrop dismissal, and trigger-focus restoration. Property changes keep the open dialog stable. Domain-specific edits are sent back through the source component's normal event path, including rows recreated by a parent.\n\nLight capabilities are declared through `colorModes` (`brightness`, `rgb`/`hs`/`xy`, `color_temp`, etc.). The popup composes a tall brightness slider, hue/saturation wheel, kelvin gradient, compact mode toolbar, optional swatches, and supported effects. Editing a color/brightness while off requests the new value and previews the light as on. Browser-supported screen eyedropper selection is optional.\n\n```js\nconst tile = document.querySelector('luma-tile');\ntile.entityId = 'light.spotlights';\ntile.features = [\n  { type: 'light-brightness', config: { value: 65 } },\n  { type: 'light-color-temp', config: { value: 3000, vertical: false } }\n];\ntile.detailProperties = { rgbColor: '#ffa24d', effects: ['none', 'relax'] };\n```\n\nFeature values and legacy embedded tile values are shared with the details view. Every public feature kind is mapped in `featureControls`; the wrapper's `config` is passed to an independently usable underlying control.\n\n## Designer manifest\n\n`custom-elements.json` is a Custom Elements Manifest with actual compiled module paths. For example, `luma-dial` points to `dist/controls.js` and its exported `LumaDial`; it does not pretend every class is declared in the entry point or point to TypeScript source. Modules include class exports and tag registrations, inheritance, typed/described fields, associated attributes, defaults, events, methods, slots, CSS parts and theme variables. The npm export map exposes the designer-facing `dist/*.js` modules.\n\nThe gallery ships the same unbundled modules and an import map for BaseCustomWebComponent, alongside its self-contained demo bundle. Designer integration can resolve each module path relative to the package manifest. Use either the unbundled entry/modules or the standalone bundle in a given document, so the browser sees one set of constructors.\n\nBrowser checks import every definition's actual module, compare its exported constructor with the registration, and check all module paths/attribute-field associations. The manifest is regenerated by `npm run build`.\n\n## Builds and npm releases\n\nSee [docs/RELEASING.md](docs/RELEASING.md). Push/PR builds test and pack the library. Publishing a GitHub release runs `release.yml`, derives the npm version from its semantic release tag, builds/tests that version, attaches the exact `.tgz` and checksum to the release, and publishes that tarball to npm. Stable versions use `latest`; prereleases use `next`. Configure npm trusted publishing for `node-projects/luma-elements`, workflow `release.yml`, or supply `NPM_TOKEN` for an initial bootstrap publish.\n\n## Project structure\n\n- `src/`: base, property metadata, primitive controls, composed cards, SVG charts, icons, and themes.\n- `docs/`: gallery source and local room illustration.\n- `scripts/`: TypeScript/bundle/site assembly and static preview server.\n- `tests/`: browser integration coverage for values, events, composition, charts, keyboard interaction, themes, and responsive layouts.\n- `dist/`: generated library modules, declarations, source maps, and self-contained browser bundle.\n- `site/`: generated GitHub Pages artifact.\n\nMIT. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the base library's BSD-3-Clause license, selected SVG icons' Apache-2.0 license, and design attribution.\n\nThe [interaction audit](docs/INTERACTION_AUDIT.md) records hover, focus, drag and popup behavior against the Home Assistant references. `luma-chart-navigator` is independently usable; line/history charts include it by default (`show-navigator` / `showNavigator`). Its `value` is a `{start,end}` object, in the same units as `min` and `max`.\n",
+  "readme": "# Luma Elements\n\n[![Build and test](https://github.com/node-projects/luma-elements/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/node-projects/luma-elements/actions/workflows/ci.yml)\n[![GitHub Pages](https://github.com/node-projects/luma-elements/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/node-projects/luma-elements/actions/workflows/pages.yml)\n[![Live gallery](https://img.shields.io/badge/demo-live%20gallery-03a9f4)](https://node-projects.github.io/luma-elements/)\n[![License: MIT](https://img.shields.io/github/license/node-projects/luma-elements)](LICENSE)\n[![TypeScript](https://img.shields.io/badge/TypeScript-declarations%20included-3178c6?logo=typescript&logoColor=white)](docs/API.md)\n[![npm: first release pending](https://img.shields.io/badge/npm-first%20release%20pending-cb3837?logo=npm&logoColor=white)](https://github.com/node-projects/luma-elements/releases)\n\n**[Live gallery](https://node-projects.github.io/luma-elements/) · [Energy demo](https://node-projects.github.io/luma-elements/#energy) · [All components](https://node-projects.github.io/luma-elements/#components) · [API reference](docs/API.md) · [Designer manifest](custom-elements.json)**\n\nHome automation web components inspired by the [Home Assistant Lovelace demo](https://demo.home-assistant.io/#/lovelace/home). Built with the real [`@node-projects/base-custom-webcomponent`](https://github.com/node-projects/base-custom-webcomponent) base class. No other runtime libraries, backend coupling, external fonts, icon services, or charting dependencies.\n\nThe library includes standalone controls, composed device/dashboard cards, interactive charts, and automatic entity detail popups. All elements receive data through properties or attributes. It is an independent implementation: backend service connections, the Lovelace configuration editor, and server-specific stream negotiation belong to the host application. The full generated component/property inventory is in [docs/API.md](docs/API.md), and [docs/COVERAGE.md](docs/COVERAGE.md) maps dashboard cards, all 53 public tile feature types, and entity detail domains to their components.\n\n## Explore the library\n\n- **136 web components:** reusable controls, device cards, charts, layouts, and entity detail popups.\n- **Home Assistant-style interactions:** hover, focus, dragging, keyboard input, and responsive mobile sheets.\n- **Light, dark, and system themes:** style components through CSS variables and exposed shadow parts.\n- **Properties and attributes:** pass complex data as JavaScript objects or JSON attributes; listen for input, change, and action events.\n- **Designer support:** JavaScript-linked Custom Elements Manifest and TypeScript element declarations.\n\nSee the [coverage inventory](docs/COVERAGE.md) and [interaction audit](docs/INTERACTION_AUDIT.md) for supported features, reference comparisons, and current boundaries.\n\nThe [ioBroker comparison](docs/IOBROKER_COMPARISON.md) maps the VIS 2 standard/jQui catalogs and the requested Inventwo VIS 1 templates to Luma. Additions include tank levels, window/door illustrations, appliance cycles, analog clocks, radio groups, momentary buttons, state images, marquees, and a theme selector, all using Luma styling.\n\n## Run the gallery\n\nTry the **[hosted gallery](https://node-projects.github.io/luma-elements/)** without installing anything, or run it locally:\n\nRequires Node.js 22 or newer.\n\n```sh\nnpm install\nnpm run dev\n```\n\nOpen **http://127.0.0.1:4186**. The gallery includes Home and Energy demos, all components grouped into primitives/layout/devices/cards/popups, searchable categories, copyable examples, property/attribute descriptions, live domain-specific popup examples, and light/dark/system themes. All values in the gallery are sample data.\n\n```sh\nnpm run check                  # TypeScript validation\nnpx playwright install chromium\nnpm test                       # Build + browser integration tests\nnpm run build                  # ESM modules, types, bundle, manifest, Pages site\nnpm pack --dry-run             # Inspect the publishable package\n```\n\n## Use in an application\n\nThe package is prepared for publication as `@node-projects/luma-elements`; a registry release is required before `npm install @node-projects/luma-elements` works. Until then, build this checkout and install its tarball (`npm pack`), or copy `dist/luma-elements.js` and `dist/themes.css` to your application.\n\nWith a bundler:\n\n```js\nimport '@node-projects/luma-elements';\nimport '@node-projects/luma-elements/themes.css';\n```\n\nWithout a bundler (the bundle includes BaseCustomWebComponent):\n\n```html\n<link rel=\"stylesheet\" href=\"./themes.css\">\n<script type=\"module\" src=\"./luma-elements.js\"></script>\n\n<luma-tile label=\"Reading lamp\" icon=\"light\" state=\"on\" toggle\n  entity-id=\"light.reading\"></luma-tile>\n```\n\n## Representative components\n\n| Primitives | Composed cards | Layout and content |\n| --- | --- | --- |\n| `luma-icon` | `luma-tile` | `luma-card` |\n| `luma-button` | `luma-entities` | `luma-heading` |\n| `luma-switch` | `luma-glance` | `luma-grid` |\n| `luma-slider` | `luma-light` | `luma-stack` |\n| `luma-number` | `luma-thermostat` | `luma-text` |\n| `luma-select` | `luma-cover` | `luma-picture` |\n| `luma-badge` | `luma-media-player` | |\n| `luma-entity-row` | `luma-weather` | |\n| | `luma-alarm` | |\n| | `luma-button-card` | |\n| | `luma-sensor` | |\n| | `luma-gauge` | |\n| | `luma-history` | |\n\nThe gallery's **Properties & attributes** disclosure under every example is the complete property reference; the same reference is available in [docs/API.md](docs/API.md). `custom-elements.json` contains the same descriptions in Custom Elements Manifest format for editor integrations. `dist/*.d.ts` provides TypeScript declarations, including `HTMLElementTagNameMap` entries. Definitions and defaults live beside each implementation in `src/`.\n\n## Properties and attributes\n\nSimple values accept both properties and attributes. Camel-case properties use kebab-case attributes: `currentTemperature` corresponds to `current-temperature`. Updates are batched into microtasks. Properties set before the element is upgraded are preserved.\n\nArrays and objects accept properties or JSON attributes. Replace an array/object to trigger an update; mutating it in place does not trigger rendering. Removing an attribute restores its default. Invalid JSON, incorrect top-level JSON types, and non-finite numeric attributes preserve the previous value and emit `luma-error`.\n\n```html\n<luma-entities id=\"room\" label=\"Living room\"\n  entities='[{\"label\":\"Lamp\",\"state\":\"on\",\"toggle\":true}]'>\n</luma-entities>\n\n<luma-history id=\"power\" label=\"Power\" unit=\"W\"></luma-history>\n```\n\n```js\nconst room = document.querySelector('#room');\nroom.entities = [{\n  label: 'Floor lamp', state: 'on', icon: 'light',\n  toggle: true, entityId: 'light.floor_lamp'\n}];\n\nconst power = document.querySelector('#power');\npower.series = [{\n  name: 'Consumption', color: '#03a9f4',\n  data: [\n    { x: '2026-11-10T08:00:00Z', y: 420 },\n    { x: '2026-11-10T09:00:00Z', y: 650 },\n    { x: '2026-11-10T11:00:00Z', y: 510 }\n  ]\n}];\n```\n\nHistory series also accept plain number arrays, plotted by index. Standalone `luma-line-chart` supports stepped/linear traces, area fills, mouse-hover values, keyboard point inspection, legends, and time-range selection. `{x, y}` points use a numeric x coordinate or ISO timestamp. Time gaps are plotted proportionally. Invalid/non-finite points are skipped; empty data shows an empty state. Keep the same x-coordinate representation across series in a chart.\n\nBoolean attributes follow standard HTML presence semantics. `disabled=\"false\"` is still disabled. Use `element.disabled = false` or remove the attribute. Property assignment does not reflect back to attributes; properties represent current state after interaction.\n\n## Events and backend integration\n\n| Event | Detail | Meaning |\n| --- | --- | --- |\n| `luma-change` | `{ property, value, entityId }` | A committed local value change. |\n| `luma-input` | `{ property: 'value', value }` | Live slider input, before commitment. |\n| `luma-action` | `{ action, entityId }` | Request to perform a command or open details. |\n| `luma-error` | `{ attribute, value, message }` | Invalid attribute input. |\n\nEvents bubble and cross shadow boundaries. `luma-action` is cancelable: `more-info` opens an automatic domain-specific popup unless your handler calls `event.preventDefault()`. You can also use `luma-dialog`, `luma-more-info`, and `luma-confirm-dialog` directly. Escape and backdrop clicks dismiss native modals; focus returns to the trigger. Composed cards translate child changes to their own properties: a thermostat's number control emits one `temperature` change carrying the thermostat's entity ID; an entities card emits the updated `entities` array. Entity commands bubble with the selected row's ID.\n\n```js\ndocument.addEventListener('luma-change', ({ target, detail }) => {\n  // e.g. { property: 'brightness', value: 65, entityId: 'light.reading' }\n  // Persist with your own backend adapter, then assign authoritative values.\n  console.log(target, detail);\n});\n\ndocument.addEventListener('luma-action', ({ detail }) => {\n  // more-info, press, open, stop, close, previous, next,\n  // arm-home, arm-away, arm-night, disarm\n  console.log(detail.action, detail.entityId);\n});\n```\n\nSwitches, sliders, numeric controls, selects, tiles, lights, and media play/pause update their local values. Cover open/stop/close and alarm commands emit requests without assuming successful device operation. Connect your backend and assign the actual state yourself. Components never call Home Assistant APIs or store credentials.\n\n## Styling and themes\n\nLoad `themes.css`, then set `data-theme=\"light\"` or `data-theme=\"dark\"` on any ancestor. Omitting both follows `prefers-color-scheme`. Variables inherit through nested Shadow DOM, so a theme applies to composed controls too. Override individual variables after importing the stylesheet.\n\n| Variable | Light default | Purpose |\n| --- | --- | --- |\n| `--luma-primary` | `#03a9f4` | Primary controls and emphasis |\n| `--luma-on-primary` | `#fff` | Text on primary buttons |\n| `--luma-background` | `#fafafa` | Application background |\n| `--luma-card-background` | `#fff` | Card surface |\n| `--luma-text` | `#212121` | Primary text |\n| `--luma-secondary-text` | `#727272` | Secondary text |\n| `--luma-border` | `#e0e0e0` | Card and control outlines |\n| `--luma-border-width` | `1px` | Card border width |\n| `--luma-control-background` | `#f0f0f0` | Control surface |\n| `--luma-switch-track` | `#bdbdbd` | Inactive switch track |\n| `--luma-radius` | `12px` | Card corner radius |\n| `--luma-shadow` | subtle shadow | Card shadow |\n| `--luma-font` | `Roboto, Arial, sans-serif` | Font stack (no font is downloaded) |\n| `--luma-title-size` | `20px` | Card title font size |\n\n```css\n.my-dashboard {\n  --luma-primary: #00897b;\n  --luma-radius: 16px;\n  --luma-font: system-ui, sans-serif;\n}\nluma-tile::part(card) { border-width: 2px; }\nluma-switch::part(thumb) { box-shadow: none; }\n```\n\nAll components expose `root`. Surfaces expose `card`, with additional parts where applicable: `title`, `name`, `state`, `icon`, `content`, `button`, `switch`, `thumb`, `slider`, `control`, `heading`, `row`, `grid`, `stack`, `dial`, `chart`, `empty`, `gauge`, `value`, and `image`. CSS variables are the shared styling API across composed controls; a `::part()` selector targets that element's own shadow tree.\n\nCustom icons can be supplied through `slot=\"icon\"` on entity rows, tiles, and button cards. `luma-icon` accepts SVG in its default slot. `luma-card`, `luma-stack`, and `luma-grid` accept slotted content. `luma-text` escapes its content property; use its default slot for application-controlled rich HTML. `luma-picture` accepts relative, HTTP(S), and blob image URLs, and an `alt` description.\n\nControls use native buttons, range inputs, and selects, accessible names, visible focus indicators, and disabled states. Composed updates preserve keyboard focus. SVG charts have accessible labels and point tooltips. History charts support arrow/Home/End point inspection, mouse-hover tooltips, drag-to-zoom, and Escape to reset the range.\n\n## GitHub Pages\n\n`.github/workflows/pages.yml` builds and browser-tests the library, uploads `site/`, and deploys the gallery on a push to `main` or `master` (or a manual dispatch). Pull requests build and test without deployment.\n\n1. Push these changes to the repository.\n2. In **Settings → Pages → Build and deployment**, select **GitHub Actions**.\n3. Run **Build, test, and deploy component gallery** if it has not run automatically.\n\nThe resulting repository Pages URL will normally be `https://node-projects.github.io/luma-elements/`. Assets and navigation are relative, so the gallery works under the repository subpath. This URL is not live until the workflow is enabled and successfully deployed.\n\n\n## Standalone controls, composed cards, and popups\n\nLow-level controls are exported as real custom elements: `luma-arc`, `luma-dial`, `luma-temperature-value`, `luma-color-wheel`, `luma-color-picker`, `luma-color-swatches`, `luma-color-temperature`, `luma-brightness`, `luma-dropdown`, `luma-line-chart`, `luma-sparkline`, `luma-bar-chart`, `luma-gauge-arc`, `luma-energy-node`, `luma-flow-line`, `luma-data-table`, and others. Cards compose those controls; their SVG/input implementations are not embedded copies.\n\n```html\n<luma-dial value=\"21\" min=\"7\" max=\"35\" step=\"0.5\" unit=\"°C\"></luma-dial>\n<luma-color-picker value=\"#ffa24d\"></luma-color-picker>\n<luma-thermostat temperature=\"22.5\" current-temperature=\"20.8\"\n  precision=\"1\" locale=\"de\" show-current-temperature show-current-marker>\n</luma-thermostat>\n```\n\n`luma-temperature-value` reserves the integer, decimal, and unit columns, uses tabular numerals, and never auto-fits its font. `precision=\"1\"` retains the decimal column for both whole and fractional temperatures. `locale=\"de\"` uses a comma. Thermostats expose `showCurrentTemperature`, `showCurrentMarker`, `showCurrentAsPrimary`, `stateLabel`, presets, fan modes, swing modes, and paired low/high target temperatures. The dial supports mouse/touch drag, keyboard steps/Home/End, pointer cancellation, and bounds.\n\nEntity content opens details; supported tile icons toggle independently. `tapAction`, `iconTapAction`, `holdAction`, and `doubleTapAction` customize those gestures. `disabled` prevents interaction. `unavailable` disables device controls while keeping entity details accessible; `unknown` entities can still accept commands. Dialogs use native top-layer focus trapping, Escape/backdrop dismissal, and trigger-focus restoration. Property changes keep the open dialog stable. Domain-specific edits are sent back through the source component's normal event path, including rows recreated by a parent.\n\nLight capabilities are declared through `colorModes` (`brightness`, `rgb`/`hs`/`xy`, `color_temp`, etc.). The popup composes a tall brightness slider, hue/saturation wheel, kelvin gradient, compact mode toolbar, optional swatches, and supported effects. Editing a color/brightness while off requests the new value and previews the light as on. Browser-supported screen eyedropper selection is optional.\n\n```js\nconst tile = document.querySelector('luma-tile');\ntile.entityId = 'light.spotlights';\ntile.features = [\n  { type: 'light-brightness', config: { value: 65 } },\n  { type: 'light-color-temp', config: { value: 3000, vertical: false } }\n];\ntile.detailProperties = { rgbColor: '#ffa24d', effects: ['none', 'relax'] };\n```\n\nFeature values and legacy embedded tile values are shared with the details view. Every public feature kind is mapped in `featureControls`; the wrapper's `config` is passed to an independently usable underlying control.\n\n## Designer manifest\n\n`custom-elements.json` is a Custom Elements Manifest with actual compiled module paths. For example, `luma-dial` points to `dist/controls.js` and its exported `LumaDial`; it does not pretend every class is declared in the entry point or point to TypeScript source. Modules include class exports and tag registrations, inheritance, typed/described fields, associated attributes, defaults, events, methods, slots, CSS parts and theme variables. The npm export map exposes the designer-facing `dist/*.js` modules.\n\nThe gallery ships the same unbundled modules and an import map for BaseCustomWebComponent, alongside its self-contained demo bundle. Designer integration can resolve each module path relative to the package manifest. Use either the unbundled entry/modules or the standalone bundle in a given document, so the browser sees one set of constructors.\n\nBrowser checks import every definition's actual module, compare its exported constructor with the registration, and check all module paths/attribute-field associations. The manifest is regenerated by `npm run build`.\n\n## Builds and npm releases\n\nSee [docs/RELEASING.md](docs/RELEASING.md). Push/PR builds test and pack the library. Publishing a GitHub release runs `release.yml`, derives the npm version from its semantic release tag, builds/tests that version, attaches the exact `.tgz` and checksum to the release, and publishes that tarball to npm. Stable versions use `latest`; prereleases use `next`. Configure npm trusted publishing for `node-projects/luma-elements`, workflow `release.yml`, or supply `NPM_TOKEN` for an initial bootstrap publish.\n\n## Project structure\n\n- `src/`: base, property metadata, primitive controls, composed cards, SVG charts, icons, and themes.\n- `docs/`: gallery source and local room illustration.\n- `scripts/`: TypeScript/bundle/site assembly and static preview server.\n- `tests/`: browser integration coverage for values, events, composition, charts, keyboard interaction, themes, and responsive layouts.\n- `dist/`: generated library modules, declarations, source maps, and self-contained browser bundle.\n- `site/`: generated GitHub Pages artifact.\n\nMIT. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the base library's BSD-3-Clause license, selected SVG icons' Apache-2.0 license, and design attribution.\n\nThe [interaction audit](docs/INTERACTION_AUDIT.md) records hover, focus, drag and popup behavior against the Home Assistant references. `luma-chart-navigator` is independently usable; line/history charts include it by default (`show-navigator` / `showNavigator`). Its `value` is a `{start,end}` object, in the same units as `min` and `max`.\n",
   "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "dist/automation-cards.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "LumaTank",
+          "description": "Fill-level card for cisterns, oil tanks, pellet stores or batteries, composed from an entity row and standalone level indicator.",
+          "tagName": "luma-tank",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaEntity",
+            "module": "dist/components.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "privacy": "public",
+              "description": "Header icon for the measured tank or store.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"humidity\"",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "privacy": "public",
+              "description": "Displayed entity state. on, home, playing, heating, cooling, and open receive active styling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"off\"",
+              "attribute": "state"
+            },
+            {
+              "kind": "field",
+              "name": "secondary",
+              "privacy": "public",
+              "description": "Optional secondary text; overrides the displayed state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "secondary"
+            },
+            {
+              "kind": "field",
+              "name": "entityId",
+              "privacy": "public",
+              "description": "Opaque entity identifier returned in action and change event details. No backend connection is made.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "entity-id"
+            },
+            {
+              "kind": "field",
+              "name": "domain",
+              "privacy": "public",
+              "description": "Domain used by the automatic detail popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"tank\"",
+              "attribute": "domain"
+            },
+            {
+              "kind": "field",
+              "name": "detailProperties",
+              "privacy": "public",
+              "description": "Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history.",
+              "type": {
+                "text": "Record<string,unknown>"
+              },
+              "default": "{}",
+              "attribute": "detail-properties"
+            },
+            {
+              "kind": "field",
+              "name": "entityAttributes",
+              "privacy": "public",
+              "description": "Entity attribute name/value pairs shown in the Attributes detail tab.",
+              "type": {
+                "text": "Record<string,unknown>"
+              },
+              "default": "{}",
+              "attribute": "entity-attributes"
+            },
+            {
+              "kind": "field",
+              "name": "tapAction",
+              "privacy": "public",
+              "description": "Content action: more-info, toggle, press, none, or an application-defined action.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\"",
+              "attribute": "tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "iconTapAction",
+              "privacy": "public",
+              "description": "Icon action. auto toggles supported toggle domains, otherwise opens details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"auto\"",
+              "attribute": "icon-tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "holdAction",
+              "privacy": "public",
+              "description": "Action after a 500ms pointer hold. none disables hold handling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\"",
+              "attribute": "hold-action"
+            },
+            {
+              "kind": "field",
+              "name": "doubleTapAction",
+              "privacy": "public",
+              "description": "Optional double-click action. A non-none action defers single clicks to distinguish the gestures.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"none\"",
+              "attribute": "double-tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "privacy": "public",
+              "description": "Normal fill color, using a Luma color name or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\"",
+              "attribute": "color"
+            },
+            {
+              "kind": "field",
+              "name": "showHeader",
+              "privacy": "public",
+              "description": "Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "show-header"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "description": "Measured fill level, clamped to min/max for the graphic.",
+              "type": {
+                "text": "number"
+              },
+              "default": "65",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "min",
+              "privacy": "public",
+              "description": "Empty value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "min"
+            },
+            {
+              "kind": "field",
+              "name": "max",
+              "privacy": "public",
+              "description": "Full value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "attribute": "max"
+            },
+            {
+              "kind": "field",
+              "name": "unit",
+              "privacy": "public",
+              "description": "Unit of the measured value.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"%\"",
+              "attribute": "unit"
+            },
+            {
+              "kind": "field",
+              "name": "low",
+              "privacy": "public",
+              "description": "Low-level warning threshold.",
+              "type": {
+                "text": "number"
+              },
+              "default": "20",
+              "attribute": "low"
+            },
+            {
+              "kind": "field",
+              "name": "high",
+              "privacy": "public",
+              "description": "High-level warning threshold in measured units. -1 disables high warnings; a threshold at max also disables them.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1",
+              "attribute": "high"
+            },
+            {
+              "kind": "field",
+              "name": "precision",
+              "privacy": "public",
+              "description": "Decimal places, from 0 to 6.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "precision"
+            },
+            {
+              "kind": "field",
+              "name": "locale",
+              "privacy": "public",
+              "description": "Numeric formatting locale.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\"",
+              "attribute": "locale"
+            },
+            {
+              "kind": "field",
+              "name": "orientation",
+              "privacy": "public",
+              "description": "vertical tank or horizontal bar.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"vertical\"",
+              "attribute": "orientation"
+            },
+            {
+              "kind": "field",
+              "name": "showScale",
+              "privacy": "public",
+              "description": "Show scale labels and ticks.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "show-scale"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "icon",
+              "fieldName": "icon",
+              "description": "Header icon for the measured tank or store.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"humidity\""
+            },
+            {
+              "name": "state",
+              "fieldName": "state",
+              "description": "Displayed entity state. on, home, playing, heating, cooling, and open receive active styling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"off\""
+            },
+            {
+              "name": "secondary",
+              "fieldName": "secondary",
+              "description": "Optional secondary text; overrides the displayed state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "entity-id",
+              "fieldName": "entityId",
+              "description": "Opaque entity identifier returned in action and change event details. No backend connection is made.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "domain",
+              "fieldName": "domain",
+              "description": "Domain used by the automatic detail popup.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"tank\""
+            },
+            {
+              "name": "detail-properties",
+              "fieldName": "detailProperties",
+              "description": "Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history.",
+              "type": {
+                "text": "string"
+              },
+              "default": "{}"
+            },
+            {
+              "name": "entity-attributes",
+              "fieldName": "entityAttributes",
+              "description": "Entity attribute name/value pairs shown in the Attributes detail tab.",
+              "type": {
+                "text": "string"
+              },
+              "default": "{}"
+            },
+            {
+              "name": "tap-action",
+              "fieldName": "tapAction",
+              "description": "Content action: more-info, toggle, press, none, or an application-defined action.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\""
+            },
+            {
+              "name": "icon-tap-action",
+              "fieldName": "iconTapAction",
+              "description": "Icon action. auto toggles supported toggle domains, otherwise opens details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"auto\""
+            },
+            {
+              "name": "hold-action",
+              "fieldName": "holdAction",
+              "description": "Action after a 500ms pointer hold. none disables hold handling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\""
+            },
+            {
+              "name": "double-tap-action",
+              "fieldName": "doubleTapAction",
+              "description": "Optional double-click action. A non-none action defers single clicks to distinguish the gestures.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"none\""
+            },
+            {
+              "name": "color",
+              "fieldName": "color",
+              "description": "Normal fill color, using a Luma color name or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "name": "show-header",
+              "fieldName": "showHeader",
+              "description": "Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "value",
+              "fieldName": "value",
+              "description": "Measured fill level, clamped to min/max for the graphic.",
+              "type": {
+                "text": "number"
+              },
+              "default": "65"
+            },
+            {
+              "name": "min",
+              "fieldName": "min",
+              "description": "Empty value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "name": "max",
+              "fieldName": "max",
+              "description": "Full value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "100"
+            },
+            {
+              "name": "unit",
+              "fieldName": "unit",
+              "description": "Unit of the measured value.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"%\""
+            },
+            {
+              "name": "low",
+              "fieldName": "low",
+              "description": "Low-level warning threshold.",
+              "type": {
+                "text": "number"
+              },
+              "default": "20"
+            },
+            {
+              "name": "high",
+              "fieldName": "high",
+              "description": "High-level warning threshold in measured units. -1 disables high warnings; a threshold at max also disables them.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1"
+            },
+            {
+              "name": "precision",
+              "fieldName": "precision",
+              "description": "Decimal places, from 0 to 6.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "name": "locale",
+              "fieldName": "locale",
+              "description": "Numeric formatting locale.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\""
+            },
+            {
+              "name": "orientation",
+              "fieldName": "orientation",
+              "description": "vertical tank or horizontal bar.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"vertical\""
+            },
+            {
+              "name": "show-scale",
+              "fieldName": "showScale",
+              "description": "Show scale labels and ticks.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "card",
+              "description": "Outer card surface."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": [
+            {
+              "name": "footer",
+              "description": "footer content."
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "LumaOpening",
+          "description": "Window/door contact card with localized states and an independently reusable closed/open/tilted illustration.",
+          "tagName": "luma-opening",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaEntity",
+            "module": "dist/components.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "privacy": "public",
+              "description": "Header icon.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"home\"",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "privacy": "public",
+              "description": "Opening state: closed, open, tilted, or unavailable.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"closed\"",
+              "attribute": "state"
+            },
+            {
+              "kind": "field",
+              "name": "secondary",
+              "privacy": "public",
+              "description": "Optional secondary text; overrides the displayed state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "secondary"
+            },
+            {
+              "kind": "field",
+              "name": "entityId",
+              "privacy": "public",
+              "description": "Opaque entity identifier returned in action and change event details. No backend connection is made.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "entity-id"
+            },
+            {
+              "kind": "field",
+              "name": "domain",
+              "privacy": "public",
+              "description": "Domain for the graphical contact details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"opening\"",
+              "attribute": "domain"
+            },
+            {
+              "kind": "field",
+              "name": "detailProperties",
+              "privacy": "public",
+              "description": "Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history.",
+              "type": {
+                "text": "Record<string,unknown>"
+              },
+              "default": "{}",
+              "attribute": "detail-properties"
+            },
+            {
+              "kind": "field",
+              "name": "entityAttributes",
+              "privacy": "public",
+              "description": "Entity attribute name/value pairs shown in the Attributes detail tab.",
+              "type": {
+                "text": "Record<string,unknown>"
+              },
+              "default": "{}",
+              "attribute": "entity-attributes"
+            },
+            {
+              "kind": "field",
+              "name": "tapAction",
+              "privacy": "public",
+              "description": "Content action: more-info, toggle, press, none, or an application-defined action.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\"",
+              "attribute": "tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "iconTapAction",
+              "privacy": "public",
+              "description": "Icon action. auto toggles supported toggle domains, otherwise opens details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"auto\"",
+              "attribute": "icon-tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "holdAction",
+              "privacy": "public",
+              "description": "Action after a 500ms pointer hold. none disables hold handling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\"",
+              "attribute": "hold-action"
+            },
+            {
+              "kind": "field",
+              "name": "doubleTapAction",
+              "privacy": "public",
+              "description": "Optional double-click action. A non-none action defers single clicks to distinguish the gestures.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"none\"",
+              "attribute": "double-tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "privacy": "public",
+              "description": "Active/open accent, using a Luma color or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\"",
+              "attribute": "color"
+            },
+            {
+              "kind": "field",
+              "name": "showHeader",
+              "privacy": "public",
+              "description": "Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "show-header"
+            },
+            {
+              "kind": "field",
+              "name": "kind",
+              "privacy": "public",
+              "description": "Physical opening: window or door.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"window\"",
+              "attribute": "kind"
+            },
+            {
+              "kind": "field",
+              "name": "hinge",
+              "privacy": "public",
+              "description": "Hinge side: left or right; mirrors the illustration.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"left\"",
+              "attribute": "hinge"
+            },
+            {
+              "kind": "field",
+              "name": "stateLabels",
+              "privacy": "public",
+              "description": "Localized display names keyed by opening state.",
+              "type": {
+                "text": "Record<string,string>"
+              },
+              "default": "{\"closed\":\"Closed\",\"open\":\"Open\",\"tilted\":\"Tilted\",\"unavailable\":\"Unavailable\",\"unknown\":\"Unknown\"}",
+              "attribute": "state-labels"
+            },
+            {
+              "kind": "field",
+              "name": "alarm",
+              "privacy": "public",
+              "description": "Use the error accent while open or tilted; this does not operate a lock or alarm.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "alarm"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "icon",
+              "fieldName": "icon",
+              "description": "Header icon.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"home\""
+            },
+            {
+              "name": "state",
+              "fieldName": "state",
+              "description": "Opening state: closed, open, tilted, or unavailable.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"closed\""
+            },
+            {
+              "name": "secondary",
+              "fieldName": "secondary",
+              "description": "Optional secondary text; overrides the displayed state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "entity-id",
+              "fieldName": "entityId",
+              "description": "Opaque entity identifier returned in action and change event details. No backend connection is made.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "domain",
+              "fieldName": "domain",
+              "description": "Domain for the graphical contact details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"opening\""
+            },
+            {
+              "name": "detail-properties",
+              "fieldName": "detailProperties",
+              "description": "Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history.",
+              "type": {
+                "text": "string"
+              },
+              "default": "{}"
+            },
+            {
+              "name": "entity-attributes",
+              "fieldName": "entityAttributes",
+              "description": "Entity attribute name/value pairs shown in the Attributes detail tab.",
+              "type": {
+                "text": "string"
+              },
+              "default": "{}"
+            },
+            {
+              "name": "tap-action",
+              "fieldName": "tapAction",
+              "description": "Content action: more-info, toggle, press, none, or an application-defined action.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\""
+            },
+            {
+              "name": "icon-tap-action",
+              "fieldName": "iconTapAction",
+              "description": "Icon action. auto toggles supported toggle domains, otherwise opens details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"auto\""
+            },
+            {
+              "name": "hold-action",
+              "fieldName": "holdAction",
+              "description": "Action after a 500ms pointer hold. none disables hold handling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\""
+            },
+            {
+              "name": "double-tap-action",
+              "fieldName": "doubleTapAction",
+              "description": "Optional double-click action. A non-none action defers single clicks to distinguish the gestures.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"none\""
+            },
+            {
+              "name": "color",
+              "fieldName": "color",
+              "description": "Active/open accent, using a Luma color or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "name": "show-header",
+              "fieldName": "showHeader",
+              "description": "Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "kind",
+              "fieldName": "kind",
+              "description": "Physical opening: window or door.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"window\""
+            },
+            {
+              "name": "hinge",
+              "fieldName": "hinge",
+              "description": "Hinge side: left or right; mirrors the illustration.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"left\""
+            },
+            {
+              "name": "state-labels",
+              "fieldName": "stateLabels",
+              "description": "Localized display names keyed by opening state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "{\"closed\":\"Closed\",\"open\":\"Open\",\"tilted\":\"Tilted\",\"unavailable\":\"Unavailable\",\"unknown\":\"Unknown\"}"
+            },
+            {
+              "name": "alarm",
+              "fieldName": "alarm",
+              "description": "Use the error accent while open or tilted; this does not operate a lock or alarm.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "card",
+              "description": "Outer card surface."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-error-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaAppliance",
+          "description": "Washer/dryer/dishwasher cycle card composed from the standalone progress ring, supplied program/remaining-time data and optional command controls.",
+          "tagName": "luma-appliance",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaEntity",
+            "module": "dist/components.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "privacy": "public",
+              "description": "Appliance header icon.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"power\"",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "privacy": "public",
+              "description": "Authoritative cycle state, such as idle, running, paused, finished, error or unavailable.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"idle\"",
+              "attribute": "state"
+            },
+            {
+              "kind": "field",
+              "name": "secondary",
+              "privacy": "public",
+              "description": "Optional secondary text; overrides the displayed state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "secondary"
+            },
+            {
+              "kind": "field",
+              "name": "entityId",
+              "privacy": "public",
+              "description": "Opaque entity identifier returned in action and change event details. No backend connection is made.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "entity-id"
+            },
+            {
+              "kind": "field",
+              "name": "domain",
+              "privacy": "public",
+              "description": "Domain for appliance cycle details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"appliance\"",
+              "attribute": "domain"
+            },
+            {
+              "kind": "field",
+              "name": "detailProperties",
+              "privacy": "public",
+              "description": "Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history.",
+              "type": {
+                "text": "Record<string,unknown>"
+              },
+              "default": "{}",
+              "attribute": "detail-properties"
+            },
+            {
+              "kind": "field",
+              "name": "entityAttributes",
+              "privacy": "public",
+              "description": "Entity attribute name/value pairs shown in the Attributes detail tab.",
+              "type": {
+                "text": "Record<string,unknown>"
+              },
+              "default": "{}",
+              "attribute": "entity-attributes"
+            },
+            {
+              "kind": "field",
+              "name": "tapAction",
+              "privacy": "public",
+              "description": "Content action: more-info, toggle, press, none, or an application-defined action.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\"",
+              "attribute": "tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "iconTapAction",
+              "privacy": "public",
+              "description": "Icon action. auto toggles supported toggle domains, otherwise opens details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"auto\"",
+              "attribute": "icon-tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "holdAction",
+              "privacy": "public",
+              "description": "Action after a 500ms pointer hold. none disables hold handling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\"",
+              "attribute": "hold-action"
+            },
+            {
+              "kind": "field",
+              "name": "doubleTapAction",
+              "privacy": "public",
+              "description": "Optional double-click action. A non-none action defers single clicks to distinguish the gestures.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"none\"",
+              "attribute": "double-tap-action"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "privacy": "public",
+              "description": "State accent: amber, blue, green, red, purple, orange, or any valid CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"amber\"",
+              "attribute": "color"
+            },
+            {
+              "kind": "field",
+              "name": "showHeader",
+              "privacy": "public",
+              "description": "Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "show-header"
+            },
+            {
+              "kind": "field",
+              "name": "kind",
+              "privacy": "public",
+              "description": "Appliance kind: washer, dryer, dishwasher, or an application-defined kind.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"washer\"",
+              "attribute": "kind"
+            },
+            {
+              "kind": "field",
+              "name": "stateLabel",
+              "privacy": "public",
+              "description": "Optional localized state label; empty uses a humanized state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state-label"
+            },
+            {
+              "kind": "field",
+              "name": "program",
+              "privacy": "public",
+              "description": "Current cycle/program name.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "program"
+            },
+            {
+              "kind": "field",
+              "name": "progress",
+              "privacy": "public",
+              "description": "Reported completion percentage. -1 means unknown; running then uses an indeterminate ring.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1",
+              "attribute": "progress"
+            },
+            {
+              "kind": "field",
+              "name": "remainingMinutes",
+              "privacy": "public",
+              "description": "Reported remaining minutes. -1 hides the remaining-time reading; 0 means no time remains.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1",
+              "attribute": "remaining-minutes"
+            },
+            {
+              "kind": "field",
+              "name": "finishesAt",
+              "privacy": "public",
+              "description": "Optional ISO finish timestamp supplied by the application.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "finishes-at"
+            },
+            {
+              "kind": "field",
+              "name": "locale",
+              "privacy": "public",
+              "description": "Locale for the finish-time display.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\"",
+              "attribute": "locale"
+            },
+            {
+              "kind": "field",
+              "name": "timeZone",
+              "privacy": "public",
+              "description": "Optional IANA timezone for the finish time.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "time-zone"
+            },
+            {
+              "kind": "field",
+              "name": "commands",
+              "privacy": "public",
+              "description": "Optional {action,label,icon?,disabled?} command definitions. Actions are requests only and do not assume the appliance accepted them.",
+              "type": {
+                "text": "unknown[]"
+              },
+              "default": "[]",
+              "attribute": "commands"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "icon",
+              "fieldName": "icon",
+              "description": "Appliance header icon.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"power\""
+            },
+            {
+              "name": "state",
+              "fieldName": "state",
+              "description": "Authoritative cycle state, such as idle, running, paused, finished, error or unavailable.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"idle\""
+            },
+            {
+              "name": "secondary",
+              "fieldName": "secondary",
+              "description": "Optional secondary text; overrides the displayed state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "entity-id",
+              "fieldName": "entityId",
+              "description": "Opaque entity identifier returned in action and change event details. No backend connection is made.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "domain",
+              "fieldName": "domain",
+              "description": "Domain for appliance cycle details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"appliance\""
+            },
+            {
+              "name": "detail-properties",
+              "fieldName": "detailProperties",
+              "description": "Additional domain-specific properties for the automatic details popup, such as brightness, rgbColor, modes, or history.",
+              "type": {
+                "text": "string"
+              },
+              "default": "{}"
+            },
+            {
+              "name": "entity-attributes",
+              "fieldName": "entityAttributes",
+              "description": "Entity attribute name/value pairs shown in the Attributes detail tab.",
+              "type": {
+                "text": "string"
+              },
+              "default": "{}"
+            },
+            {
+              "name": "tap-action",
+              "fieldName": "tapAction",
+              "description": "Content action: more-info, toggle, press, none, or an application-defined action.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\""
+            },
+            {
+              "name": "icon-tap-action",
+              "fieldName": "iconTapAction",
+              "description": "Icon action. auto toggles supported toggle domains, otherwise opens details.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"auto\""
+            },
+            {
+              "name": "hold-action",
+              "fieldName": "holdAction",
+              "description": "Action after a 500ms pointer hold. none disables hold handling.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more-info\""
+            },
+            {
+              "name": "double-tap-action",
+              "fieldName": "doubleTapAction",
+              "description": "Optional double-click action. A non-none action defers single clicks to distinguish the gestures.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"none\""
+            },
+            {
+              "name": "color",
+              "fieldName": "color",
+              "description": "State accent: amber, blue, green, red, purple, orange, or any valid CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"amber\""
+            },
+            {
+              "name": "show-header",
+              "fieldName": "showHeader",
+              "description": "Show the card/entity heading. Detail popups disable this to avoid repeating their own dialog title.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "kind",
+              "fieldName": "kind",
+              "description": "Appliance kind: washer, dryer, dishwasher, or an application-defined kind.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"washer\""
+            },
+            {
+              "name": "state-label",
+              "fieldName": "stateLabel",
+              "description": "Optional localized state label; empty uses a humanized state.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "program",
+              "fieldName": "program",
+              "description": "Current cycle/program name.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "progress",
+              "fieldName": "progress",
+              "description": "Reported completion percentage. -1 means unknown; running then uses an indeterminate ring.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1"
+            },
+            {
+              "name": "remaining-minutes",
+              "fieldName": "remainingMinutes",
+              "description": "Reported remaining minutes. -1 hides the remaining-time reading; 0 means no time remains.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1"
+            },
+            {
+              "name": "finishes-at",
+              "fieldName": "finishesAt",
+              "description": "Optional ISO finish timestamp supplied by the application.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "locale",
+              "fieldName": "locale",
+              "description": "Locale for the finish-time display.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\""
+            },
+            {
+              "name": "time-zone",
+              "fieldName": "timeZone",
+              "description": "Optional IANA timezone for the finish time.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "commands",
+              "fieldName": "commands",
+              "description": "Optional {action,label,icon?,disabled?} command definitions. Actions are requests only and do not assume the appliance accepted them.",
+              "type": {
+                "text": "string"
+              },
+              "default": "[]"
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "card",
+              "description": "Outer card surface."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-error-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": [
+            {
+              "name": "footer",
+              "description": "footer content."
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "LumaThemeSelector",
+          "description": "Light/dark/system appearance selector composed with the shared segmented control; emits changes without silently modifying global document styling.",
+          "tagName": "luma-theme-selector",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaElement",
+            "module": "dist/base.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "description": "Selected appearance: light, dark or system. Changes emit a value event; the host application decides which theme scope to update.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"system\"",
+              "attribute": "value"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "value",
+              "fieldName": "value",
+              "description": "Selected appearance: light, dark or system. Changes emit a value event; the host application decides which theme scope to update.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"system\""
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "selector",
+              "description": "selector styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LumaTank",
+          "declaration": {
+            "name": "LumaTank",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-tank",
+          "declaration": {
+            "name": "LumaTank",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaOpening",
+          "declaration": {
+            "name": "LumaOpening",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-opening",
+          "declaration": {
+            "name": "LumaOpening",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaAppliance",
+          "declaration": {
+            "name": "LumaAppliance",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-appliance",
+          "declaration": {
+            "name": "LumaAppliance",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaThemeSelector",
+          "declaration": {
+            "name": "LumaThemeSelector",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-theme-selector",
+          "declaration": {
+            "name": "LumaThemeSelector",
+            "module": "dist/automation-cards.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/automation-primitives.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "LumaRadioGroup",
+          "description": "Native accessible single-choice list with keyboard navigation, descriptions, per-option disabled state and Luma selection/hover styling.",
+          "tagName": "luma-radio-group",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaElement",
+            "module": "dist/base.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "description": "Selected option value. User input emits luma-change with property value.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "options",
+              "privacy": "public",
+              "description": "Strings or {value,label,disabled?,description?} options. Values are strings; disabled options are skipped by native keyboard navigation.",
+              "type": {
+                "text": "Array<string|RadioOption>"
+              },
+              "default": "[]",
+              "attribute": "options"
+            },
+            {
+              "kind": "field",
+              "name": "orientation",
+              "privacy": "public",
+              "description": "Option layout: vertical or horizontal.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"vertical\"",
+              "attribute": "orientation"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "value",
+              "fieldName": "value",
+              "description": "Selected option value. User input emits luma-change with property value.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "options",
+              "fieldName": "options",
+              "description": "Strings or {value,label,disabled?,description?} options. Values are strings; disabled options are skipped by native keyboard navigation.",
+              "type": {
+                "text": "string"
+              },
+              "default": "[]"
+            },
+            {
+              "name": "orientation",
+              "fieldName": "orientation",
+              "description": "Option layout: vertical or horizontal.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"vertical\""
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "group",
+              "description": "group styling hook."
+            },
+            {
+              "name": "option",
+              "description": "option styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaMomentaryButton",
+          "description": "Press-and-hold control that emits paired pressed/released values for pointer and keyboard input, including cancellation and focus-loss release.",
+          "tagName": "luma-momentary-button",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaButton",
+            "module": "dist/primitives.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label",
+              "inheritedFrom": {
+                "name": "LumaButton",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "inheritedFrom": {
+                "name": "LumaButton",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "privacy": "public",
+              "description": "Optional leading built-in icon.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "icon",
+              "inheritedFrom": {
+                "name": "LumaButton",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "privacy": "public",
+              "description": "Visual variant: filled or text.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"filled\"",
+              "attribute": "variant",
+              "inheritedFrom": {
+                "name": "LumaButton",
+                "module": "dist/primitives.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "entityId",
+              "privacy": "public",
+              "description": "Optional source identifier included in press and release events.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "entity-id"
+            },
+            {
+              "kind": "field",
+              "name": "pressed",
+              "privacy": "public",
+              "description": "Current pressed state. Pointer/key press emits true; release, cancel, focus loss or removal emits false. Applications must handle release events as well as press events.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "pressed"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "icon",
+              "fieldName": "icon",
+              "description": "Optional leading built-in icon.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "variant",
+              "fieldName": "variant",
+              "description": "Visual variant: filled or text.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"filled\""
+            },
+            {
+              "name": "entity-id",
+              "fieldName": "entityId",
+              "description": "Optional source identifier included in press and release events.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "pressed",
+              "fieldName": "pressed",
+              "description": "Current pressed state. Pointer/key press emits true; release, cancel, focus loss or removal emits false. Applications must handle release events as well as press events.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "button",
+              "description": "Interactive button surface."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": [
+            {
+              "name": "",
+              "description": "Default component content."
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "LumaMarquee",
+          "description": "Overflow-aware plain-text ticker with pause/resume, hover/focus pause, responsive measurement, and static readable reduced-motion rendering.",
+          "tagName": "luma-marquee",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaElement",
+            "module": "dist/base.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "privacy": "public",
+              "description": "Plain text to display; HTML is always escaped.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "speed",
+              "privacy": "public",
+              "description": "Scrolling speed in pixels per second; only overflowing text moves.",
+              "type": {
+                "text": "number"
+              },
+              "default": "30",
+              "attribute": "speed"
+            },
+            {
+              "kind": "field",
+              "name": "paused",
+              "privacy": "public",
+              "description": "Pause scrolling. Hover and keyboard focus also pause without changing this property.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "paused"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "text",
+              "fieldName": "text",
+              "description": "Plain text to display; HTML is always escaped.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "speed",
+              "fieldName": "speed",
+              "description": "Scrolling speed in pixels per second; only overflowing text moves.",
+              "type": {
+                "text": "number"
+              },
+              "default": "30"
+            },
+            {
+              "name": "paused",
+              "fieldName": "paused",
+              "description": "Pause scrolling. Hover and keyboard focus also pause without changing this property.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "marquee",
+              "description": "marquee styling hook."
+            },
+            {
+              "name": "text",
+              "description": "text styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaAnalogClock",
+          "description": "Theme-aware SVG analog clock with supplied/live time, IANA timezone, optional seconds/numbers, accessible time, and inherited timer cleanup.",
+          "tagName": "luma-analog-clock",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaClock",
+            "module": "dist/cards.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label",
+              "inheritedFrom": {
+                "name": "LumaClock",
+                "module": "dist/cards.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "inheritedFrom": {
+                "name": "LumaClock",
+                "module": "dist/cards.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "time",
+              "privacy": "public",
+              "description": "ISO date/time to display. Empty follows the local clock.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "time",
+              "inheritedFrom": {
+                "name": "LumaClock",
+                "module": "dist/cards.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "locale",
+              "privacy": "public",
+              "description": "Intl formatting locale.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\"",
+              "attribute": "locale",
+              "inheritedFrom": {
+                "name": "LumaClock",
+                "module": "dist/cards.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "timeZone",
+              "privacy": "public",
+              "description": "IANA time zone; empty uses the browser zone.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "time-zone",
+              "inheritedFrom": {
+                "name": "LumaClock",
+                "module": "dist/cards.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showSeconds",
+              "privacy": "public",
+              "description": "Display seconds.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "show-seconds",
+              "inheritedFrom": {
+                "name": "LumaClock",
+                "module": "dist/cards.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showNumbers",
+              "privacy": "public",
+              "description": "Show hour numbers around the clock face.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "show-numbers"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "time",
+              "fieldName": "time",
+              "description": "ISO date/time to display. Empty follows the local clock.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "locale",
+              "fieldName": "locale",
+              "description": "Intl formatting locale.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\""
+            },
+            {
+              "name": "time-zone",
+              "fieldName": "timeZone",
+              "description": "IANA time zone; empty uses the browser zone.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "show-seconds",
+              "fieldName": "showSeconds",
+              "description": "Display seconds.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "show-numbers",
+              "fieldName": "showNumbers",
+              "description": "Show hour numbers around the clock face.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "clock",
+              "description": "clock styling hook."
+            },
+            {
+              "name": "face",
+              "description": "face styling hook."
+            },
+            {
+              "name": "hour-hand",
+              "description": "hour-hand styling hook."
+            },
+            {
+              "name": "minute-hand",
+              "description": "minute-hand styling hook."
+            },
+            {
+              "name": "second-hand",
+              "description": "second-hand styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaLevelIndicator",
+          "description": "Standalone measured tank/bar fill with scale, clamped geometry, units, accessible meter values and low/high warnings.",
+          "tagName": "luma-level-indicator",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaElement",
+            "module": "dist/base.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "description": "Measured fill level, clamped to min/max for the graphic.",
+              "type": {
+                "text": "number"
+              },
+              "default": "65",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "min",
+              "privacy": "public",
+              "description": "Empty value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "min"
+            },
+            {
+              "kind": "field",
+              "name": "max",
+              "privacy": "public",
+              "description": "Full value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "attribute": "max"
+            },
+            {
+              "kind": "field",
+              "name": "unit",
+              "privacy": "public",
+              "description": "Unit of the measured value.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"%\"",
+              "attribute": "unit"
+            },
+            {
+              "kind": "field",
+              "name": "low",
+              "privacy": "public",
+              "description": "Low-level warning threshold.",
+              "type": {
+                "text": "number"
+              },
+              "default": "20",
+              "attribute": "low"
+            },
+            {
+              "kind": "field",
+              "name": "high",
+              "privacy": "public",
+              "description": "High-level warning threshold in measured units. -1 disables high warnings; a threshold at max also disables them.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1",
+              "attribute": "high"
+            },
+            {
+              "kind": "field",
+              "name": "precision",
+              "privacy": "public",
+              "description": "Decimal places, from 0 to 6.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "precision"
+            },
+            {
+              "kind": "field",
+              "name": "locale",
+              "privacy": "public",
+              "description": "Numeric formatting locale.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\"",
+              "attribute": "locale"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "privacy": "public",
+              "description": "Normal fill color, using a Luma color name or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\"",
+              "attribute": "color"
+            },
+            {
+              "kind": "field",
+              "name": "orientation",
+              "privacy": "public",
+              "description": "vertical tank or horizontal bar.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"vertical\"",
+              "attribute": "orientation"
+            },
+            {
+              "kind": "field",
+              "name": "showScale",
+              "privacy": "public",
+              "description": "Show scale labels and ticks.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "show-scale"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "value",
+              "fieldName": "value",
+              "description": "Measured fill level, clamped to min/max for the graphic.",
+              "type": {
+                "text": "number"
+              },
+              "default": "65"
+            },
+            {
+              "name": "min",
+              "fieldName": "min",
+              "description": "Empty value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "name": "max",
+              "fieldName": "max",
+              "description": "Full value.",
+              "type": {
+                "text": "number"
+              },
+              "default": "100"
+            },
+            {
+              "name": "unit",
+              "fieldName": "unit",
+              "description": "Unit of the measured value.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"%\""
+            },
+            {
+              "name": "low",
+              "fieldName": "low",
+              "description": "Low-level warning threshold.",
+              "type": {
+                "text": "number"
+              },
+              "default": "20"
+            },
+            {
+              "name": "high",
+              "fieldName": "high",
+              "description": "High-level warning threshold in measured units. -1 disables high warnings; a threshold at max also disables them.",
+              "type": {
+                "text": "number"
+              },
+              "default": "-1"
+            },
+            {
+              "name": "precision",
+              "fieldName": "precision",
+              "description": "Decimal places, from 0 to 6.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "name": "locale",
+              "fieldName": "locale",
+              "description": "Numeric formatting locale.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"en\""
+            },
+            {
+              "name": "color",
+              "fieldName": "color",
+              "description": "Normal fill color, using a Luma color name or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "name": "orientation",
+              "fieldName": "orientation",
+              "description": "vertical tank or horizontal bar.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"vertical\""
+            },
+            {
+              "name": "show-scale",
+              "fieldName": "showScale",
+              "description": "Show scale labels and ticks.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "indicator",
+              "description": "indicator styling hook."
+            },
+            {
+              "name": "track",
+              "description": "Inactive control track."
+            },
+            {
+              "name": "fill",
+              "description": "Active arc/graph fill."
+            },
+            {
+              "name": "value",
+              "description": "value styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-error-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaProgressRing",
+          "description": "Standalone determinate/indeterminate progress ring with center caption, accessibility and reduced-motion support.",
+          "tagName": "luma-progress-ring",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaElement",
+            "module": "dist/base.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "description": "Completion percentage from 0 to 100.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "privacy": "public",
+              "description": "Show an indeterminate arc instead of a measured percentage; reduced motion keeps it still.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "indeterminate"
+            },
+            {
+              "kind": "field",
+              "name": "caption",
+              "privacy": "public",
+              "description": "Text in the center, e.g. remaining time. Empty uses the percentage.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "caption"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "privacy": "public",
+              "description": "Ring color, a Luma color name or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\"",
+              "attribute": "color"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "value",
+              "fieldName": "value",
+              "description": "Completion percentage from 0 to 100.",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "name": "indeterminate",
+              "fieldName": "indeterminate",
+              "description": "Show an indeterminate arc instead of a measured percentage; reduced motion keeps it still.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "caption",
+              "fieldName": "caption",
+              "description": "Text in the center, e.g. remaining time. Empty uses the percentage.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "color",
+              "fieldName": "color",
+              "description": "Ring color, a Luma color name or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\""
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "ring",
+              "description": "ring styling hook."
+            },
+            {
+              "name": "fill",
+              "description": "Active arc/graph fill."
+            },
+            {
+              "name": "caption",
+              "description": "caption styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaOpeningIndicator",
+          "description": "Standalone window/door illustration for closed, open, tilted and unavailable states, with configurable hinge side.",
+          "tagName": "luma-opening-indicator",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaElement",
+            "module": "dist/base.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "privacy": "public",
+              "description": "Opening state: closed, open, tilted, or unavailable.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"closed\"",
+              "attribute": "state"
+            },
+            {
+              "kind": "field",
+              "name": "kind",
+              "privacy": "public",
+              "description": "Physical opening: window or door.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"window\"",
+              "attribute": "kind"
+            },
+            {
+              "kind": "field",
+              "name": "hinge",
+              "privacy": "public",
+              "description": "Hinge side: left or right; mirrors the illustration.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"left\"",
+              "attribute": "hinge"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "privacy": "public",
+              "description": "Active/open accent, using a Luma color or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\"",
+              "attribute": "color"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "state",
+              "fieldName": "state",
+              "description": "Opening state: closed, open, tilted, or unavailable.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"closed\""
+            },
+            {
+              "name": "kind",
+              "fieldName": "kind",
+              "description": "Physical opening: window or door.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"window\""
+            },
+            {
+              "name": "hinge",
+              "fieldName": "hinge",
+              "description": "Hinge side: left or right; mirrors the illustration.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"left\""
+            },
+            {
+              "name": "color",
+              "fieldName": "color",
+              "description": "Active/open accent, using a Luma color or CSS color.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"primary\""
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "illustration",
+              "description": "illustration styling hook."
+            },
+            {
+              "name": "leaf",
+              "description": "leaf styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        },
+        {
+          "kind": "class",
+          "name": "LumaStateImage",
+          "description": "State-dependent image display with fallback, safe URLs, alt text and theme-consistent rounding.",
+          "tagName": "luma-state-image",
+          "customElement": true,
+          "superclass": {
+            "name": "LumaElement",
+            "module": "dist/base.js"
+          },
+          "members": [
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "privacy": "public",
+              "description": "State used to select an image.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "state"
+            },
+            {
+              "kind": "field",
+              "name": "images",
+              "privacy": "public",
+              "description": "Array of {state,src,alt?} image mappings. URLs may be relative, http(s), or blob; scripts and arbitrary HTML are not allowed.",
+              "type": {
+                "text": "StateImage[]"
+              },
+              "default": "[]",
+              "attribute": "images"
+            },
+            {
+              "kind": "field",
+              "name": "src",
+              "privacy": "public",
+              "description": "Fallback image URL when no state mapping matches.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "src"
+            },
+            {
+              "kind": "field",
+              "name": "alt",
+              "privacy": "public",
+              "description": "Fallback alternative text.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "alt"
+            },
+            {
+              "kind": "field",
+              "name": "fit",
+              "privacy": "public",
+              "description": "Image fit: contain or cover.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"contain\"",
+              "attribute": "fit"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "fieldName": "label",
+              "description": "Accessible name and primary label of the element.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "disabled",
+              "fieldName": "disabled",
+              "description": "Disables user interaction. Boolean attributes use presence; disabled=\"false\" also disables.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "state",
+              "fieldName": "state",
+              "description": "State used to select an image.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "images",
+              "fieldName": "images",
+              "description": "Array of {state,src,alt?} image mappings. URLs may be relative, http(s), or blob; scripts and arbitrary HTML are not allowed.",
+              "type": {
+                "text": "string"
+              },
+              "default": "[]"
+            },
+            {
+              "name": "src",
+              "fieldName": "src",
+              "description": "Fallback image URL when no state mapping matches.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "alt",
+              "fieldName": "alt",
+              "description": "Fallback alternative text.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "name": "fit",
+              "fieldName": "fit",
+              "description": "Image fit: contain or cover.",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"contain\""
+            }
+          ],
+          "events": [
+            {
+              "name": "luma-change",
+              "description": "Committed user change. Bubbles across Shadow DOM.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId:string}>"
+              }
+            },
+            {
+              "name": "luma-input",
+              "description": "Live preview before commitment.",
+              "type": {
+                "text": "CustomEvent<{property:string,value:unknown,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-action",
+              "description": "Cancelable action request. Prevent more-info to supply your own popup.",
+              "type": {
+                "text": "CustomEvent<{action:string,entityId?:string}>"
+              }
+            },
+            {
+              "name": "luma-error",
+              "description": "Invalid attribute value; the previous value is preserved.",
+              "type": {
+                "text": "CustomEvent<{attribute:string,value:string,message:string}>"
+              }
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "root",
+              "description": "Component root wrapper."
+            },
+            {
+              "name": "image",
+              "description": "image styling hook."
+            },
+            {
+              "name": "placeholder",
+              "description": "placeholder styling hook."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--luma-image-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-radius",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-font",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-color-scheme",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-pressed-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-focus-color",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-secondary-text",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-hover-opacity",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-border",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-shadow",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-card-padding",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-title-size",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-control-background",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-on-primary",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-width",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-height",
+              "description": "Inherited theme variable."
+            },
+            {
+              "name": "--luma-slider-thumb-radius",
+              "description": "Inherited theme variable."
+            }
+          ],
+          "slots": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LumaRadioGroup",
+          "declaration": {
+            "name": "LumaRadioGroup",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-radio-group",
+          "declaration": {
+            "name": "LumaRadioGroup",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaMomentaryButton",
+          "declaration": {
+            "name": "LumaMomentaryButton",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-momentary-button",
+          "declaration": {
+            "name": "LumaMomentaryButton",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaMarquee",
+          "declaration": {
+            "name": "LumaMarquee",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-marquee",
+          "declaration": {
+            "name": "LumaMarquee",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaAnalogClock",
+          "declaration": {
+            "name": "LumaAnalogClock",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-analog-clock",
+          "declaration": {
+            "name": "LumaAnalogClock",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaLevelIndicator",
+          "declaration": {
+            "name": "LumaLevelIndicator",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-level-indicator",
+          "declaration": {
+            "name": "LumaLevelIndicator",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaProgressRing",
+          "declaration": {
+            "name": "LumaProgressRing",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-progress-ring",
+          "declaration": {
+            "name": "LumaProgressRing",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaOpeningIndicator",
+          "declaration": {
+            "name": "LumaOpeningIndicator",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-opening-indicator",
+          "declaration": {
+            "name": "LumaOpeningIndicator",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaStateImage",
+          "declaration": {
+            "name": "LumaStateImage",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "luma-state-image",
+          "declaration": {
+            "name": "LumaStateImage",
+            "module": "dist/automation-primitives.js"
+          }
+        }
+      ]
+    },
     {
       "kind": "javascript-module",
       "path": "dist/bar-chart.js",
@@ -45722,6 +50277,102 @@
       "path": "dist/index.js",
       "declarations": [],
       "exports": [
+        {
+          "kind": "js",
+          "name": "LumaTank",
+          "declaration": {
+            "name": "LumaTank",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaOpening",
+          "declaration": {
+            "name": "LumaOpening",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaAppliance",
+          "declaration": {
+            "name": "LumaAppliance",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaThemeSelector",
+          "declaration": {
+            "name": "LumaThemeSelector",
+            "module": "dist/automation-cards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaRadioGroup",
+          "declaration": {
+            "name": "LumaRadioGroup",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaMomentaryButton",
+          "declaration": {
+            "name": "LumaMomentaryButton",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaMarquee",
+          "declaration": {
+            "name": "LumaMarquee",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaAnalogClock",
+          "declaration": {
+            "name": "LumaAnalogClock",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaLevelIndicator",
+          "declaration": {
+            "name": "LumaLevelIndicator",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaProgressRing",
+          "declaration": {
+            "name": "LumaProgressRing",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaOpeningIndicator",
+          "declaration": {
+            "name": "LumaOpeningIndicator",
+            "module": "dist/automation-primitives.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "LumaStateImage",
+          "declaration": {
+            "name": "LumaStateImage",
+            "module": "dist/automation-primitives.js"
+          }
+        },
         {
           "kind": "js",
           "name": "LumaBarChart",

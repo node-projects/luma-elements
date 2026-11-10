@@ -4,6 +4,18 @@ const rows=[{label:'Kitchen lights',state:'on',icon:'light',toggle:true,entityId
 const data=[1,.5,1.2,.8,.6,1.5,1.1,.7,1.6,1.4,.8,.5];
 export const energyExample={flow:{solar:1.17,gridImport:4.03,gridExport:.12,home:5.11,batteryCharge:1.16,batteryDischarge:1.18,gas:1.09,water:154},sources:[{label:'Solar total',energy:1.17,unit:'kWh',color:'orange'},{label:'Battery total',energy:-.02,unit:'kWh',color:'#40b4aa'},{label:'Grid total',energy:4.03,unit:'kWh',cost:.39,color:'blue'},{label:'Gas total',energy:1.09,unit:'m³',cost:.66,color:'#980022'},{label:'Water total',energy:154,unit:'L',cost:.29,color:'#00bcd4'}],powerSeries:[{name:'Solar',color:'orange',curve:'linear',data:data.map(v=>v*3)},{name:'Grid',color:'blue',curve:'linear',data:data.map((v,i)=>v*2+(i%3)*2)}],electricitySeries:[{name:'PV',color:'orange',data},{name:'Grid',color:'blue',data:data.map(v=>v*.7)},{name:'Battery input',color:'#ff5d99',data:data.map(v=>-v*.15)}],gasSeries:[{name:'Gas',color:'#980022',data:data.map(v=>v*.09)}],waterSeries:[{name:'Water',color:'#00bcd4',data:data.map(v=>v*8)}],labels:data.map((_,i)=>String(i).padStart(2,'0')+':00')};
 export const extraExamples={
+ 'luma-radio-group':{label:'House mode',value:'home',options:[{value:'home',label:'Home',description:'Normal comfort settings'},{value:'away',label:'Away'},{value:'night',label:'Night'}]},
+ 'luma-momentary-button':{label:'Hold to jog',icon:'cover',entityId:'motor.blind'},
+ 'luma-marquee':{label:'Announcement',text:'The garden irrigation is scheduled for 18:30. Close the kitchen window before leaving home.'},
+ 'luma-analog-clock':{label:'Local time',showSeconds:true},
+ 'luma-level-indicator':{label:'Cistern',value:1200,max:2000,low:300,unit:'L'},
+ 'luma-progress-ring':{label:'Wash cycle',value:65,caption:'0:42'},
+ 'luma-opening-indicator':{label:'Kitchen window',state:'tilted'},
+ 'luma-state-image':{label:'Room occupancy',state:'home',images:[{state:'home',src:'room.svg',alt:'Occupied living room'}]},
+ 'luma-tank':{label:'Rainwater cistern',entityId:'tank.rainwater',value:1200,max:2000,low:300,unit:'L',icon:'humidity'},
+ 'luma-opening':{label:'Kitchen window',entityId:'opening.kitchen',state:'tilted',alarm:true},
+ 'luma-appliance':{label:'Washing machine',entityId:'appliance.washer',state:'running',program:'Cotton · 40 °C',progress:65,remainingMinutes:42,commands:[{action:'pause',label:'Pause',icon:'pause'}]},
+ 'luma-theme-selector':{label:'Appearance',value:'system'},
  'luma-button-card':{label:'Evening scene',icon:'light',state:'on',tapAction:'press'},
 
  'luma-glance-item':{label:'Outdoor',state:'10.2 °C',icon:'temperature',entityId:'sensor.outdoor'},
@@ -106,11 +118,14 @@ export const extraContents={
  'luma-conditional':'<luma-tile label="Only visible when enabled" state="on"></luma-tile>',
  'luma-dialog':'<p>Compose any of the standalone controls inside this dialog.</p><luma-color-picker value="#ffa24d"></luma-color-picker>',
 };
-const primitives=new Set(['icon','button','switch','slider','number','select','badge','entity-row','glance-item','arc','dial','vertical-slider','icon-button','checkbox','text-field','date-picker','time-picker','datetime-picker','segmented','tabs','color-wheel','color-temperature','color-picker','command-bar','cover-controls','media-controls','keypad','progress','attributes','dropdown','brightness','volume','color-swatches','light-mode-selector','light-controls','temperature-value','line-chart','sparkline','gauge-arc','bar-chart','energy-node','flow-line','data-table','date-range-picker','feature']);
+const primitives=new Set(['radio-group','momentary-button','marquee','analog-clock','level-indicator','progress-ring','opening-indicator','state-image','theme-selector','icon','button','switch','slider','number','select','badge','entity-row','glance-item','arc','dial','vertical-slider','icon-button','checkbox','text-field','date-picker','time-picker','datetime-picker','segmented','tabs','color-wheel','color-temperature','color-picker','command-bar','cover-controls','media-controls','keypad','progress','attributes','dropdown','brightness','volume','color-swatches','light-mode-selector','light-controls','temperature-value','line-chart','sparkline','gauge-arc','bar-chart','energy-node','flow-line','data-table','date-range-picker','feature']);
 const layout=new Set(['card','heading','grid','stack','horizontal-stack','vertical-stack','conditional']);
-export function category(tag){const name=tag.replace('luma-','');return ['dialog','confirm-dialog','more-info'].includes(name)?'popup':layout.has(name)?'layout':primitives.has(name)?'primitive':['device','switch-card','fan','humidifier','vacuum','lock','valve','water-heater','siren','remote','lawn-mower','counter','timer','update','automation','script','input-text','input-number','input-select','input-date','input-time','input-datetime','scene','light','thermostat','cover','media-player','alarm'].includes(name)?'device':'card';}
+export function category(tag){const name=tag.replace('luma-','');return ['dialog','confirm-dialog','more-info'].includes(name)?'popup':layout.has(name)?'layout':primitives.has(name)?'primitive':['tank','opening','appliance','device','switch-card','fan','humidifier','vacuum','lock','valve','water-heater','siren','remote','lawn-mower','counter','timer','update','automation','script','input-text','input-number','input-select','input-date','input-time','input-datetime','scene','light','thermostat','cover','media-player','alarm'].includes(name)?'device':'card';}
 
 export function entityExample(domain){
+ if(domain==='tank')return {domain,entityId:'tank.rainwater',label:'Rainwater cistern',state:'available',properties:{value:1200,max:2000,low:300,unit:'L'}};
+ if(domain==='opening')return {domain,entityId:'opening.kitchen',label:'Kitchen window',state:'tilted',properties:{alarm:true}};
+ if(['appliance','washing_machine','dryer','dishwasher'].includes(domain))return {domain,entityId:domain+'.demo',label:domain.replaceAll('_',' '),state:'running',properties:{program:'Normal cycle',progress:65,remainingMinutes:42}};
  if(domain==='climate')return {domain,entityId:'climate.ground_floor',label:'Ground floor Thermostat',state:'heating',properties:{temperature:22.5,currentTemperature:20.8,locale:'de',stateLabel:'Preheating',presets:presetOptions,preset:'comfort'},series:hourSeries};
  if(domain==='light')return {domain,entityId:'light.reading',label:'Floor lamp',state:'on',properties:{brightness:70,rgbColor:'#ffa24d',panel:'color',lastChangedLabel:'2 hours ago'},series:hourSeries};
  if(domain==='sensor')return {domain,entityId:'sensor.rain',label:'Rain',state:'7.2',properties:{unit:'mm',icon:'weather',lastChangedLabel:'43 minutes ago'},series:[{name:'Rain',data:[9.2,5.2,6.2,8.2,9.2,4.2,4.2,8.2,4.2,5.2,9.2,9.2,4.2,9.2,7.2]}]};

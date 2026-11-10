@@ -1,6 +1,6 @@
 # Home Assistant UI coverage
 
-Reference audit: 2026-11-10. This inventory distinguishes UI coverage from backend integration. The library has 124 registered components; its complete property reference is [API.md](API.md).
+Reference audit: 2026-11-10. This inventory distinguishes UI coverage from backend integration. The library has 136 registered components; its complete property reference is [API.md](API.md).
 
 Sources: [Lovelace cards](https://www.home-assistant.io/dashboards/cards/), [public feature registry](https://github.com/home-assistant/frontend/blob/dev/src/panels/lovelace/card-features/registry.ts), and [entity detail control inventory](https://github.com/home-assistant/frontend/tree/dev/src/dialogs/more-info/controls). The reference is Home Assistant's moving dev branch; future upstream additions are not automatically included.
 
@@ -119,6 +119,7 @@ All domain-specific entries in the audited Home Assistant more-info/controls dir
 | `air_quality` | `luma-state-panel` |
 | `alarm_control_panel` | `luma-alarm` |
 | `alert` | `luma-state-panel` |
+| `appliance` | `luma-appliance` |
 | `assist_satellite` | `luma-conversation` |
 | `automation` | `luma-automation` |
 | `binary_sensor` | `luma-state-panel` |
@@ -134,6 +135,8 @@ All domain-specific entries in the audited Home Assistant more-info/controls dir
 | `datetime` | `luma-input-datetime` |
 | `default` | `luma-state-panel` |
 | `device_tracker` | `luma-state-panel` |
+| `dishwasher` | `luma-appliance` |
+| `dryer` | `luma-appliance` |
 | `event` | `luma-state-panel` |
 | `fan` | `luma-fan` |
 | `geo_location` | `luma-map` |
@@ -153,6 +156,7 @@ All domain-specific entries in the audited Home Assistant more-info/controls dir
 | `media_player` | `luma-media-player` |
 | `notify` | `luma-input-text` |
 | `number` | `luma-input-number` |
+| `opening` | `luma-opening` |
 | `persistent_notification` | `luma-state-panel` |
 | `person` | `luma-state-panel` |
 | `plant` | `luma-plant` |
@@ -169,6 +173,7 @@ All domain-specific entries in the audited Home Assistant more-info/controls dir
 | `sun` | `luma-state-panel` |
 | `switch` | `luma-switch-card` |
 | `tag` | `luma-state-panel` |
+| `tank` | `luma-tank` |
 | `text` | `luma-input-text` |
 | `time` | `luma-input-time` |
 | `timer` | `luma-timer` |
@@ -178,10 +183,15 @@ All domain-specific entries in the audited Home Assistant more-info/controls dir
 | `vacuum` | `luma-vacuum` |
 | `valve` | `luma-valve` |
 | `wake_word` | `luma-state-panel` |
+| `washing_machine` | `luma-appliance` |
 | `water_heater` | `luma-water-heater` |
 | `weather` | `luma-weather` |
 | `weather_forecast` | `luma-weather` |
 | `zone` | `luma-state-panel` |
+
+## Additional automation widgets
+
+See [IOBROKER_COMPARISON.md](IOBROKER_COMPARISON.md) for the VIS 2 and Inventwo catalogs, existing mappings, and the independently implemented additions.
 
 ## Interaction checks
 
@@ -313,6 +323,18 @@ Manifest tests import the actual compiled modules and compare their exported con
 - `luma-form` — Reusable configurator/form composed from validated fields, selects, and a submit button.
 - `luma-conversation` — Conversation UI with escaped messages, draft input, and a send event for your own assistant adapter.
 - `luma-shortcut` — Shortcut card that emits a navigate action for the application router.
+- `luma-radio-group` — Native accessible single-choice list with keyboard navigation, descriptions, per-option disabled state and Luma selection/hover styling.
+- `luma-momentary-button` — Press-and-hold control that emits paired pressed/released values for pointer and keyboard input, including cancellation and focus-loss release.
+- `luma-marquee` — Overflow-aware plain-text ticker with pause/resume, hover/focus pause, responsive measurement, and static readable reduced-motion rendering.
+- `luma-analog-clock` — Theme-aware SVG analog clock with supplied/live time, IANA timezone, optional seconds/numbers, accessible time, and inherited timer cleanup.
+- `luma-level-indicator` — Standalone measured tank/bar fill with scale, clamped geometry, units, accessible meter values and low/high warnings.
+- `luma-progress-ring` — Standalone determinate/indeterminate progress ring with center caption, accessibility and reduced-motion support.
+- `luma-opening-indicator` — Standalone window/door illustration for closed, open, tilted and unavailable states, with configurable hinge side.
+- `luma-state-image` — State-dependent image display with fallback, safe URLs, alt text and theme-consistent rounding.
+- `luma-tank` — Fill-level card for cisterns, oil tanks, pellet stores or batteries, composed from an entity row and standalone level indicator.
+- `luma-opening` — Window/door contact card with localized states and an independently reusable closed/open/tilted illustration.
+- `luma-appliance` — Washer/dryer/dishwasher cycle card composed from the standalone progress ring, supplied program/remaining-time data and optional command controls.
+- `luma-theme-selector` — Light/dark/system appearance selector composed with the shared segmented control; emits changes without silently modifying global document styling.
 - `luma-energy-node` — Standalone circular energy node with independent readings and optional source-mix ring segments.
 - `luma-flow-line` — Standalone SVG connection with an animated flow dot and reduced-motion support.
 - `luma-energy-flow` — Home Assistant-style connected energy distribution diagram composed from independently reusable nodes and animated flow lines.
